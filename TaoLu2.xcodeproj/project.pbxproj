@@ -7,6 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		072A66501DC1A8E700F1D447 /* PasteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072A664E1DC1A8E700F1D447 /* PasteViewController.m */; };
+		072A66511DC1A8E700F1D447 /* PasteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 072A664F1DC1A8E700F1D447 /* PasteViewController.xib */; };
+		072A669D1DC1B0EB00F1D447 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 072A66921DC1B0EB00F1D447 /* close.png */; };
+		072A669E1DC1B0EB00F1D447 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 072A66931DC1B0EB00F1D447 /* facebook.png */; };
+		072A669F1DC1B0EB00F1D447 /* gou1.png in Resources */ = {isa = PBXBuildFile; fileRef = 072A66941DC1B0EB00F1D447 /* gou1.png */; };
+		072A66A01DC1B0EB00F1D447 /* gou2.png in Resources */ = {isa = PBXBuildFile; fileRef = 072A66951DC1B0EB00F1D447 /* gou2.png */; };
+		072A66A11DC1B0EB00F1D447 /* pyq.png in Resources */ = {isa = PBXBuildFile; fileRef = 072A66961DC1B0EB00F1D447 /* pyq.png */; };
+		072A66A21DC1B0EB00F1D447 /* qq.png in Resources */ = {isa = PBXBuildFile; fileRef = 072A66971DC1B0EB00F1D447 /* qq.png */; };
+		072A66A31DC1B0EB00F1D447 /* qzone.png in Resources */ = {isa = PBXBuildFile; fileRef = 072A66981DC1B0EB00F1D447 /* qzone.png */; };
+		072A66A41DC1B0EB00F1D447 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 072A66991DC1B0EB00F1D447 /* star.png */; };
+		072A66A51DC1B0EB00F1D447 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 072A669A1DC1B0EB00F1D447 /* twitter.png */; };
+		072A66A61DC1B0EB00F1D447 /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 072A669B1DC1B0EB00F1D447 /* weibo.png */; };
+		072A66A71DC1B0EB00F1D447 /* weixin.png in Resources */ = {isa = PBXBuildFile; fileRef = 072A669C1DC1B0EB00F1D447 /* weixin.png */; };
+		072A66AB1DC1BECC00F1D447 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072A66A91DC1BECC00F1D447 /* ShareViewController.m */; };
+		072A66AC1DC1BECC00F1D447 /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 072A66AA1DC1BECC00F1D447 /* ShareViewController.xib */; };
+		072A66B01DC1D2E700F1D447 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072A66AE1DC1D2E700F1D447 /* CommentViewController.m */; };
+		072A66B11DC1D2E700F1D447 /* CommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 072A66AF1DC1D2E700F1D447 /* CommentViewController.xib */; };
+		072A66B51DC1D30600F1D447 /* FollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072A66B31DC1D30600F1D447 /* FollowViewController.m */; };
+		072A66B61DC1D30600F1D447 /* FollowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 072A66B41DC1D30600F1D447 /* FollowViewController.xib */; };
+		072A66BA1DC1D32D00F1D447 /* NewArrivalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072A66B81DC1D32D00F1D447 /* NewArrivalViewController.m */; };
+		072A66BB1DC1D32D00F1D447 /* NewArrivalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 072A66B91DC1D32D00F1D447 /* NewArrivalViewController.xib */; };
+		072A66BF1DC204A400F1D447 /* TaoLuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 072A66BE1DC204A400F1D447 /* TaoLuManager.m */; };
 		07554FDD1DC0C6A400D7D8F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07554FDC1DC0C6A400D7D8F2 /* main.m */; };
 		07554FE01DC0C6A400D7D8F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07554FDF1DC0C6A400D7D8F2 /* AppDelegate.m */; };
 		07554FE31DC0C6A400D7D8F2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07554FE21DC0C6A400D7D8F2 /* ViewController.m */; };
@@ -16,6 +38,35 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		072A664D1DC1A8E700F1D447 /* PasteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasteViewController.h; sourceTree = "<group>"; };
+		072A664E1DC1A8E700F1D447 /* PasteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasteViewController.m; sourceTree = "<group>"; };
+		072A664F1DC1A8E700F1D447 /* PasteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasteViewController.xib; sourceTree = "<group>"; };
+		072A66921DC1B0EB00F1D447 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		072A66931DC1B0EB00F1D447 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
+		072A66941DC1B0EB00F1D447 /* gou1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gou1.png; sourceTree = "<group>"; };
+		072A66951DC1B0EB00F1D447 /* gou2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gou2.png; sourceTree = "<group>"; };
+		072A66961DC1B0EB00F1D447 /* pyq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pyq.png; sourceTree = "<group>"; };
+		072A66971DC1B0EB00F1D447 /* qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qq.png; sourceTree = "<group>"; };
+		072A66981DC1B0EB00F1D447 /* qzone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qzone.png; sourceTree = "<group>"; };
+		072A66991DC1B0EB00F1D447 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		072A669A1DC1B0EB00F1D447 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
+		072A669B1DC1B0EB00F1D447 /* weibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo.png; sourceTree = "<group>"; };
+		072A669C1DC1B0EB00F1D447 /* weixin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weixin.png; sourceTree = "<group>"; };
+		072A66A81DC1BECC00F1D447 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		072A66A91DC1BECC00F1D447 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		072A66AA1DC1BECC00F1D447 /* ShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareViewController.xib; sourceTree = "<group>"; };
+		072A66AD1DC1D2E700F1D447 /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
+		072A66AE1DC1D2E700F1D447 /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
+		072A66AF1DC1D2E700F1D447 /* CommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentViewController.xib; sourceTree = "<group>"; };
+		072A66B21DC1D30600F1D447 /* FollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowViewController.h; sourceTree = "<group>"; };
+		072A66B31DC1D30600F1D447 /* FollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowViewController.m; sourceTree = "<group>"; };
+		072A66B41DC1D30600F1D447 /* FollowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowViewController.xib; sourceTree = "<group>"; };
+		072A66B71DC1D32D00F1D447 /* NewArrivalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewArrivalViewController.h; sourceTree = "<group>"; };
+		072A66B81DC1D32D00F1D447 /* NewArrivalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewArrivalViewController.m; sourceTree = "<group>"; };
+		072A66B91DC1D32D00F1D447 /* NewArrivalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewArrivalViewController.xib; sourceTree = "<group>"; };
+		072A66BC1DC1D60400F1D447 /* VChead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VChead.h; path = images/VChead.h; sourceTree = "<group>"; };
+		072A66BD1DC204A400F1D447 /* TaoLuManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoLuManager.h; sourceTree = "<group>"; };
+		072A66BE1DC204A400F1D447 /* TaoLuManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoLuManager.m; sourceTree = "<group>"; };
 		07554FD81DC0C6A400D7D8F2 /* TaoLu2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaoLu2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07554FDC1DC0C6A400D7D8F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		07554FDE1DC0C6A400D7D8F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -39,9 +90,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		072A664C1DC1A81B00F1D447 /* taoluCompents */ = {
+			isa = PBXGroup;
+			children = (
+				072A66911DC1B0EB00F1D447 /* images */,
+				072A66BC1DC1D60400F1D447 /* VChead.h */,
+				072A664D1DC1A8E700F1D447 /* PasteViewController.h */,
+				072A664E1DC1A8E700F1D447 /* PasteViewController.m */,
+				072A664F1DC1A8E700F1D447 /* PasteViewController.xib */,
+				072A66A81DC1BECC00F1D447 /* ShareViewController.h */,
+				072A66A91DC1BECC00F1D447 /* ShareViewController.m */,
+				072A66AA1DC1BECC00F1D447 /* ShareViewController.xib */,
+				072A66AD1DC1D2E700F1D447 /* CommentViewController.h */,
+				072A66AE1DC1D2E700F1D447 /* CommentViewController.m */,
+				072A66AF1DC1D2E700F1D447 /* CommentViewController.xib */,
+				072A66B21DC1D30600F1D447 /* FollowViewController.h */,
+				072A66B31DC1D30600F1D447 /* FollowViewController.m */,
+				072A66B41DC1D30600F1D447 /* FollowViewController.xib */,
+				072A66B71DC1D32D00F1D447 /* NewArrivalViewController.h */,
+				072A66B81DC1D32D00F1D447 /* NewArrivalViewController.m */,
+				072A66B91DC1D32D00F1D447 /* NewArrivalViewController.xib */,
+				072A66BD1DC204A400F1D447 /* TaoLuManager.h */,
+				072A66BE1DC204A400F1D447 /* TaoLuManager.m */,
+			);
+			path = taoluCompents;
+			sourceTree = "<group>";
+		};
+		072A66911DC1B0EB00F1D447 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				072A66921DC1B0EB00F1D447 /* close.png */,
+				072A66931DC1B0EB00F1D447 /* facebook.png */,
+				072A66941DC1B0EB00F1D447 /* gou1.png */,
+				072A66951DC1B0EB00F1D447 /* gou2.png */,
+				072A66961DC1B0EB00F1D447 /* pyq.png */,
+				072A66971DC1B0EB00F1D447 /* qq.png */,
+				072A66981DC1B0EB00F1D447 /* qzone.png */,
+				072A66991DC1B0EB00F1D447 /* star.png */,
+				072A669A1DC1B0EB00F1D447 /* twitter.png */,
+				072A669B1DC1B0EB00F1D447 /* weibo.png */,
+				072A669C1DC1B0EB00F1D447 /* weixin.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		07554FCF1DC0C6A400D7D8F2 = {
 			isa = PBXGroup;
 			children = (
+				072A664C1DC1A81B00F1D447 /* taoluCompents */,
 				07554FDA1DC0C6A400D7D8F2 /* TaoLu2 */,
 				07554FD91DC0C6A400D7D8F2 /* Products */,
 			);
@@ -110,6 +206,7 @@
 				TargetAttributes = {
 					07554FD71DC0C6A400D7D8F2 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = RZA9S6KWC6;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -137,8 +234,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072A66A31DC1B0EB00F1D447 /* qzone.png in Resources */,
+				072A66A01DC1B0EB00F1D447 /* gou2.png in Resources */,
+				072A669F1DC1B0EB00F1D447 /* gou1.png in Resources */,
+				072A66B11DC1D2E700F1D447 /* CommentViewController.xib in Resources */,
+				072A66A71DC1B0EB00F1D447 /* weixin.png in Resources */,
+				072A66511DC1A8E700F1D447 /* PasteViewController.xib in Resources */,
+				072A66A51DC1B0EB00F1D447 /* twitter.png in Resources */,
+				072A66A11DC1B0EB00F1D447 /* pyq.png in Resources */,
+				072A66A41DC1B0EB00F1D447 /* star.png in Resources */,
+				072A669E1DC1B0EB00F1D447 /* facebook.png in Resources */,
+				072A66A61DC1B0EB00F1D447 /* weibo.png in Resources */,
+				072A66AC1DC1BECC00F1D447 /* ShareViewController.xib in Resources */,
+				072A66A21DC1B0EB00F1D447 /* qq.png in Resources */,
+				072A66B61DC1D30600F1D447 /* FollowViewController.xib in Resources */,
 				07554FEB1DC0C6A400D7D8F2 /* LaunchScreen.storyboard in Resources */,
+				072A66BB1DC1D32D00F1D447 /* NewArrivalViewController.xib in Resources */,
 				07554FE81DC0C6A400D7D8F2 /* Assets.xcassets in Resources */,
+				072A669D1DC1B0EB00F1D447 /* close.png in Resources */,
 				07554FE61DC0C6A400D7D8F2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,9 +263,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072A66BF1DC204A400F1D447 /* TaoLuManager.m in Sources */,
+				072A66B01DC1D2E700F1D447 /* CommentViewController.m in Sources */,
+				072A66501DC1A8E700F1D447 /* PasteViewController.m in Sources */,
+				072A66B51DC1D30600F1D447 /* FollowViewController.m in Sources */,
 				07554FE31DC0C6A400D7D8F2 /* ViewController.m in Sources */,
 				07554FE01DC0C6A400D7D8F2 /* AppDelegate.m in Sources */,
+				072A66AB1DC1BECC00F1D447 /* ShareViewController.m in Sources */,
 				07554FDD1DC0C6A400D7D8F2 /* main.m in Sources */,
+				072A66BA1DC1D32D00F1D447 /* NewArrivalViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +389,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RZA9S6KWC6;
 				INFOPLIST_FILE = TaoLu2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ybb.TaoLu2;
@@ -281,6 +401,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RZA9S6KWC6;
 				INFOPLIST_FILE = TaoLu2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ybb.TaoLu2;
@@ -307,6 +428,7 @@
 				07554FF11DC0C6A400D7D8F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

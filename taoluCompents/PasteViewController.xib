@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PasteViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pjQ-jT-dPr" userLabel="alert">
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="太好玩了，实在打不过去，快来帮我呀    下边是链接http://sjfalsjlasjlfasfsldfksdfkasfskd" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rM7-0d-LVp">
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="80" id="eMV-xO-am7"/>
+                            </constraints>
+                            <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                        </textView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="复制成功" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kN6-us-Ku3">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="LHh-oR-cZL"/>
+                                <constraint firstAttribute="width" constant="81" id="vdh-3I-6oN"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="粘贴至输入框即可" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nuR-X3-K3U">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="151" id="7GK-ln-wOu"/>
+                                <constraint firstAttribute="height" constant="21" id="XpB-dY-eMd"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.12941176470588237" green="0.5725490196078431" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNe-1L-8N8" userLabel="close">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="bMc-Pu-thd"/>
+                                <constraint firstAttribute="width" constant="40" id="gpN-b6-csa"/>
+                            </constraints>
+                            <state key="normal" image="close.png"/>
+                            <connections>
+                                <action selector="closeAction:" destination="-1" eventType="touchUpInside" id="U9o-bd-WUi"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sFE-PH-ofE">
+                            <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="120" id="aRB-UF-hyD"/>
+                                <constraint firstAttribute="height" constant="30" id="rpg-WK-er7"/>
+                            </constraints>
+                            <state key="normal" title="去告诉好友">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="kN6-us-Ku3" firstAttribute="top" secondItem="pjQ-jT-dPr" secondAttribute="top" constant="15" id="7Rw-ha-r5A"/>
+                        <constraint firstItem="rM7-0d-LVp" firstAttribute="leading" secondItem="pjQ-jT-dPr" secondAttribute="leading" constant="10" id="8CY-Yx-Dli"/>
+                        <constraint firstAttribute="height" constant="220" id="H2v-gs-2DW"/>
+                        <constraint firstItem="bNe-1L-8N8" firstAttribute="top" secondItem="pjQ-jT-dPr" secondAttribute="top" constant="-10" id="RJD-aR-MNV"/>
+                        <constraint firstAttribute="width" constant="295" id="RKa-vn-6o2"/>
+                        <constraint firstItem="sFE-PH-ofE" firstAttribute="centerX" secondItem="pjQ-jT-dPr" secondAttribute="centerX" id="Sbz-mI-fa2"/>
+                        <constraint firstItem="nuR-X3-K3U" firstAttribute="centerX" secondItem="pjQ-jT-dPr" secondAttribute="centerX" id="ZWM-uM-HcI"/>
+                        <constraint firstItem="sFE-PH-ofE" firstAttribute="top" secondItem="rM7-0d-LVp" secondAttribute="bottom" constant="15" id="cio-pq-YVY"/>
+                        <constraint firstItem="nuR-X3-K3U" firstAttribute="top" secondItem="kN6-us-Ku3" secondAttribute="bottom" constant="5" id="hF2-tb-ERY"/>
+                        <constraint firstItem="kN6-us-Ku3" firstAttribute="centerX" secondItem="pjQ-jT-dPr" secondAttribute="centerX" id="ixu-kv-sJ4"/>
+                        <constraint firstAttribute="trailing" secondItem="rM7-0d-LVp" secondAttribute="trailing" constant="10" id="oSk-N8-CiX"/>
+                        <constraint firstItem="rM7-0d-LVp" firstAttribute="top" secondItem="nuR-X3-K3U" secondAttribute="bottom" constant="20" id="tob-Bj-WSc"/>
+                        <constraint firstAttribute="trailing" secondItem="bNe-1L-8N8" secondAttribute="trailing" constant="-10" id="yyx-Nw-FJX"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.34999999999999998" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="pjQ-jT-dPr" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="apj-8N-kbi"/>
+                <constraint firstItem="pjQ-jT-dPr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fs0-zG-Q0v"/>
+            </constraints>
+            <point key="canvasLocation" x="-88.5" y="42.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="close.png" width="55" height="55"/>
+    </resources>
+</document>
