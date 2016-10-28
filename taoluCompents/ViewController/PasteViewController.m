@@ -1,21 +1,21 @@
 //
-//  ShareViewController.m
+//  PasteViewController.m
 //  TaoLu2
 //
 //  Created by 张帆 on 16/10/27.
 //  Copyright © 2016年 adesk. All rights reserved.
 //
 
-#import "ShareViewController.h"
+#import "PasteViewController.h"
 
-@interface ShareViewController ()
+@interface PasteViewController ()
 
 @end
 
-@implementation ShareViewController
+@implementation PasteViewController
 
 + (instancetype)returnInstance {
-    ShareViewController *vc = [[ShareViewController alloc]init];
+    PasteViewController *vc = [[PasteViewController alloc]init];
     [vc setDefinesPresentationContext:YES];
     vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -25,8 +25,8 @@
 - (IBAction)closeAction:(UIButton *)sender {
     
     [self dismissViewControllerAnimated:NO completion:nil];
-    NSLog(@"dismiss");
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,8 +35,10 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+ 
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation

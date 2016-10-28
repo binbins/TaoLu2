@@ -7,13 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "VChead.h"
 
 @interface TaoLuManager : NSObject
 
 
 @property (nonatomic, assign)NSInteger taskId;
+@property (nonatomic, strong)NSArray *classNames;
 
-+ (instancetype)shareManager;
++ (TaoLuManager *)shareManager;
 + (void)startTaskInViewController:(UIViewController *)viewController;
-
++ (void)resetTaskId;
 @end

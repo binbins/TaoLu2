@@ -7,35 +7,18 @@
 //
 
 #import "ViewController.h"
-#import "VChead.h"
 #import "TaoLuManager.h"
 
 
+
+
 @interface ViewController ()
-@property(nonatomic, strong)UIAlertController *pasteAlert;
 
 @end
 
 @implementation ViewController
 
-- (UIAlertController *)pasteAlert {
 
-    if (_pasteAlert == nil) {
-        _pasteAlert = [UIAlertController alertControllerWithTitle:@"✔️复制成功" message:@"粘贴至输入框即可" preferredStyle:UIAlertControllerStyleAlert];
-        
-        [_pasteAlert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-            textField.text = @"这个游戏太好玩了，实在打不过，快来帮我呀 https://skf/dhs/sjdl";
-            
-          
-        }];
-        
-        UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"去告诉好友" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-           //跳转到APP
-        }];
-        [_pasteAlert addAction:confirm];
-    }
-    return _pasteAlert;
-}
 
 
 - (IBAction)shareAction:(UIButton *)sender {
@@ -73,6 +56,7 @@
 }
 
 - (IBAction)reset:(UIButton *)sender {
+    [TaoLuManager resetTaskId];
 }
 
 

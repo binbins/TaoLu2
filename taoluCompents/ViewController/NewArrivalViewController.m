@@ -1,21 +1,21 @@
 //
-//  CommentViewController.m
+//  NewArrivalViewController.m
 //  TaoLu2
 //
 //  Created by 张帆 on 16/10/27.
 //  Copyright © 2016年 adesk. All rights reserved.
 //
 
-#import "CommentViewController.h"
+#import "NewArrivalViewController.h"
 
-@interface CommentViewController ()
+@interface NewArrivalViewController ()
 
 @end
 
-@implementation CommentViewController
+@implementation NewArrivalViewController
 
 + (instancetype)returnInstance {
-    CommentViewController *vc = [[CommentViewController alloc]init];
+    NewArrivalViewController *vc = [[NewArrivalViewController alloc]init];
     [vc setDefinesPresentationContext:YES];
     vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -25,7 +25,6 @@
 - (IBAction)closeAction:(UIButton *)sender {
     
     [self dismissViewControllerAnimated:NO completion:nil];
-    NSLog(@"dismiss");
 }
 
 - (void)viewDidLoad {

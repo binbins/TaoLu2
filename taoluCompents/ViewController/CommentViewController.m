@@ -1,21 +1,21 @@
 //
-//  FollowViewController.m
+//  CommentViewController.m
 //  TaoLu2
 //
 //  Created by 张帆 on 16/10/27.
 //  Copyright © 2016年 adesk. All rights reserved.
 //
 
-#import "FollowViewController.h"
+#import "CommentViewController.h"
 
-@interface FollowViewController ()
+@interface CommentViewController ()
 
 @end
 
-@implementation FollowViewController
+@implementation CommentViewController
 
 + (instancetype)returnInstance {
-    FollowViewController *vc = [[FollowViewController alloc]init];
+    CommentViewController *vc = [[CommentViewController alloc]init];
     [vc setDefinesPresentationContext:YES];
     vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -25,9 +25,7 @@
 - (IBAction)closeAction:(UIButton *)sender {
     
     [self dismissViewControllerAnimated:NO completion:nil];
-    NSLog(@"dismiss");
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];

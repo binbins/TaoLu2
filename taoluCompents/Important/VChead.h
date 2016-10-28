@@ -17,3 +17,5 @@
 #import "CommentViewController.h"
 #import "FollowViewController.h"
 #import "NewArrivalViewController.h"
+
+#define TAOLU_ORDER @"taoluTaskOrder"
