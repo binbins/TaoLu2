@@ -10,6 +10,12 @@
 
 @interface CommentViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *check1;
+@property (weak, nonatomic) IBOutlet UIImageView *check2;
+@property (weak, nonatomic) IBOutlet UIImageView *check3;
+
+
+
 @end
 
 @implementation CommentViewController
@@ -24,8 +30,25 @@
 
 - (IBAction)closeAction:(UIButton *)sender {
     
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (IBAction)choseComment:(UITapGestureRecognizer *)sender {
+    
+    _check1.hidden = YES;
+    _check2.hidden = YES;
+    _check3.hidden = YES;
+    for (UIView *member in sender.view.subviews) {
+        if ([member isKindOfClass:[UIImageView class]]) {
+            member.hidden = NO;
+        }
+        if ([member isKindOfClass:[UILabel class]]) {
+            UILabel *label = (UILabel *)member;
+            NSLog(@"%@",label.text);
+        }
+    }
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

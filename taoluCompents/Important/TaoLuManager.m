@@ -43,8 +43,8 @@ static TaoLuManager *manager = nil;
         [vc setDefinesPresentationContext:YES];
         vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [viewController presentViewController:vc animated:NO completion:nil];
-        [self shareManager].taskId++;   //回调结束之后再去增加任务数，防止bug
+        [viewController presentViewController:vc animated:YES completion:nil];
+        [self shareManager].taskId++;   //回调结束之后再去增加任务数，防止奖励bug
         
     }else{
         NSLog(@"交给unity执行");

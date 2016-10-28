@@ -30,7 +30,6 @@
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体验新品，立即获得" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZi-mc-Kw0">
                             <constraints>
-                                <constraint firstAttribute="width" constant="200" id="302-U9-lbO"/>
                                 <constraint firstAttribute="height" constant="21" id="m2q-Nh-NGE"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -45,10 +44,9 @@
                                         <constraint firstAttribute="height" constant="45" id="ngO-G2-SWS"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="容易中毒的游戏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGA-dn-Ptd">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="容易中毒的游戏jksd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGA-dn-Ptd">
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="7f0-Vq-coc"/>
-                                        <constraint firstAttribute="width" constant="153" id="8zx-Dz-9BE"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -57,7 +55,6 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超级贪吃蛇" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hS-6N-by6">
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="KmZ-Vd-8X4"/>
-                                        <constraint firstAttribute="width" constant="131" id="L7t-05-tM9"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="highlightedColor"/>
@@ -79,12 +76,14 @@
                                 <constraint firstItem="iGA-dn-Ptd" firstAttribute="centerY" secondItem="Qgu-UQ-RNd" secondAttribute="centerY" constant="10" id="8CA-Dq-PlZ"/>
                                 <constraint firstItem="ytF-JV-77C" firstAttribute="centerY" secondItem="Qgu-UQ-RNd" secondAttribute="centerY" id="K7d-52-0UY"/>
                                 <constraint firstItem="6hS-6N-by6" firstAttribute="centerY" secondItem="Qgu-UQ-RNd" secondAttribute="centerY" constant="-10" id="Uou-s7-ZX8"/>
+                                <constraint firstItem="WMb-jX-rOP" firstAttribute="leading" secondItem="6hS-6N-by6" secondAttribute="trailing" constant="10" id="bFH-PQ-8Kt"/>
                                 <constraint firstItem="iGA-dn-Ptd" firstAttribute="leading" secondItem="ytF-JV-77C" secondAttribute="trailing" constant="10" id="fPU-7p-wzY"/>
                                 <constraint firstAttribute="height" constant="70" id="ixM-Qh-r2J"/>
                                 <constraint firstAttribute="width" constant="250" id="qdY-7d-ubk"/>
                                 <constraint firstItem="6hS-6N-by6" firstAttribute="leading" secondItem="ytF-JV-77C" secondAttribute="trailing" constant="10" id="rpC-Yg-1N4"/>
                                 <constraint firstItem="ytF-JV-77C" firstAttribute="leading" secondItem="Qgu-UQ-RNd" secondAttribute="leading" constant="8" id="vwA-w6-tqd"/>
                                 <constraint firstItem="WMb-jX-rOP" firstAttribute="centerY" secondItem="Qgu-UQ-RNd" secondAttribute="centerY" id="x3Q-GV-uNy"/>
+                                <constraint firstItem="WMb-jX-rOP" firstAttribute="leading" secondItem="iGA-dn-Ptd" secondAttribute="trailing" constant="5" id="zey-yx-oxJ"/>
                             </constraints>
                         </view>
                     </subviews>

@@ -24,7 +24,7 @@
 
 - (IBAction)closeAction:(UIButton *)sender {
     
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewDidLoad {

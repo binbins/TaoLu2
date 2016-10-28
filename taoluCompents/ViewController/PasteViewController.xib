@@ -25,12 +25,14 @@
                             </constraints>
                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="thw-Qu-j3S"/>
+                            </connections>
                         </textView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="复制成功" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kN6-us-Ku3">
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="LHh-oR-cZL"/>
-                                <constraint firstAttribute="width" constant="81" id="vdh-3I-6oN"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -38,7 +40,6 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="粘贴至输入框即可" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nuR-X3-K3U">
                             <constraints>
-                                <constraint firstAttribute="width" constant="151" id="7GK-ln-wOu"/>
                                 <constraint firstAttribute="height" constant="21" id="XpB-dY-eMd"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>

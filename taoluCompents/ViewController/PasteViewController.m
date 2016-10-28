@@ -8,7 +8,7 @@
 
 #import "PasteViewController.h"
 
-@interface PasteViewController ()
+@interface PasteViewController () <UITextViewDelegate>
 
 @end
 
@@ -24,7 +24,7 @@
 
 - (IBAction)closeAction:(UIButton *)sender {
     
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -39,6 +39,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+//
+//    [textView resignFirstResponder];
+//    return YES;
+//}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
 
 /*
 #pragma mark - Navigation
