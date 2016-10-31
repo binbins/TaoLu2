@@ -9,8 +9,11 @@
 #import "NewArrivalViewController.h"
 
 @interface NewArrivalViewController ()
-
-
+@property (weak, nonatomic) IBOutlet UILabel *RecomAppTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *appLogo;
+@property (weak, nonatomic) IBOutlet UILabel *appName;
+@property (weak, nonatomic) IBOutlet UILabel *appDes;
+@property (weak, nonatomic) IBOutlet UIButton *startBtn;
 
 @end
 

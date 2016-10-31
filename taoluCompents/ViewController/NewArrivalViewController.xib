@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewArrivalViewController">
             <connections>
-                <outlet property="newAppTitle" destination="QZi-mc-Kw0" id="8tf-eS-lIz"/>
-                <outlet property="newArrivalTitle" destination="QZi-mc-Kw0" id="ppS-Pi-6Kn"/>
+                <outlet property="RecomAppTitle" destination="QZi-mc-Kw0" id="8HP-TA-hwn"/>
+                <outlet property="appDes" destination="iGA-dn-Ptd" id="WY6-ol-6OV"/>
+                <outlet property="appLogo" destination="ytF-JV-77C" id="eV8-NA-AWP"/>
+                <outlet property="appName" destination="6hS-6N-by6" id="w1Y-le-YOj"/>
+                <outlet property="startBtn" destination="WMb-jX-rOP" id="Xca-n7-bAp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,8 +25,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nbu-H9-S97" userLabel="alert">
+                    <rect key="frame" x="37.5" y="243.5" width="300" height="180"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1E-it-Bpq" userLabel="close">
+                            <rect key="frame" x="266" y="-6" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="S2e-2C-FAE"/>
                                 <constraint firstAttribute="width" constant="40" id="n8L-bB-i2B"/>
@@ -31,6 +39,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体验新品，立即获得" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZi-mc-Kw0">
+                            <rect key="frame" x="72" y="40" width="156" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="m2q-Nh-NGE"/>
                             </constraints>
@@ -39,14 +48,17 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qgu-UQ-RNd">
+                            <rect key="frame" x="25" y="86" width="250" height="70"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitter.png" translatesAutoresizingMaskIntoConstraints="NO" id="ytF-JV-77C">
+                                    <rect key="frame" x="8" y="12.5" width="45" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="45" id="JSm-vG-Uhs"/>
                                         <constraint firstAttribute="height" constant="45" id="ngO-G2-SWS"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="容易中毒的游戏jksd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGA-dn-Ptd">
+                                    <rect key="frame" x="63" y="34.5" width="122" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="7f0-Vq-coc"/>
                                     </constraints>
@@ -55,6 +67,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超级贪吃蛇" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hS-6N-by6">
+                                    <rect key="frame" x="63" y="14.5" width="117" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="KmZ-Vd-8X4"/>
                                     </constraints>
@@ -62,6 +75,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMb-jX-rOP">
+                                    <rect key="frame" x="190" y="20" width="40" height="30"/>
                                     <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="40" id="60g-i1-eHm"/>

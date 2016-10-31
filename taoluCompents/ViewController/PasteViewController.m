@@ -9,6 +9,10 @@
 #import "PasteViewController.h"
 
 @interface PasteViewController () <UITextViewDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *pasteTitleFirst;
+@property (weak, nonatomic) IBOutlet UILabel *pasteTitleSecond;
+@property (weak, nonatomic) IBOutlet UITextView *pasteTextView;
+@property (weak, nonatomic) IBOutlet UIButton *startBtn;
 
 @end
 
