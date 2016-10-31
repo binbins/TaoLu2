@@ -31,6 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    [pasteboard setString:@"这是要粘贴的内容 "];
 }
 
 - (void)didReceiveMemoryWarning {
