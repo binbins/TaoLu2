@@ -72,7 +72,7 @@
                         <constraint firstItem="kN6-us-Ku3" firstAttribute="top" secondItem="pjQ-jT-dPr" secondAttribute="top" constant="15" id="7Rw-ha-r5A"/>
                         <constraint firstItem="rM7-0d-LVp" firstAttribute="leading" secondItem="pjQ-jT-dPr" secondAttribute="leading" constant="10" id="8CY-Yx-Dli"/>
                         <constraint firstAttribute="height" constant="220" id="H2v-gs-2DW"/>
-                        <constraint firstItem="bNe-1L-8N8" firstAttribute="top" secondItem="pjQ-jT-dPr" secondAttribute="top" constant="-10" id="RJD-aR-MNV"/>
+                        <constraint firstItem="bNe-1L-8N8" firstAttribute="top" secondItem="pjQ-jT-dPr" secondAttribute="top" constant="-6" id="RJD-aR-MNV"/>
                         <constraint firstAttribute="width" constant="295" id="RKa-vn-6o2"/>
                         <constraint firstItem="sFE-PH-ofE" firstAttribute="centerX" secondItem="pjQ-jT-dPr" secondAttribute="centerX" id="Sbz-mI-fa2"/>
                         <constraint firstItem="nuR-X3-K3U" firstAttribute="centerX" secondItem="pjQ-jT-dPr" secondAttribute="centerX" id="ZWM-uM-HcI"/>
@@ -81,7 +81,7 @@
                         <constraint firstItem="kN6-us-Ku3" firstAttribute="centerX" secondItem="pjQ-jT-dPr" secondAttribute="centerX" id="ixu-kv-sJ4"/>
                         <constraint firstAttribute="trailing" secondItem="rM7-0d-LVp" secondAttribute="trailing" constant="10" id="oSk-N8-CiX"/>
                         <constraint firstItem="rM7-0d-LVp" firstAttribute="top" secondItem="nuR-X3-K3U" secondAttribute="bottom" constant="20" id="tob-Bj-WSc"/>
-                        <constraint firstAttribute="trailing" secondItem="bNe-1L-8N8" secondAttribute="trailing" constant="-10" id="yyx-Nw-FJX"/>
+                        <constraint firstAttribute="trailing" secondItem="bNe-1L-8N8" secondAttribute="trailing" constant="-6" id="yyx-Nw-FJX"/>
                     </constraints>
                 </view>
             </subviews>

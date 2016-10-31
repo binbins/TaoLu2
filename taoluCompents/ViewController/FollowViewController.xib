@@ -8,6 +8,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FollowViewController">
             <connections>
+                <outlet property="CN_platform1" destination="5vB-Hg-aTU" id="hfJ-vX-TAs"/>
+                <outlet property="CN_platform2" destination="JC5-Cd-68P" id="uj5-mn-Gkx"/>
+                <outlet property="CN_platform3" destination="Gho-FR-uVS" id="3Cb-3f-y5T"/>
+                <outlet property="CN_view" destination="Gfr-8J-Mgr" id="9Hs-Bn-2Ci"/>
+                <outlet property="EN_platform1" destination="a3P-fY-pSi" id="ch7-Ds-fhw"/>
+                <outlet property="EN_platform2" destination="QMd-wU-tdZ" id="4HX-Th-lPb"/>
+                <outlet property="EN_view" destination="fnD-xP-5Hg" id="y6x-Mu-ZIl"/>
+                <outlet property="followTitle" destination="ITD-GN-eFg" id="xsX-ja-X4v"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,13 +31,6 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGV-c5-ICz" userLabel="qq">
-                            <constraints>
-                                <constraint firstAttribute="width" constant="50" id="jHo-eq-8WN"/>
-                                <constraint firstAttribute="height" constant="50" id="upq-TL-txG"/>
-                            </constraints>
-                            <state key="normal" title="Button" image="qq.png"/>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CcI-8a-c5R" userLabel="close">
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="CZD-zd-hKY"/>
@@ -40,35 +41,82 @@
                                 <action selector="closeAction:" destination="-1" eventType="touchUpInside" id="O3t-4b-cWM"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H16-Pb-B5G" userLabel="qq">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gfr-8J-Mgr" userLabel="CN_view">
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vB-Hg-aTU" userLabel="qq">
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="ULB-bo-9KN"/>
+                                        <constraint firstAttribute="height" constant="50" id="vHz-fO-tOe"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="qq.png"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JC5-Cd-68P" userLabel="pyq">
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="bZd-Ur-cNb"/>
+                                        <constraint firstAttribute="height" constant="50" id="f9N-Dc-Hns"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="pyq.png"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gho-FR-uVS" userLabel="qzone">
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="L0S-OJ-zYE"/>
+                                        <constraint firstAttribute="width" constant="50" id="rfu-8C-NcH"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="qzone.png"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="6p5-qY-Rvc"/>
-                                <constraint firstAttribute="width" constant="50" id="Zfv-MG-evu"/>
+                                <constraint firstItem="5vB-Hg-aTU" firstAttribute="centerX" secondItem="Gfr-8J-Mgr" secondAttribute="centerX" id="LhY-vz-mAZ"/>
+                                <constraint firstItem="Gho-FR-uVS" firstAttribute="centerY" secondItem="Gfr-8J-Mgr" secondAttribute="centerY" id="Rid-x7-vF1"/>
+                                <constraint firstItem="5vB-Hg-aTU" firstAttribute="centerY" secondItem="Gfr-8J-Mgr" secondAttribute="centerY" id="aKE-xD-uwO"/>
+                                <constraint firstItem="JC5-Cd-68P" firstAttribute="centerY" secondItem="Gfr-8J-Mgr" secondAttribute="centerY" id="dKC-XB-ybB"/>
+                                <constraint firstAttribute="height" constant="60" id="iFf-Mp-MBH"/>
+                                <constraint firstItem="5vB-Hg-aTU" firstAttribute="leading" secondItem="Gho-FR-uVS" secondAttribute="trailing" constant="10" id="loR-6m-liS"/>
+                                <constraint firstItem="JC5-Cd-68P" firstAttribute="leading" secondItem="5vB-Hg-aTU" secondAttribute="trailing" constant="10" id="nhM-f5-TZ8"/>
                             </constraints>
-                            <state key="normal" title="Button" image="weibo.png"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTW-vu-veg" userLabel="qq">
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnD-xP-5Hg" userLabel="EN_view">
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QMd-wU-tdZ" userLabel="tt">
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="48M-Fx-xhR"/>
+                                        <constraint firstAttribute="width" constant="50" id="skf-NO-ArM"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="twitter.png"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a3P-fY-pSi" userLabel="fb">
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="dpT-ic-3yP"/>
+                                        <constraint firstAttribute="height" constant="50" id="mtr-0n-Kcg"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="facebook.png"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="WgN-aX-cMf"/>
-                                <constraint firstAttribute="width" constant="50" id="pzi-Xj-kmF"/>
+                                <constraint firstItem="QMd-wU-tdZ" firstAttribute="centerX" secondItem="fnD-xP-5Hg" secondAttribute="centerX" constant="30" id="AjX-8V-SPH"/>
+                                <constraint firstItem="QMd-wU-tdZ" firstAttribute="centerY" secondItem="fnD-xP-5Hg" secondAttribute="centerY" id="B6o-m3-kiv"/>
+                                <constraint firstItem="a3P-fY-pSi" firstAttribute="centerX" secondItem="fnD-xP-5Hg" secondAttribute="centerX" constant="-30" id="Kk3-Lf-0FX"/>
+                                <constraint firstItem="a3P-fY-pSi" firstAttribute="centerY" secondItem="fnD-xP-5Hg" secondAttribute="centerY" id="ae5-3b-zkd"/>
+                                <constraint firstAttribute="height" constant="60" id="eRa-bu-nXi"/>
                             </constraints>
-                            <state key="normal" title="Button" image="weixin.png"/>
-                        </button>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="CcI-8a-c5R" firstAttribute="top" secondItem="giE-7Z-fFV" secondAttribute="top" constant="-10" id="472-Kw-4SQ"/>
-                        <constraint firstItem="IGV-c5-ICz" firstAttribute="top" secondItem="ITD-GN-eFg" secondAttribute="bottom" constant="30" id="7Wo-xh-GWj"/>
-                        <constraint firstAttribute="trailing" secondItem="CcI-8a-c5R" secondAttribute="trailing" constant="-10" id="8oM-oU-Gf5"/>
+                        <constraint firstItem="CcI-8a-c5R" firstAttribute="top" secondItem="giE-7Z-fFV" secondAttribute="top" constant="-6" id="472-Kw-4SQ"/>
+                        <constraint firstAttribute="trailing" secondItem="CcI-8a-c5R" secondAttribute="trailing" constant="-6" id="8oM-oU-Gf5"/>
+                        <constraint firstItem="fnD-xP-5Hg" firstAttribute="top" secondItem="ITD-GN-eFg" secondAttribute="bottom" constant="30" id="Avt-xi-J73"/>
+                        <constraint firstItem="Gfr-8J-Mgr" firstAttribute="leading" secondItem="giE-7Z-fFV" secondAttribute="leading" id="Bj9-xj-k0f"/>
+                        <constraint firstAttribute="trailing" secondItem="fnD-xP-5Hg" secondAttribute="trailing" id="DNL-ri-u2g"/>
                         <constraint firstAttribute="width" constant="295" id="JMC-rB-QV5"/>
-                        <constraint firstItem="IGV-c5-ICz" firstAttribute="centerY" secondItem="vTW-vu-veg" secondAttribute="centerY" id="KNc-4F-YQg"/>
-                        <constraint firstItem="IGV-c5-ICz" firstAttribute="centerX" secondItem="giE-7Z-fFV" secondAttribute="centerX" id="LDd-Ru-ufY"/>
                         <constraint firstItem="ITD-GN-eFg" firstAttribute="centerX" secondItem="giE-7Z-fFV" secondAttribute="centerX" id="SqP-dn-nZE"/>
-                        <constraint firstItem="IGV-c5-ICz" firstAttribute="leading" secondItem="vTW-vu-veg" secondAttribute="trailing" constant="20" id="UVn-oa-tru"/>
-                        <constraint firstItem="H16-Pb-B5G" firstAttribute="centerY" secondItem="vTW-vu-veg" secondAttribute="centerY" id="csk-w4-YCp"/>
+                        <constraint firstItem="Gfr-8J-Mgr" firstAttribute="top" secondItem="ITD-GN-eFg" secondAttribute="bottom" constant="30" id="ZHX-9C-C1J"/>
+                        <constraint firstAttribute="trailing" secondItem="Gfr-8J-Mgr" secondAttribute="trailing" id="bfe-ot-Sqy"/>
                         <constraint firstAttribute="height" constant="160" id="e0H-LO-G0B"/>
                         <constraint firstItem="ITD-GN-eFg" firstAttribute="top" secondItem="giE-7Z-fFV" secondAttribute="top" constant="30" id="iN3-tA-fyQ"/>
-                        <constraint firstItem="H16-Pb-B5G" firstAttribute="leading" secondItem="IGV-c5-ICz" secondAttribute="trailing" constant="20" id="wi2-a5-gMI"/>
+                        <constraint firstItem="fnD-xP-5Hg" firstAttribute="leading" secondItem="giE-7Z-fFV" secondAttribute="leading" id="vVF-6Y-NXo"/>
                     </constraints>
                 </view>
             </subviews>
@@ -81,8 +129,10 @@
     </objects>
     <resources>
         <image name="close.png" width="55" height="55"/>
+        <image name="facebook.png" width="100" height="100"/>
+        <image name="pyq.png" width="100" height="100"/>
         <image name="qq.png" width="100" height="100"/>
-        <image name="weibo.png" width="100" height="100"/>
-        <image name="weixin.png" width="100" height="100"/>
+        <image name="qzone.png" width="100" height="100"/>
+        <image name="twitter.png" width="100" height="100"/>
     </resources>
 </document>

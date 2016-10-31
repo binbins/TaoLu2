@@ -10,6 +10,19 @@
 
 @interface FollowViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *followTitle;
+
+//国内
+@property (weak, nonatomic) IBOutlet UIView *CN_view;
+@property (weak, nonatomic) IBOutlet UIButton *CN_platform1;
+@property (weak, nonatomic) IBOutlet UIButton *CN_platform2;
+@property (weak, nonatomic) IBOutlet UIButton *CN_platform3;
+
+//海外
+@property (weak, nonatomic) IBOutlet UIView *EN_view;
+@property (weak, nonatomic) IBOutlet UIButton *EN_platform1;
+@property (weak, nonatomic) IBOutlet UIButton *EN_platform2;
+
 @end
 
 @implementation FollowViewController

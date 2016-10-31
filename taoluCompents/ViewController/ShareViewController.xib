@@ -23,13 +23,6 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mb-xS-rj4" userLabel="qq">
-                            <constraints>
-                                <constraint firstAttribute="height" constant="45" id="Ixv-Sg-BYJ"/>
-                                <constraint firstAttribute="width" constant="45" id="ahX-0S-Gbx"/>
-                            </constraints>
-                            <state key="normal" title="Button" image="qq.png"/>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fx4-zM-l4M" userLabel="close">
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="d2o-FT-E3c"/>
@@ -40,53 +33,101 @@
                                 <action selector="closeAction:" destination="-1" eventType="touchUpInside" id="xKJ-J2-McQ"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5O-zu-vUk" userLabel="pyq">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGB-Ut-Tcl" userLabel="EN_view">
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ax-8F-Juk" userLabel="tt">
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="TXm-qt-gqp"/>
+                                        <constraint firstAttribute="width" constant="45" id="ras-7f-zZQ"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="twitter.png"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLT-uh-TZz" userLabel="fb">
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="Flv-EC-doU"/>
+                                        <constraint firstAttribute="width" constant="45" id="iae-9Y-YAl"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="facebook.png"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="45" id="A7A-sM-FlF"/>
-                                <constraint firstAttribute="height" constant="45" id="FgY-H3-uyJ"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="GSf-CB-32E"/>
+                                <constraint firstItem="QLT-uh-TZz" firstAttribute="centerX" secondItem="ZGB-Ut-Tcl" secondAttribute="centerX" constant="-30" id="KUw-v7-hvx"/>
+                                <constraint firstAttribute="height" constant="50" id="MnC-aQ-rrH"/>
+                                <constraint firstItem="QLT-uh-TZz" firstAttribute="centerY" secondItem="ZGB-Ut-Tcl" secondAttribute="centerY" id="YgM-qN-VyZ"/>
+                                <constraint firstItem="7ax-8F-Juk" firstAttribute="centerX" secondItem="ZGB-Ut-Tcl" secondAttribute="centerX" constant="30" id="vVg-Lx-qf2"/>
+                                <constraint firstItem="7ax-8F-Juk" firstAttribute="centerY" secondItem="ZGB-Ut-Tcl" secondAttribute="centerY" id="x1X-5i-1bt"/>
                             </constraints>
-                            <state key="normal" title="Button" image="pyq.png"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hao-4J-dgc" userLabel="qzone">
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0tl-1I-ddZ" userLabel="CN_view">
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mb-xS-rj4" userLabel="qq">
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="0sl-2Z-OJl"/>
+                                        <constraint firstAttribute="width" constant="45" id="bmi-Ev-frm"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="qq.png"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4U0-xo-aeu" userLabel="wx">
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="bmy-Fg-JBi"/>
+                                        <constraint firstAttribute="width" constant="45" id="iRk-bt-hGC"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="weixin.png"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOe-Qb-prG" userLabel="wb">
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="45" id="DJC-BC-u9D"/>
+                                        <constraint firstAttribute="height" constant="45" id="f5J-24-PzX"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="weibo.png"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5O-zu-vUk" userLabel="pyq">
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="Gfq-Ka-OBK"/>
+                                        <constraint firstAttribute="width" constant="45" id="jLV-jM-dc9"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="pyq.png"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hao-4J-dgc" userLabel="qzone">
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="45" id="ENe-cY-dJd"/>
+                                        <constraint firstAttribute="height" constant="45" id="niT-CT-tK3"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="qzone.png"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="45" id="6rd-JQ-ghp"/>
-                                <constraint firstAttribute="width" constant="45" id="9gu-UY-gJG"/>
+                                <constraint firstItem="8mb-xS-rj4" firstAttribute="centerY" secondItem="0tl-1I-ddZ" secondAttribute="centerY" id="0jq-xm-jwu"/>
+                                <constraint firstItem="hao-4J-dgc" firstAttribute="centerY" secondItem="4U0-xo-aeu" secondAttribute="centerY" id="CVC-Wx-S3s"/>
+                                <constraint firstItem="d5O-zu-vUk" firstAttribute="leading" secondItem="8mb-xS-rj4" secondAttribute="trailing" constant="8" id="D48-lh-ATf"/>
+                                <constraint firstAttribute="height" constant="50" id="V7L-42-Joa"/>
+                                <constraint firstItem="8mb-xS-rj4" firstAttribute="centerX" secondItem="0tl-1I-ddZ" secondAttribute="centerX" id="bek-sF-359"/>
+                                <constraint firstItem="vOe-Qb-prG" firstAttribute="leading" secondItem="d5O-zu-vUk" secondAttribute="trailing" constant="8" id="dDY-yr-jvo"/>
+                                <constraint firstItem="d5O-zu-vUk" firstAttribute="centerY" secondItem="4U0-xo-aeu" secondAttribute="centerY" id="dLr-ol-nE1"/>
+                                <constraint firstItem="hao-4J-dgc" firstAttribute="leading" secondItem="4U0-xo-aeu" secondAttribute="trailing" constant="8" id="dfm-6V-DdC"/>
+                                <constraint firstItem="vOe-Qb-prG" firstAttribute="centerY" secondItem="4U0-xo-aeu" secondAttribute="centerY" id="ead-4D-OZy"/>
+                                <constraint firstItem="8mb-xS-rj4" firstAttribute="leading" secondItem="hao-4J-dgc" secondAttribute="trailing" constant="8" id="nq0-u0-rSp"/>
+                                <constraint firstItem="8mb-xS-rj4" firstAttribute="centerY" secondItem="4U0-xo-aeu" secondAttribute="centerY" id="qOD-NZ-5ra"/>
                             </constraints>
-                            <state key="normal" title="Button" image="qzone.png"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOe-Qb-prG" userLabel="wb">
-                            <constraints>
-                                <constraint firstAttribute="height" constant="45" id="Vn6-EL-5Iq"/>
-                                <constraint firstAttribute="width" constant="45" id="jap-P0-irN"/>
-                            </constraints>
-                            <state key="normal" title="Button" image="weibo.png"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4U0-xo-aeu" userLabel="wx">
-                            <constraints>
-                                <constraint firstAttribute="height" constant="45" id="LHx-8m-6bb"/>
-                                <constraint firstAttribute="width" constant="45" id="vom-pL-q2y"/>
-                            </constraints>
-                            <state key="normal" title="Button" image="weixin.png"/>
-                        </button>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="8mb-xS-rj4" firstAttribute="centerX" secondItem="yUB-lV-4sM" secondAttribute="centerX" id="0KG-dE-5Ke"/>
-                        <constraint firstItem="8mb-xS-rj4" firstAttribute="leading" secondItem="d5O-zu-vUk" secondAttribute="trailing" constant="8" id="CE1-Zd-Bwo"/>
-                        <constraint firstItem="d5O-zu-vUk" firstAttribute="leading" secondItem="4U0-xo-aeu" secondAttribute="trailing" constant="8" id="FAE-PT-dUf"/>
-                        <constraint firstItem="Fx4-zM-l4M" firstAttribute="top" secondItem="yUB-lV-4sM" secondAttribute="top" constant="-10" id="Ild-Ce-mP2"/>
-                        <constraint firstItem="d5O-zu-vUk" firstAttribute="centerY" secondItem="4U0-xo-aeu" secondAttribute="centerY" id="RTy-gv-wdY"/>
+                        <constraint firstItem="0tl-1I-ddZ" firstAttribute="leading" secondItem="yUB-lV-4sM" secondAttribute="leading" id="CVB-8m-qt2"/>
+                        <constraint firstItem="Fx4-zM-l4M" firstAttribute="top" secondItem="yUB-lV-4sM" secondAttribute="top" constant="-6" id="Ild-Ce-mP2"/>
+                        <constraint firstItem="ZGB-Ut-Tcl" firstAttribute="leading" secondItem="yUB-lV-4sM" secondAttribute="leading" id="Qvq-bc-ydf"/>
+                        <constraint firstItem="ZGB-Ut-Tcl" firstAttribute="top" secondItem="Fx4-zM-l4M" secondAttribute="bottom" constant="40" id="Rpy-pw-xcF"/>
                         <constraint firstItem="W7s-ac-nhs" firstAttribute="centerX" secondItem="yUB-lV-4sM" secondAttribute="centerX" id="RzK-K2-OkC"/>
-                        <constraint firstItem="vOe-Qb-prG" firstAttribute="centerY" secondItem="4U0-xo-aeu" secondAttribute="centerY" id="U4a-In-0BO"/>
-                        <constraint firstAttribute="trailing" secondItem="Fx4-zM-l4M" secondAttribute="trailing" constant="-10" id="U9Z-U3-JKB"/>
+                        <constraint firstAttribute="trailing" secondItem="Fx4-zM-l4M" secondAttribute="trailing" constant="-6" id="U9Z-U3-JKB"/>
                         <constraint firstItem="W7s-ac-nhs" firstAttribute="top" secondItem="yUB-lV-4sM" secondAttribute="top" constant="30" id="VQq-hd-guH"/>
-                        <constraint firstItem="8mb-xS-rj4" firstAttribute="centerY" secondItem="4U0-xo-aeu" secondAttribute="centerY" id="WzY-AM-Zs0"/>
                         <constraint firstAttribute="height" constant="140" id="X8G-7J-KFK"/>
+                        <constraint firstAttribute="trailing" secondItem="0tl-1I-ddZ" secondAttribute="trailing" id="YvA-SH-W97"/>
+                        <constraint firstAttribute="trailing" secondItem="ZGB-Ut-Tcl" secondAttribute="trailing" id="cow-eA-SjR"/>
                         <constraint firstAttribute="width" constant="295" id="g0w-KQ-AL9"/>
-                        <constraint firstItem="vOe-Qb-prG" firstAttribute="leading" secondItem="hao-4J-dgc" secondAttribute="trailing" constant="8" id="n61-1t-Jt8"/>
-                        <constraint firstItem="8mb-xS-rj4" firstAttribute="top" secondItem="W7s-ac-nhs" secondAttribute="bottom" constant="30" id="sYx-fO-GgV"/>
-                        <constraint firstItem="hao-4J-dgc" firstAttribute="leading" secondItem="8mb-xS-rj4" secondAttribute="trailing" constant="8" id="yxV-YH-p0i"/>
-                        <constraint firstItem="hao-4J-dgc" firstAttribute="centerY" secondItem="4U0-xo-aeu" secondAttribute="centerY" id="zko-kC-lS3"/>
+                        <constraint firstItem="0tl-1I-ddZ" firstAttribute="top" secondItem="W7s-ac-nhs" secondAttribute="bottom" constant="20" id="jCV-jW-fCS"/>
                     </constraints>
                 </view>
             </subviews>
@@ -95,14 +136,16 @@
                 <constraint firstItem="yUB-lV-4sM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ir4-jM-8e7"/>
                 <constraint firstItem="yUB-lV-4sM" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Ub9-aH-Rwb"/>
             </constraints>
-            <point key="canvasLocation" x="64" y="-80"/>
+            <point key="canvasLocation" x="63.5" y="-80.5"/>
         </view>
     </objects>
     <resources>
         <image name="close.png" width="55" height="55"/>
+        <image name="facebook.png" width="100" height="100"/>
         <image name="pyq.png" width="100" height="100"/>
         <image name="qq.png" width="100" height="100"/>
         <image name="qzone.png" width="100" height="100"/>
+        <image name="twitter.png" width="100" height="100"/>
         <image name="weibo.png" width="100" height="100"/>
         <image name="weixin.png" width="100" height="100"/>
     </resources>

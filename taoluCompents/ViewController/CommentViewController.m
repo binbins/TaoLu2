@@ -10,10 +10,15 @@
 
 @interface CommentViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *comTitle;
+@property (weak, nonatomic) IBOutlet UILabel *com1;
+@property (weak, nonatomic) IBOutlet UILabel *com2;
+@property (weak, nonatomic) IBOutlet UILabel *com3;
+
 @property (weak, nonatomic) IBOutlet UIImageView *check1;
 @property (weak, nonatomic) IBOutlet UIImageView *check2;
 @property (weak, nonatomic) IBOutlet UIImageView *check3;
-
+@property (weak, nonatomic) IBOutlet UIButton *startBtn;
 
 
 @end

@@ -10,6 +10,8 @@
 
 @interface NewArrivalViewController ()
 
+
+
 @end
 
 @implementation NewArrivalViewController
