@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '87F3BBE3ECFA871190E693246D6A5CA3'
-               BlueprintName = 'Pods-TaoLu2'
+               BlueprintIdentifier = '0A2CFA934267E3BF0E80C6060BA6D9C1'
+               BlueprintName = 'SDWebImage'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-TaoLu2.a'>
+               BuildableName = 'libSDWebImage.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
