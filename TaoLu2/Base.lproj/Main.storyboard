@@ -127,23 +127,47 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Hf-nE-CKK">
-                                <frame key="frameInset" minX="85" minY="389" width="66" height="30"/>
+                                <frame key="frameInset" minX="136" minY="267" width="66" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="获取">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="getTask:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SqC-Px-kq9"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rsf-N6-zsO">
+                                <frame key="frameInset" minX="38" minY="267" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="changeLanguage:" destination="BYZ-38-t0r" eventType="valueChanged" id="1cn-jr-Wn6"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="切换到英文" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxm-Sd-SJJ">
+                                <frame key="frameInset" minX="13" minY="306" width="96" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VLC-a2-vzy">
-                                <frame key="frameInset" minX="197" minY="389" width="60" height="30"/>
+                                <frame key="frameInset" minX="261" minY="267" width="71" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="重置">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mXz-Tj-Eug"/>
                                 </connections>
@@ -151,17 +175,17 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Jbb-0C-hFl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="40" id="0rb-tX-M3i"/>
+                            <constraint firstItem="Jbb-0C-hFl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="50" id="0rb-tX-M3i"/>
                             <constraint firstItem="iHI-Lz-cyQ" firstAttribute="top" secondItem="Giw-zE-cbV" secondAttribute="bottom" constant="30" id="9Cc-Fg-bLj"/>
                             <constraint firstItem="tzF-Iv-FXp" firstAttribute="top" secondItem="iHI-Lz-cyQ" secondAttribute="bottom" constant="30" id="GdJ-pY-him"/>
-                            <constraint firstItem="iHI-Lz-cyQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-40" id="JOE-Xk-vbD"/>
+                            <constraint firstItem="iHI-Lz-cyQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-50" id="JOE-Xk-vbD"/>
                             <constraint firstItem="ZZ8-hz-J1V" firstAttribute="top" secondItem="xuN-xa-31z" secondAttribute="bottom" constant="30" id="KLC-G4-w8u"/>
-                            <constraint firstItem="Giw-zE-cbV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-40" id="Ld2-uq-Ryc"/>
+                            <constraint firstItem="Giw-zE-cbV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-50" id="Ld2-uq-Ryc"/>
                             <constraint firstItem="xuN-xa-31z" firstAttribute="top" secondItem="Jbb-0C-hFl" secondAttribute="bottom" constant="30" id="Qeb-aN-JOO"/>
                             <constraint firstItem="Jbb-0C-hFl" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="YAg-Cv-ArZ"/>
-                            <constraint firstItem="tzF-Iv-FXp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-40" id="cNu-v1-Ka4"/>
-                            <constraint firstItem="xuN-xa-31z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="40" id="l9G-Cb-wEf"/>
-                            <constraint firstItem="ZZ8-hz-J1V" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="40" id="lWP-2Z-pFz"/>
+                            <constraint firstItem="tzF-Iv-FXp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-50" id="cNu-v1-Ka4"/>
+                            <constraint firstItem="xuN-xa-31z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="50" id="l9G-Cb-wEf"/>
+                            <constraint firstItem="ZZ8-hz-J1V" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="50" id="lWP-2Z-pFz"/>
                             <constraint firstItem="Giw-zE-cbV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="mGn-vV-WS5"/>
                         </constraints>
                     </view>

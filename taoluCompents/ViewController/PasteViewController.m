@@ -31,13 +31,19 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)startAction:(UIButton *)sender {
+    
+    [[UIPasteboard generalPasteboard]setString:self.pasteTextView.text];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    [pasteboard setString:@"这是要粘贴的内容 "];
+    // textview 设置文本
+    [[UIPasteboard generalPasteboard]setString:self.pasteTextView.text];
+
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

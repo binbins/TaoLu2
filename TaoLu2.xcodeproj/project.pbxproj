@@ -37,6 +37,7 @@
 		07554FE81DC0C6A400D7D8F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07554FE71DC0C6A400D7D8F2 /* Assets.xcassets */; };
 		07554FEB1DC0C6A400D7D8F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07554FE91DC0C6A400D7D8F2 /* LaunchScreen.storyboard */; };
 		07C5EAD21DC6FC4E00B39E20 /*  ADjson.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C5EAD11DC6FC4E00B39E20 /*  ADjson.json */; };
+		07EF57211DCA1C330013CAB8 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 07EF57201DCA1C330013CAB8 /* icon.png */; };
 		90129F621DC8F1D7007E94C5 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90129F381DC8F1D6007E94C5 /* ShareSDK.framework */; };
 		90129F631DC8F1D7007E94C5 /* ShareSDKConfigFile.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90129F3B1DC8F1D6007E94C5 /* ShareSDKConfigFile.bundle */; };
 		90129F641DC8F1D7007E94C5 /* ShareSDKConfigFile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90129F3C1DC8F1D6007E94C5 /* ShareSDKConfigFile.framework */; };
@@ -106,6 +107,7 @@
 		07554FEA1DC0C6A400D7D8F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07554FEC1DC0C6A400D7D8F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07C5EAD11DC6FC4E00B39E20 /*  ADjson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = " ADjson.json"; sourceTree = "<group>"; };
+		07EF57201DCA1C330013CAB8 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		10473F986383FE2F6D801BEE /* Pods-TaoLu2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaoLu2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaoLu2/Pods-TaoLu2.debug.xcconfig"; sourceTree = "<group>"; };
 		90129F381DC8F1D6007E94C5 /* ShareSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDK.framework; sourceTree = "<group>"; };
 		90129F3B1DC8F1D6007E94C5 /* ShareSDKConfigFile.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKConfigFile.bundle; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 		07554FDB1DC0C6A400D7D8F2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				07EF57201DCA1C330013CAB8 /* icon.png */,
 				07C5EAD11DC6FC4E00B39E20 /*  ADjson.json */,
 				07554FDC1DC0C6A400D7D8F2 /* main.m */,
 			);
@@ -485,6 +488,7 @@
 				072A66E11DC310B300F1D447 /* close.png in Resources */,
 				072A66E51DC310B300F1D447 /* pyq.png in Resources */,
 				90129F741DC8F1D7007E94C5 /* ShareSDK.bundle in Resources */,
+				07EF57211DCA1C330013CAB8 /* icon.png in Resources */,
 				072A66F41DC310B300F1D447 /* PasteViewController.xib in Resources */,
 				072A66E41DC310B300F1D447 /* gou2.png in Resources */,
 				90129F661DC8F1D7007E94C5 /* ShareSDKUI.bundle in Resources */,

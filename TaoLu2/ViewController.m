@@ -55,6 +55,12 @@
     [TaoLuManager startTaskInViewController:self];
 }
 
+- (IBAction)changeLanguage:(UISwitch *)sender {
+    NSLog(@"%@",sender.on?@"英语":@"中文");
+    [TaoLuManager shareManager].isEnglish = sender.on;
+}
+
+
 - (IBAction)reset:(UIButton *)sender {
     [TaoLuManager resetTaskId];
 }

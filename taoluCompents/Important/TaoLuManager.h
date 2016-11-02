@@ -12,10 +12,13 @@
 @interface TaoLuManager : NSObject
 
 
+
 @property (nonatomic, assign)NSInteger taskId;
 @property (nonatomic, strong)NSArray *classNames;
+@property (nonatomic, assign)BOOL isEnglish;
 
 + (TaoLuManager *)shareManager;
 + (void)startTaskInViewController:(UIViewController *)viewController;
 + (void)resetTaskId;
++ (void)initShareSDK;
 @end

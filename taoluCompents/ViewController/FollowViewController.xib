@@ -57,12 +57,15 @@
                                     </constraints>
                                     <state key="normal" title="Button" image="pyq.png"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gho-FR-uVS" userLabel="qzone">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gho-FR-uVS" userLabel="wb">
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="L0S-OJ-zYE"/>
                                         <constraint firstAttribute="width" constant="50" id="rfu-8C-NcH"/>
                                     </constraints>
-                                    <state key="normal" title="Button" image="qzone.png"/>
+                                    <state key="normal" title="Button" image="weibo.png"/>
+                                    <connections>
+                                        <action selector="follow_wb:" destination="-1" eventType="touchUpInside" id="UV9-vp-jid"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -128,11 +131,11 @@
         </view>
     </objects>
     <resources>
-        <image name="close.png" width="55" height="55"/>
+        <image name="close.png" width="24" height="24"/>
         <image name="facebook.png" width="100" height="100"/>
         <image name="pyq.png" width="100" height="100"/>
         <image name="qq.png" width="100" height="100"/>
-        <image name="qzone.png" width="100" height="100"/>
         <image name="twitter.png" width="100" height="100"/>
+        <image name="weibo.png" width="100" height="100"/>
     </resources>
 </document>

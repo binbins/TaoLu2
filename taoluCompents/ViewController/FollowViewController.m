@@ -7,6 +7,9 @@
 //
 
 #import "FollowViewController.h"
+#import "TaoLuManager.h"
+#import <ShareSDK/ShareSDK.h>
+
 
 @interface FollowViewController ()
 
@@ -40,12 +43,23 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)follow_wb:(UIButton *)sender {
+    [ShareSDK authorize:SSDKPlatformTypeSinaWeibo settings:@{SSDKAuthSettingKeyScopes : @[@"follow_app_official_microblog"]} onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
+        //授权并关注指定微博
+    }];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+   [self changLanguage:[TaoLuManager shareManager].isEnglish];
 }
 
+- (void)changLanguage:(BOOL)isEnglish{
+    self.EN_view.hidden = !isEnglish;
+    self.CN_view.hidden = isEnglish;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

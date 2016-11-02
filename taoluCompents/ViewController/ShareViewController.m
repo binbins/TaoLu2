@@ -8,6 +8,8 @@
 
 #import "ShareViewController.h"
 #import <ShareSDK/ShareSDK.h>
+#import "TaoLuManager.h"
+#import "PasteViewController.h"
 
 @interface ShareViewController ()
 @property (nonatomic, strong)NSMutableDictionary *shareParams;
@@ -36,7 +38,7 @@
         
         _shareParams = [NSMutableDictionary dictionary];
         [_shareParams SSDKSetupShareParamsByText:@"分享内容"
-                                         images:@[] //传入要分享的图片
+                                         images:@[[UIImage imageNamed:@"star.png"]] //传入要分享的图片
                                             url:[NSURL URLWithString:@"http://mob.com"]
                                           title:@"分享标题"
                                            type:SSDKContentTypeAuto];
@@ -45,30 +47,54 @@
 }
 #pragma mark- shareAction
 - (IBAction)CN_wx:(UIButton *)sender {
-    [ShareSDK share:SSDKPlatformTypeWechat //传入分享的平台类型
-         parameters:self.shareParams
-     onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) { // 回调处理....}];
-     }];
+      [self ShareAction:SSDKPlatformSubTypeWechatSession];
 }
 - (IBAction)CN_Qzone:(UIButton *)sender {
-    
+      [self ShareAction:SSDKPlatformSubTypeQZone];
 }
 - (IBAction)CN_QQ:(UIButton *)sender {
+      [self ShareAction:SSDKPlatformSubTypeQQFriend];
 }
 - (IBAction)CN_pyq:(UIButton *)sender {
+      [self ShareAction:SSDKPlatformSubTypeWechatTimeline];
 }
 - (IBAction)CN_wb:(UIButton *)sender {
+      [self ShareAction:SSDKPlatformTypeSinaWeibo];
 }
 - (IBAction)EN_fb:(UIButton *)sender {
+      [self ShareAction:SSDKPlatformTypeFacebook];
 }
 - (IBAction)EN_tt:(UIButton *)sender {
+    [self ShareAction:SSDKPlatformTypeTwitter];
 }
 
 - (void)ShareAction:(SSDKPlatformType )platformType{
     [ShareSDK share:platformType //传入分享的平台类型
          parameters:self.shareParams
      onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) { // 回调处理....}];
+         
+         switch (state) {
+             case SSDKResponseStateCancel:
+                 NSLog(@"分享结果：--取消");   //分享成功不经过指定返回按钮返回会被误判取消
+                 break;
+            case SSDKResponseStateFail:
+                 NSLog(@"分享结果：--失败");
+                 [self pushPasteView];
+                 break;
+             case SSDKResponseStateSuccess:
+                 NSLog(@"分享结果：--成功");
+                 [TaoLuManager shareManager].taskId++;  //
+                 break;
+             default:
+                 break;
+         }
+        
      }];
+}
+
+- (void)pushPasteView{
+    PasteViewController *vc = [PasteViewController returnInstance];
+    [self presentViewController:vc animated:YES completion:NO];
 }
 + (instancetype)returnInstance {
     ShareViewController *vc = [[ShareViewController alloc]init];
@@ -86,8 +112,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self changLanguage:[TaoLuManager shareManager].isEnglish];
 }
 
+- (void)changLanguage:(BOOL)isEnglish{
+    self.EN_view.hidden = !isEnglish;
+    self.CN_view.hidden = isEnglish;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
