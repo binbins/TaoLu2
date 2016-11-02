@@ -59,6 +59,9 @@
                                         <constraint firstAttribute="width" constant="45" id="ras-7f-zZQ"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="twitter.png"/>
+                                    <connections>
+                                        <action selector="EN_tt:" destination="-1" eventType="touchUpInside" id="BMZ-i4-cT2"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLT-uh-TZz" userLabel="fb">
                                     <rect key="frame" x="95" y="2.5" width="45" height="45"/>
@@ -67,6 +70,9 @@
                                         <constraint firstAttribute="width" constant="45" id="iae-9Y-YAl"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="facebook.png"/>
+                                    <connections>
+                                        <action selector="EN_fb:" destination="-1" eventType="touchUpInside" id="J6a-Xi-lqP"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -89,6 +95,9 @@
                                         <constraint firstAttribute="width" constant="45" id="bmi-Ev-frm"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="qq.png"/>
+                                    <connections>
+                                        <action selector="CN_QQ:" destination="-1" eventType="touchUpInside" id="ES9-dr-YDG"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4U0-xo-aeu" userLabel="wx">
                                     <rect key="frame" x="19" y="2.5" width="45" height="45"/>
@@ -97,6 +106,9 @@
                                         <constraint firstAttribute="width" constant="45" id="iRk-bt-hGC"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="weixin.png"/>
+                                    <connections>
+                                        <action selector="CN_wx:" destination="-1" eventType="touchUpInside" id="iND-Km-kow"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOe-Qb-prG" userLabel="wb">
                                     <rect key="frame" x="231" y="2.5" width="45" height="45"/>
@@ -105,6 +117,9 @@
                                         <constraint firstAttribute="height" constant="45" id="f5J-24-PzX"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="weibo.png"/>
+                                    <connections>
+                                        <action selector="CN_wb:" destination="-1" eventType="touchUpInside" id="EfG-mn-7xE"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5O-zu-vUk" userLabel="pyq">
                                     <rect key="frame" x="178" y="2.5" width="45" height="45"/>
@@ -113,6 +128,9 @@
                                         <constraint firstAttribute="width" constant="45" id="jLV-jM-dc9"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="pyq.png"/>
+                                    <connections>
+                                        <action selector="CN_pyq:" destination="-1" eventType="touchUpInside" id="KSk-ar-3yV"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hao-4J-dgc" userLabel="qzone">
                                     <rect key="frame" x="72" y="2.5" width="45" height="45"/>
@@ -121,6 +139,9 @@
                                         <constraint firstAttribute="height" constant="45" id="niT-CT-tK3"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="qzone.png"/>
+                                    <connections>
+                                        <action selector="CN_Qzone:" destination="-1" eventType="touchUpInside" id="a1c-jT-V8Q"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -165,7 +186,7 @@
         </view>
     </objects>
     <resources>
-        <image name="close.png" width="55" height="55"/>
+        <image name="close.png" width="24" height="24"/>
         <image name="facebook.png" width="100" height="100"/>
         <image name="pyq.png" width="100" height="100"/>
         <image name="qq.png" width="100" height="100"/>

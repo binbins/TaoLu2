@@ -7,8 +7,10 @@
 //
 
 #import "ShareViewController.h"
+#import <ShareSDK/ShareSDK.h>
 
 @interface ShareViewController ()
+@property (nonatomic, strong)NSMutableDictionary *shareParams;
 
 @property (weak, nonatomic) IBOutlet UILabel *shareTitle;
 //国内
@@ -28,6 +30,46 @@
 
 @implementation ShareViewController
 
+- (NSMutableDictionary *)shareParams {
+
+    if (_shareParams == nil) {
+        
+        _shareParams = [NSMutableDictionary dictionary];
+        [_shareParams SSDKSetupShareParamsByText:@"分享内容"
+                                         images:@[] //传入要分享的图片
+                                            url:[NSURL URLWithString:@"http://mob.com"]
+                                          title:@"分享标题"
+                                           type:SSDKContentTypeAuto];
+    }
+    return _shareParams;
+}
+#pragma mark- shareAction
+- (IBAction)CN_wx:(UIButton *)sender {
+    [ShareSDK share:SSDKPlatformTypeWechat //传入分享的平台类型
+         parameters:self.shareParams
+     onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) { // 回调处理....}];
+     }];
+}
+- (IBAction)CN_Qzone:(UIButton *)sender {
+    
+}
+- (IBAction)CN_QQ:(UIButton *)sender {
+}
+- (IBAction)CN_pyq:(UIButton *)sender {
+}
+- (IBAction)CN_wb:(UIButton *)sender {
+}
+- (IBAction)EN_fb:(UIButton *)sender {
+}
+- (IBAction)EN_tt:(UIButton *)sender {
+}
+
+- (void)ShareAction:(SSDKPlatformType )platformType{
+    [ShareSDK share:platformType //传入分享的平台类型
+         parameters:self.shareParams
+     onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) { // 回调处理....}];
+     }];
+}
 + (instancetype)returnInstance {
     ShareViewController *vc = [[ShareViewController alloc]init];
     [vc setDefinesPresentationContext:YES];
@@ -50,6 +92,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 /*
 #pragma mark - Navigation
