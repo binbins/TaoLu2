@@ -16,6 +16,7 @@
 @property (nonatomic, assign)NSInteger taskId;
 @property (nonatomic, strong)NSArray *classNames;
 @property (nonatomic, assign)BOOL isEnglish;
+@property (nonatomic, strong)NSDictionary *taoLuJson;
 
 + (TaoLuManager *)shareManager;
 + (void)startTaskInViewController:(UIViewController *)viewController;

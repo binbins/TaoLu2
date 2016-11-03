@@ -16,6 +16,6 @@
 #import "ShareViewController.h"
 #import "CommentViewController.h"
 #import "FollowViewController.h"
-#import "NewArrivalViewController.h"
+#import "NewArrivalViewController.h"    //做好之后删掉
 
 #define TAOLU_ORDER @"taoluTaskOrder"

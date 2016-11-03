@@ -87,6 +87,7 @@
                  break;
              default:
                  break;
+                 //
          }
         
      }];
@@ -94,7 +95,7 @@
 
 - (void)pushPasteView{
     PasteViewController *vc = [PasteViewController returnInstance];
-    [self presentViewController:vc animated:YES completion:NO];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 + (instancetype)returnInstance {
     ShareViewController *vc = [[ShareViewController alloc]init];

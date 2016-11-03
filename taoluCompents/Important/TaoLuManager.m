@@ -67,6 +67,7 @@ static TaoLuManager *manager = nil;
 
 + (void)resetTaskId{
     [self shareManager].taskId = 0;
+    
 }
 
 + (void)initShareSDK {
@@ -127,7 +128,7 @@ static TaoLuManager *manager = nil;
 - (void)setTaskId:(NSInteger)taskId {   //重写set方法
     _taskId = taskId;
     [[NSUserDefaults standardUserDefaults]setObject:@(taskId) forKey:TAOLU_ORDER];
-    NSLog(@"当前taskId:%d",taskId);
+    NSLog(@"当前taskId:%ld",taskId);
 }
 
 
