@@ -10,8 +10,6 @@
 #import "TaoLuManager.h"
 
 
-
-
 @interface ViewController ()
 
 @end
@@ -52,11 +50,14 @@
 
 
 - (IBAction)getTask:(UIButton *)sender {
-    [TaoLuManager startTaskInViewController:self];
+    [TaoLuManager startTaskInViewController:self onFinish:^(TaskState state) {
+        
+    
+     }];
 }
 
 - (IBAction)changeLanguage:(UISwitch *)sender {
-    NSLog(@"%@",sender.on?@"英语":@"中文");
+    YBLog(@"%@",sender.on?@"英语":@"中文");
     [TaoLuManager shareManager].isEnglish = sender.on;
 }
 
@@ -71,6 +72,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    [TaoLuManager shareManager].taskState = ^(TaskState state){
+        switch (state) {
+            case taskCancle:
+                NSLog(@"失败了");
+                break;
+                
+            default:
+                break;
+        }
+    };
 }
 
 

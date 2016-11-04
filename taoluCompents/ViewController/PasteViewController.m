@@ -40,8 +40,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // textview 设置文本
+    if (self.pasteDic) {
+        self.pasteTitleFirst.text = [self.pasteDic objectForKey:@"title1"];
+        self.pasteTitleSecond.text = [self.pasteDic objectForKey:@"title2"];
+        self.pasteTextView.text = [self.pasteDic objectForKey:@"textViewText"];
+        [self.startBtn setTitle:[self.pasteDic objectForKey:@"startBtnTitle"] forState:UIControlStateNormal];
+    }
+    
     [[UIPasteboard generalPasteboard]setString:self.pasteTextView.text];
-
 }
 
 
@@ -51,11 +57,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-//
-//    [textView resignFirstResponder];
-//    return YES;
-//}
+
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];

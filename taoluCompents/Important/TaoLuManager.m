@@ -5,33 +5,40 @@
 //  Created by 张帆 on 16/10/27.
 //  Copyright © 2016年 adesk. All rights reserved.
 //
+
+
+#define AppVerName [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+#define AppVerCode [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
+#define AppBundleID [[NSBundle mainBundle] bundleIdentifier]
+
+#define SysName [[[UIDevice currentDevice] systemName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+#define SysVersion [[[UIDevice currentDevice] systemVersion] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+#define SysModel [[[UIDevice currentDevice] model] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+#define CurrentLanguageAd [[NSLocale preferredLanguages] count] > 0 ? [[NSLocale preferredLanguages] objectAtIndex:0] : @""
+
+#define AppGeneralInfoDict @{@"platform": @"ios", @"package" : AppBundleID, @"appvername":AppVerName, @"appvercode":AppVerCode, @"sys_name":SysName, @"sys_ver":SysVersion, @"sys_model":SysModel, @"sys_language":CurrentLanguageAd, @"taolu_version":@"1.0"}
+
 #import <UIKit/UIKit.h>
 #import "TaoLuManager.h"
 
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 
-//腾讯开放平台（对应QQ和QQ空间）SDK头文件
-#import <TencentOpenAPI/TencentOAuth.h>
+
+#import <TencentOpenAPI/TencentOAuth.h>     //腾讯开放平台（对应QQ和QQ空间）SDK头文件
 #import <TencentOpenAPI/QQApiInterface.h>
-
-//微信SDK头文件
-#import "WXApi.h"
-
-//新浪微博SDK头文件
-#import "WeiboSDK.h"
+#import "WXApi.h"   //微信SDK头文件
+#import "WeiboSDK.h"    //新浪微博SDK头文件
 
 //新浪微博SDK需要在项目Build Settings中的Other Linker Flags添加"-ObjC"
+#import <AFNetworking.h>
 
-@interface TaoLuManager ()
-
-@end
 
 @implementation TaoLuManager
 
+
 static dispatch_once_t predict;
 static TaoLuManager *manager = nil;
-
 
 + (TaoLuManager *)shareManager {
     
@@ -43,17 +50,54 @@ static TaoLuManager *manager = nil;
             [userDefaults setObject:@(0) forKey:TAOLU_ORDER];
         }
         manager.taskId = [[userDefaults objectForKey:TAOLU_ORDER]integerValue];
-        NSLog(@"查看userdefaults %@------",NSHomeDirectory());
+        YBLog(@"查看路径 -->%@",NSHomeDirectory());
         manager.classNames = @[@"ShareViewController",@"CommentViewController",@"FollowViewController",@"NewArrivalViewController"];
     });
+    
     return manager;
 }
++ (void)updateConfig {
 
-+ (void)startTaskInViewController:(UIViewController *)viewController{
+    for (NSString *language in [NSLocale preferredLanguages]) {
+        YBLog(@"语言列表-->%@<--",language);
+    }
+    AFHTTPSessionManager *sessionManager;
+    sessionManager = [AFHTTPSessionManager manager];
+    sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    sessionManager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
     
-    NSInteger order = [self shareManager].taskId;
-    if (order < [self shareManager].classNames.count) {
-        UIViewController *vc = [[NSClassFromString(manager.classNames[order]) alloc]init];
+    [sessionManager GET:@"http://192.168.0.20:9001/" parameters:AppGeneralInfoDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [TaoLuManager shareManager].taoLuJson = responseObject;
+        [[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:LOCAL_JSON_NAME];
+        [self initShareSDK];
+        YBLog(@"网络获取成功");
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if([TaoLuManager shareManager].taoLuJson) return ;
+        
+        NSDictionary *localJson = [[NSUserDefaults standardUserDefaults]objectForKey:LOCAL_JSON_NAME];
+        if(localJson){
+            [self shareManager].taoLuJson = localJson;
+            [self initShareSDK];
+        }else {
+            //都没有的话，[TaoLuManager shareManager].taoLuJson 的值是nil，根据这个控制弹出
+        }
+    }];
+
+}
+
++ (NSDictionary *)returnTaoLuJSON {
+    
+//      NSData *jsonData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"ADjson.json" ofType:nil]];
+//    [TaoLuManager shareManager].taoLuJson = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+    
+    return [TaoLuManager shareManager].taoLuJson;
+}
+
++ (void)startTaskInViewController:(UIViewController *)viewController onFinish:(OnFinishTask)finishState{
+    
+    NSInteger index = [self shareManager].taskId;
+    if (index < [self shareManager].classNames.count) {
+        UIViewController *vc = [[NSClassFromString(manager.classNames[index]) alloc]init];
         [vc setDefinesPresentationContext:YES];
         vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -61,8 +105,11 @@ static TaoLuManager *manager = nil;
         [self shareManager].taskId++;   //回调结束之后再去增加任务数，防止奖励bug
         
     }else{
-        NSLog(@"交给unity执行");
+        YBLog(@"交给unity执行");
+        
+        
     }
+//    finishState(taskCancle);
 }
 
 + (void)resetTaskId{
@@ -71,7 +118,8 @@ static TaoLuManager *manager = nil;
 }
 
 + (void)initShareSDK {
-    [ShareSDK registerApp:@"172db5f736dec"
+    
+    [ShareSDK registerApp:SHARESDK_ID
      
           activePlatforms:@[
                             @(SSDKPlatformTypeSinaWeibo),
@@ -102,22 +150,24 @@ static TaoLuManager *manager = nil;
         {
             case SSDKPlatformTypeSinaWeibo:
                 //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                [appInfo SSDKSetupSinaWeiboByAppKey:@"3352061377"
-                                          appSecret:@"b8c69754f262e2bc5523e9369e9e28db"
-                                        redirectUri:@"http://s.adesk.com/game666six/index.html"
+                [appInfo SSDKSetupSinaWeiboByAppKey:SHARESDK_KEY_WEIBO
+                                          appSecret:SHARESDK_SECREAT_WEIBO
+                                        redirectUri:SHARESDK_REURL
                                            authType:SSDKAuthTypeBoth];
                 break;
             case SSDKPlatformTypeWechat:
-                [appInfo SSDKSetupWeChatByAppId:@"wx2a9ef2489f76f887"
-                                      appSecret:@"cb5be5ebee7b259a718192fcb66e597f"];
+                [appInfo SSDKSetupWeChatByAppId:SHARESDK_KEY_WEIXIN
+                                      appSecret:SHARESDK_SECREAT_WEIXIN];
                 break;
             case SSDKPlatformTypeQQ:
-                [appInfo SSDKSetupQQByAppId:@"1105634813"
-                                     appKey:@"kRTSX5rC2Rpf7FiA"
+                [appInfo SSDKSetupQQByAppId:SHARESDK_KEY_QQ
+                                     appKey:SHARESDK_SECREAT_QQ
                                    authType:SSDKAuthTypeBoth];
                 break;
             case SSDKPlatformTypeTwitter:
-                [appInfo        SSDKSetupTwitterByConsumerKey:@"l2hkM6gGTJYwRWZsNCnO2X5tL" consumerSecret:@"aYlIZfR8slIZTnL7GXaKGOpaO3KTWLzj0zW4OC3TzabaDnjbBW"        redirectUri:@"http://s.adesk.com/game666six/index.html"];    //回调地址
+                [appInfo        SSDKSetupTwitterByConsumerKey:SHARESDK_KEY_TWITTER
+                                               consumerSecret:SHARESDK_SECREAT_TWITTER
+                                                  redirectUri:SHARESDK_REURL];    //回调地址
                 break;
                 
             default:
@@ -128,7 +178,7 @@ static TaoLuManager *manager = nil;
 - (void)setTaskId:(NSInteger)taskId {   //重写set方法
     _taskId = taskId;
     [[NSUserDefaults standardUserDefaults]setObject:@(taskId) forKey:TAOLU_ORDER];
-    NSLog(@"当前taskId:%ld",taskId);
+    YBLog(@"当前taskId %ld",(long)taskId);
 }
 
 

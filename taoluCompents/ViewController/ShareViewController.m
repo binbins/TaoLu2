@@ -11,6 +11,9 @@
 #import "TaoLuManager.h"
 #import "PasteViewController.h"
 
+#define SHARETASK_DIC [CONFIGJSON objectForKey:@"shareTask"]
+
+
 @interface ShareViewController ()
 @property (nonatomic, strong)NSMutableDictionary *shareParams;
 
@@ -75,26 +78,29 @@
          
          switch (state) {
              case SSDKResponseStateCancel:
-                 NSLog(@"分享结果：--取消");   //分享成功不经过指定返回按钮返回会被误判取消
+                 YBLog(@"分享结果：--取消");   //分享成功不经过指定返回按钮返回会被误判取消
                  break;
             case SSDKResponseStateFail:
-                 NSLog(@"分享结果：--失败");
+                 YBLog(@"分享结果：--失败");
                  [self pushPasteView];
                  break;
              case SSDKResponseStateSuccess:
-                 NSLog(@"分享结果：--成功");
+                 YBLog(@"分享结果：--成功");
                  [TaoLuManager shareManager].taskId++;  //
                  break;
              default:
                  break;
-                 //
+                 
          }
         
      }];
+    
+
 }
 
 - (void)pushPasteView{
     PasteViewController *vc = [PasteViewController returnInstance];
+    vc.pasteDic = [SHARETASK_DIC objectForKey:@"planB"];
     [self presentViewController:vc animated:YES completion:nil];
 }
 + (instancetype)returnInstance {
@@ -107,6 +113,7 @@
 
 - (IBAction)closeAction:(UIButton *)sender {
     
+    [TaoLuManager shareManager].taskState(taskCancle);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -114,6 +121,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self changLanguage:[TaoLuManager shareManager].isEnglish];
+    self.shareTitle.text = [SHARETASK_DIC objectForKey:@"title"];
 }
 
 - (void)changLanguage:(BOOL)isEnglish{

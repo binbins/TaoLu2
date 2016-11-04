@@ -5,8 +5,10 @@
 //  Created by 张帆 on 16/10/27.
 //  Copyright © 2016年 adesk. All rights reserved.
 //
-
+#define DOWNLOADTASK_DIC [CONFIGJSON objectForKey:@"downloadTask"]
+#import "TaoLuManager.h"
 #import "NewArrivalViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface NewArrivalViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *RecomAppTitle;
@@ -34,7 +36,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.RecomAppTitle.text = [DOWNLOADTASK_DIC objectForKey:@"title"];
+    self.appName.text = [DOWNLOADTASK_DIC objectForKey:@"appName"];
+    self.appDes.text = [DOWNLOADTASK_DIC objectForKey:@"appIntro"];
+    [self.appLogo sd_setImageWithURL:[NSURL URLWithString:[DOWNLOADTASK_DIC objectForKey:@"appLogo"]] placeholderImage:[UIImage imageNamed:@"logo_placeholder"]];
+    [self.startBtn setTitle:[DOWNLOADTASK_DIC objectForKey:@"btnTitle"] forState:UIControlStateNormal];
+    YBLog(@"logo地址：%@",[DOWNLOADTASK_DIC objectForKey:@"appLogo"]);
 }
 
 - (void)didReceiveMemoryWarning {

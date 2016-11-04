@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PasteViewController : UIViewController
+@property (nonatomic, strong)NSDictionary *pasteDic;
 
 + (instancetype)returnInstance;
 @end

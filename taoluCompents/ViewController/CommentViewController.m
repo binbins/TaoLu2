@@ -5,6 +5,8 @@
 //  Created by 张帆 on 16/10/27.
 //  Copyright © 2016年 adesk. All rights reserved.
 //
+#import "TaoLuManager.h"
+#define GOODTASK_DIC [CONFIGJSON objectForKey:@"goodTask"]
 
 #import "CommentViewController.h"
 
@@ -49,7 +51,7 @@
         }
         if ([member isKindOfClass:[UILabel class]]) {
             UILabel *label = (UILabel *)member;
-            NSLog(@"%@",label.text);
+            YBLog(@"%@",label.text);
         }
     }
 }
@@ -58,8 +60,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.comTitle.text = [GOODTASK_DIC objectForKey:@"title"];
+    [self setCommentLabeText];
+    [self.startBtn setTitle:[GOODTASK_DIC objectForKey:@"BtnTitle"] forState:UIControlStateNormal];
 }
 
+- (void)setCommentLabeText{
+    NSArray *commentExamples = [GOODTASK_DIC objectForKey:@"comments"];
+    NSArray *comLabels = @[self.com1, self.com2, self.com3];
+    for (int i =0; i<comLabels.count; i++) {
+        UILabel *label = comLabels[i];
+        label.text = commentExamples[i];
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
