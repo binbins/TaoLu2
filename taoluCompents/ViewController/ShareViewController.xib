@@ -11,15 +11,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShareViewController">
             <connections>
-                <outlet property="CN_platform1" destination="4U0-xo-aeu" id="JQl-Jh-MpN"/>
-                <outlet property="CN_platform2" destination="hao-4J-dgc" id="2Pz-J1-3Fq"/>
-                <outlet property="CN_platform3" destination="8mb-xS-rj4" id="lCX-l2-JWl"/>
-                <outlet property="CN_platform4" destination="d5O-zu-vUk" id="89i-x8-wlM"/>
-                <outlet property="CN_platform5" destination="vOe-Qb-prG" id="510-HM-KTO"/>
-                <outlet property="CN_view" destination="0tl-1I-ddZ" id="deK-hz-Hyz"/>
-                <outlet property="EN_platform1" destination="QLT-uh-TZz" id="OgX-rJ-YQ0"/>
-                <outlet property="EN_platform2" destination="7ax-8F-Juk" id="C6f-WE-L6s"/>
-                <outlet property="EN_view" destination="ZGB-Ut-Tcl" id="IEx-8c-mj8"/>
+                <outlet property="ji_btn1" destination="8mb-xS-rj4" id="ERC-pa-Z0a"/>
+                <outlet property="ji_btn2" destination="hao-4J-dgc" id="wbT-5Y-Gjp"/>
+                <outlet property="ji_btn3" destination="d5O-zu-vUk" id="c1c-MM-Ri4"/>
+                <outlet property="ji_btn4" destination="4U0-xo-aeu" id="vEv-XQ-9Hq"/>
+                <outlet property="ji_btn5" destination="vOe-Qb-prG" id="bzk-TL-y80"/>
+                <outlet property="ji_view" destination="0tl-1I-ddZ" id="m41-8s-Vfx"/>
+                <outlet property="ou_btn1" destination="QLT-uh-TZz" id="3DN-Ez-8vE"/>
+                <outlet property="ou_btn2" destination="7ax-8F-Juk" id="yWn-CF-Xv7"/>
+                <outlet property="ou_btn3" destination="FEQ-I6-b1Y" id="gzJ-Bo-0ce"/>
+                <outlet property="ou_btn4" destination="YRW-Ma-fe1" id="sDc-Vp-8rP"/>
+                <outlet property="ou_view" destination="ZGB-Ut-Tcl" id="15R-9Y-tus"/>
                 <outlet property="shareTitle" destination="W7s-ac-nhs" id="kzB-Co-TKD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -30,7 +32,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yUB-lV-4sM" userLabel="alert">
-                    <rect key="frame" x="40" y="263.5" width="295" height="140"/>
+                    <rect key="frame" x="40" y="264" width="295" height="140"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享的标题" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7s-ac-nhs">
                             <rect key="frame" x="104" y="30" width="87" height="20.5"/>
@@ -49,99 +51,100 @@
                                 <action selector="closeAction:" destination="-1" eventType="touchUpInside" id="xKJ-J2-McQ"/>
                             </connections>
                         </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGB-Ut-Tcl" userLabel="EN_view">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGB-Ut-Tcl" userLabel="ou_view">
                             <rect key="frame" x="0.0" y="74" width="295" height="50"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ax-8F-Juk" userLabel="tt">
-                                    <rect key="frame" x="155" y="2.5" width="45" height="45"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ax-8F-Juk" userLabel="even2">
+                                    <rect key="frame" x="155" y="2" width="45" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="TXm-qt-gqp"/>
                                         <constraint firstAttribute="width" constant="45" id="ras-7f-zZQ"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="twitter.png"/>
-                                    <connections>
-                                        <action selector="EN_tt:" destination="-1" eventType="touchUpInside" id="BMZ-i4-cT2"/>
-                                    </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLT-uh-TZz" userLabel="fb">
-                                    <rect key="frame" x="95" y="2.5" width="45" height="45"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLT-uh-TZz" userLabel="even1">
+                                    <rect key="frame" x="95" y="2" width="45" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="Flv-EC-doU"/>
                                         <constraint firstAttribute="width" constant="45" id="iae-9Y-YAl"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="facebook.png"/>
-                                    <connections>
-                                        <action selector="EN_fb:" destination="-1" eventType="touchUpInside" id="J6a-Xi-lqP"/>
-                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FEQ-I6-b1Y" userLabel="even3">
+                                    <rect key="frame" x="35" y="2" width="45" height="45"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="3Zd-H4-6nD"/>
+                                        <constraint firstAttribute="width" constant="45" id="WI6-4G-59V"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="twitter.png"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRW-Ma-fe1" userLabel="even4">
+                                    <rect key="frame" x="215" y="2.5" width="45" height="45"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="flG-MH-8wS"/>
+                                        <constraint firstAttribute="width" constant="45" id="nSJ-TJ-hES"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="twitter.png"/>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="GSf-CB-32E"/>
+                                <constraint firstItem="QLT-uh-TZz" firstAttribute="leading" secondItem="FEQ-I6-b1Y" secondAttribute="trailing" constant="15" id="H6P-LM-1uO"/>
                                 <constraint firstItem="QLT-uh-TZz" firstAttribute="centerX" secondItem="ZGB-Ut-Tcl" secondAttribute="centerX" constant="-30" id="KUw-v7-hvx"/>
+                                <constraint firstItem="YRW-Ma-fe1" firstAttribute="centerY" secondItem="ZGB-Ut-Tcl" secondAttribute="centerY" id="L7Z-Bq-aOV"/>
                                 <constraint firstAttribute="height" constant="50" id="MnC-aQ-rrH"/>
+                                <constraint firstItem="YRW-Ma-fe1" firstAttribute="leading" secondItem="7ax-8F-Juk" secondAttribute="trailing" constant="15" id="OrV-8Q-XzW"/>
                                 <constraint firstItem="QLT-uh-TZz" firstAttribute="centerY" secondItem="ZGB-Ut-Tcl" secondAttribute="centerY" id="YgM-qN-VyZ"/>
+                                <constraint firstItem="FEQ-I6-b1Y" firstAttribute="centerY" secondItem="ZGB-Ut-Tcl" secondAttribute="centerY" id="gP6-MK-R2O"/>
+                                <constraint firstItem="7ax-8F-Juk" firstAttribute="leading" secondItem="QLT-uh-TZz" secondAttribute="trailing" constant="15" id="kb9-Vz-Wz6"/>
+                                <constraint firstItem="7ax-8F-Juk" firstAttribute="leading" secondItem="QLT-uh-TZz" secondAttribute="trailing" constant="15" id="qbu-eg-YtC"/>
                                 <constraint firstItem="7ax-8F-Juk" firstAttribute="centerX" secondItem="ZGB-Ut-Tcl" secondAttribute="centerX" constant="30" id="vVg-Lx-qf2"/>
                                 <constraint firstItem="7ax-8F-Juk" firstAttribute="centerY" secondItem="ZGB-Ut-Tcl" secondAttribute="centerY" id="x1X-5i-1bt"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0tl-1I-ddZ" userLabel="CN_view">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0tl-1I-ddZ" userLabel="ji_view">
                             <rect key="frame" x="0.0" y="70.5" width="295" height="50"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mb-xS-rj4" userLabel="qq">
-                                    <rect key="frame" x="125" y="2.5" width="45" height="45"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mb-xS-rj4" userLabel="uneven1">
+                                    <rect key="frame" x="125" y="2" width="45" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="0sl-2Z-OJl"/>
                                         <constraint firstAttribute="width" constant="45" id="bmi-Ev-frm"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="qq.png"/>
-                                    <connections>
-                                        <action selector="CN_QQ:" destination="-1" eventType="touchUpInside" id="ES9-dr-YDG"/>
-                                    </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4U0-xo-aeu" userLabel="wx">
-                                    <rect key="frame" x="19" y="2.5" width="45" height="45"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4U0-xo-aeu" userLabel="uneven4">
+                                    <rect key="frame" x="19" y="2" width="45" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="bmy-Fg-JBi"/>
                                         <constraint firstAttribute="width" constant="45" id="iRk-bt-hGC"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="weixin.png"/>
-                                    <connections>
-                                        <action selector="CN_wx:" destination="-1" eventType="touchUpInside" id="iND-Km-kow"/>
-                                    </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOe-Qb-prG" userLabel="wb">
-                                    <rect key="frame" x="231" y="2.5" width="45" height="45"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOe-Qb-prG" userLabel="uneven5">
+                                    <rect key="frame" x="231" y="2" width="45" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="45" id="DJC-BC-u9D"/>
                                         <constraint firstAttribute="height" constant="45" id="f5J-24-PzX"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="weibo.png"/>
-                                    <connections>
-                                        <action selector="CN_wb:" destination="-1" eventType="touchUpInside" id="EfG-mn-7xE"/>
-                                    </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5O-zu-vUk" userLabel="pyq">
-                                    <rect key="frame" x="178" y="2.5" width="45" height="45"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5O-zu-vUk" userLabel="uneven3">
+                                    <rect key="frame" x="178" y="2" width="45" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="Gfq-Ka-OBK"/>
                                         <constraint firstAttribute="width" constant="45" id="jLV-jM-dc9"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="pyq.png"/>
-                                    <connections>
-                                        <action selector="CN_pyq:" destination="-1" eventType="touchUpInside" id="KSk-ar-3yV"/>
-                                    </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hao-4J-dgc" userLabel="qzone">
-                                    <rect key="frame" x="72" y="2.5" width="45" height="45"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hao-4J-dgc" userLabel="uneven2">
+                                    <rect key="frame" x="72" y="2" width="45" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="45" id="ENe-cY-dJd"/>
                                         <constraint firstAttribute="height" constant="45" id="niT-CT-tK3"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="qzone.png"/>
-                                    <connections>
-                                        <action selector="CN_Qzone:" destination="-1" eventType="touchUpInside" id="a1c-jT-V8Q"/>
-                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

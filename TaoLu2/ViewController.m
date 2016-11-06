@@ -80,6 +80,12 @@
             case taskCancle:
                 NSLog(@"分享取消");
                 break;
+            case taskFaild:
+                NSLog(@"分享失败");
+                break;
+            case taskSuccees:
+                NSLog(@"分享成功");
+                break;
                 
             default:
                 break;

@@ -16,20 +16,36 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *followTitle;
 
-//国内
-@property (weak, nonatomic) IBOutlet UIView *CN_view;
-@property (weak, nonatomic) IBOutlet UIButton *CN_platform1;
-@property (weak, nonatomic) IBOutlet UIButton *CN_platform2;
-@property (weak, nonatomic) IBOutlet UIButton *CN_platform3;
+//奇数
+@property (weak, nonatomic) IBOutlet UIView *ji_view;
+@property (weak, nonatomic) IBOutlet UIButton *ji_btn1;
+@property (weak, nonatomic) IBOutlet UIButton *ji_btn2;
+@property (weak, nonatomic) IBOutlet UIButton *ji_btn3;
 
-//海外
-@property (weak, nonatomic) IBOutlet UIView *EN_view;
-@property (weak, nonatomic) IBOutlet UIButton *EN_platform1;
-@property (weak, nonatomic) IBOutlet UIButton *EN_platform2;
+//偶数
+@property (weak, nonatomic) IBOutlet UIView *ou_view;
+@property (weak, nonatomic) IBOutlet UIButton *ou_btn1;
+@property (weak, nonatomic) IBOutlet UIButton *ou_btn2;
+@property (weak, nonatomic) IBOutlet UIButton *ou_btn3;
+@property (weak, nonatomic) IBOutlet UIButton *ou_btn4;
 
+@property (nonatomic, strong)NSArray *platformBtns;
 @end
 
-@implementation FollowViewController
+@implementation FollowViewController {
+    BOOL _ouViewHidden;
+}
+
+- (NSArray *)platformBtns{
+    if (_platformBtns == nil) {
+        if (_ouViewHidden) {
+            _platformBtns = @[self.ji_btn1, self.ji_btn2, self.ji_btn3];
+        }else {
+            _platformBtns = @[self.ou_btn1, self.ou_btn2, self.ou_btn3, self.ou_btn4];
+        }
+    }
+    return _platformBtns;
+}
 
 + (instancetype)returnInstance {
     FollowViewController *vc = [[FollowViewController alloc]init];
@@ -45,22 +61,116 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)follow_wb:(UIButton *)sender {
-    [ShareSDK authorize:SSDKPlatformTypeSinaWeibo settings:@{SSDKAuthSettingKeyScopes : @[@"follow_app_official_microblog"]} onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
-        //授权并关注指定微博
-    }];
-}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-   [self changLanguage:[TaoLuManager shareManager].isEnglish];
+    self.followTitle.text = [FOLLOWTASK_DIC objectForKey:@"title"];
+    [self setPlatformsHidden];
 }
 
-- (void)changLanguage:(BOOL)isEnglish{
-    self.EN_view.hidden = !isEnglish;
-    self.CN_view.hidden = isEnglish;
+- (void)setPlatformsHidden{
+    NSArray *platformArr = [FOLLOWTASK_DIC objectForKey:@"platforms"];
+    NSInteger platNums = platformArr.count > 4?4:platformArr.count;
+    _ouViewHidden = platNums % 2 == 1 ? YES : NO;
+    self.ou_view.hidden = _ouViewHidden;
+    self.ji_view.hidden = !_ouViewHidden;
+    
+    for (UIButton *btn in self.platformBtns) {
+        btn.hidden = YES;
+    }
+    for (int i = 0; i < platNums; i++) {
+        UIButton *btn = self.platformBtns[i];
+        btn.hidden = NO;
+        //设置logo和对应的事件
+        NSDictionary *platformDic = platformArr[i];
+        NSInteger typeIndex = [platformDic[@"platformType"]integerValue];
+        btn.tag = typeIndex;
+        [btn setImage:[self btnImgforIndex:typeIndex] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(followAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+}
+- (void)followAction:(UIButton *)btn {
+    switch (btn.tag) {
+        case 5:
+            [ShareSDK authorize:SSDKPlatformTypeSinaWeibo settings:@{SSDKAuthSettingKeyScopes : @[@"follow_app_official_microblog"]} onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
+                //授权并关注指定微博
+            }];
+            break;
+            
+        default:
+            break;
+    }
+}
+- (SSDKPlatformType )typeForIndex:(NSInteger)typeIndex{
+    
+    SSDKPlatformType type;
+    switch (typeIndex) {
+        case 1:
+            type = SSDKPlatformSubTypeWechatSession;
+            break;
+        case 2:
+            type = SSDKPlatformSubTypeWechatTimeline;
+            break;
+        case 3:
+            type = SSDKPlatformSubTypeQQFriend;
+            break;
+        case 4:
+            type = SSDKPlatformSubTypeQZone;
+            break;
+        case 5:
+            type = SSDKPlatformTypeSinaWeibo;
+            break;
+        case 6:
+            type = SSDKPlatformTypeFacebook;
+            break;
+        case 7:
+            type = SSDKPlatformTypeTwitter;
+            break;
+            
+        default:
+            break;
+    }
+    return type;
+}
+-(UIImage *)btnImgforIndex:(NSInteger)typeIndex {
+    
+    NSString *btnImgName;
+    SSDKPlatformType type;
+    switch (typeIndex) {
+        case 1:
+            type = SSDKPlatformSubTypeWechatSession;
+            btnImgName = @"weixin";
+            break;
+        case 2:
+            type = SSDKPlatformSubTypeWechatTimeline;
+            btnImgName = @"pyq";
+            break;
+        case 3:
+            type = SSDKPlatformSubTypeQQFriend;
+            btnImgName = @"qq";
+            break;
+        case 4:
+            type = SSDKPlatformSubTypeQZone;
+            btnImgName = @"qzone";
+            break;
+        case 5:
+            type = SSDKPlatformTypeSinaWeibo;
+            btnImgName = @"weibo";
+            break;
+        case 6:
+            type = SSDKPlatformTypeFacebook;
+            btnImgName = @"facebook";
+            break;
+        case 7:
+            type = SSDKPlatformTypeTwitter;
+            btnImgName = @"twitter";
+            break;
+            
+        default:
+            break;
+    }
+    return [UIImage imageNamed:btnImgName];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -18,22 +18,38 @@
 @property (nonatomic, strong)NSMutableDictionary *shareParams;
 
 @property (weak, nonatomic) IBOutlet UILabel *shareTitle;
-//国内
-@property (weak, nonatomic) IBOutlet UIView *CN_view;
-@property (weak, nonatomic) IBOutlet UIButton *CN_platform1;
-@property (weak, nonatomic) IBOutlet UIButton *CN_platform2;
-@property (weak, nonatomic) IBOutlet UIButton *CN_platform3;
-@property (weak, nonatomic) IBOutlet UIButton *CN_platform4;
-@property (weak, nonatomic) IBOutlet UIButton *CN_platform5;
+//奇数个
+@property (weak, nonatomic) IBOutlet UIView *ji_view;
+@property (weak, nonatomic) IBOutlet UIButton *ji_btn1;
+@property (weak, nonatomic) IBOutlet UIButton *ji_btn2;
+@property (weak, nonatomic) IBOutlet UIButton *ji_btn3;
+@property (weak, nonatomic) IBOutlet UIButton *ji_btn4;
+@property (weak, nonatomic) IBOutlet UIButton *ji_btn5;
 
-//海外
-@property (weak, nonatomic) IBOutlet UIView *EN_view;
-@property (weak, nonatomic) IBOutlet UIButton *EN_platform1;
-@property (weak, nonatomic) IBOutlet UIButton *EN_platform2;
+//偶数个
+@property (weak, nonatomic) IBOutlet UIView *ou_view;
+@property (weak, nonatomic) IBOutlet UIButton *ou_btn1;
+@property (weak, nonatomic) IBOutlet UIButton *ou_btn2;
+@property (weak, nonatomic) IBOutlet UIButton *ou_btn3;
+@property (weak, nonatomic) IBOutlet UIButton *ou_btn4;
 
+@property (nonatomic, strong)NSArray *platformBtns;
 @end
 
-@implementation ShareViewController
+@implementation ShareViewController {
+    BOOL _ouViewHidden;
+}
+
+- (NSArray *)platformBtns{
+    if (_platformBtns == nil) {
+        if (_ouViewHidden) {
+            _platformBtns = @[self.ji_btn1, self.ji_btn2, self.ji_btn3, self.ji_btn4, self.ji_btn5];
+        }else {
+            _platformBtns = @[self.ou_btn1, self.ou_btn2, self.ou_btn3, self.ou_btn4];
+        }
+    }
+    return _platformBtns;
+}
 
 - (NSMutableDictionary *)shareParams {
 
@@ -49,54 +65,8 @@
     return _shareParams;
 }
 #pragma mark- shareAction
-- (IBAction)CN_wx:(UIButton *)sender {
-      [self ShareAction:SSDKPlatformSubTypeWechatSession];
-}
-- (IBAction)CN_Qzone:(UIButton *)sender {
-      [self ShareAction:SSDKPlatformSubTypeQZone];
-}
-- (IBAction)CN_QQ:(UIButton *)sender {
-      [self ShareAction:SSDKPlatformSubTypeQQFriend];
-}
-- (IBAction)CN_pyq:(UIButton *)sender {
-      [self ShareAction:SSDKPlatformSubTypeWechatTimeline];
-}
-- (IBAction)CN_wb:(UIButton *)sender {
-      [self ShareAction:SSDKPlatformTypeSinaWeibo];
-}
-- (IBAction)EN_fb:(UIButton *)sender {
-      [self ShareAction:SSDKPlatformTypeFacebook];
-}
-- (IBAction)EN_tt:(UIButton *)sender {
-    [self ShareAction:SSDKPlatformTypeTwitter];
-}
 
-- (void)ShareAction:(SSDKPlatformType )platformType{
-    [ShareSDK share:platformType //传入分享的平台类型
-         parameters:self.shareParams
-     onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) { // 回调处理....}];
-         
-         switch (state) {
-             case SSDKResponseStateCancel:
-                 YBLog(@"分享结果：--取消");   //分享成功不经过指定返回按钮返回会被误判取消
-                 break;
-            case SSDKResponseStateFail:
-                 YBLog(@"分享结果：--失败");
-                 [self pushPasteView];
-                 break;
-             case SSDKResponseStateSuccess:
-                 YBLog(@"分享结果：--成功");
-                 [TaoLuManager shareManager].taskIndex++;  //
-                 break;
-             default:
-                 break;
-                 
-         }
-        
-     }];
-    
 
-}
 
 - (void)pushPasteView{
     PasteViewController *vc = [PasteViewController returnInstance];
@@ -120,14 +90,130 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self changLanguage:[TaoLuManager shareManager].isEnglish];
     self.shareTitle.text = [SHARETASK_DIC objectForKey:@"title"];
+    [self setPlatformsHidden];
 }
 
-- (void)changLanguage:(BOOL)isEnglish{
-    self.EN_view.hidden = !isEnglish;
-    self.CN_view.hidden = isEnglish;
+- (void)setPlatformsHidden{
+    NSArray *platformArr = [SHARETASK_DIC objectForKey:@"platforms"];
+    NSInteger platNums = platformArr.count > 5?5:platformArr.count;
+    _ouViewHidden = platNums % 2 == 1 ? YES : NO;
+    self.ou_view.hidden = _ouViewHidden;
+    self.ji_view.hidden = !_ouViewHidden;
+    
+    for (UIButton *btn in self.platformBtns) {
+        btn.hidden = YES;
+    }
+    for (int i = 0; i < platNums; i++) {
+        UIButton *btn = self.platformBtns[i];
+        btn.hidden = NO;
+        //设置logo和对应的事件
+        NSDictionary *platformDic = platformArr[i];
+        NSInteger typeIndex = [platformDic[@"platformType"]integerValue];
+        btn.tag = typeIndex;
+        [btn setImage:[self btnImgforIndex:typeIndex] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(ShareAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+
 }
+
+-(UIImage *)btnImgforIndex:(NSInteger)typeIndex {
+    
+    NSString *btnImgName;
+    SSDKPlatformType type;
+    switch (typeIndex) {
+        case 1:
+            type = SSDKPlatformSubTypeWechatSession;
+            btnImgName = @"weixin";
+            break;
+        case 2:
+            type = SSDKPlatformSubTypeWechatTimeline;
+            btnImgName = @"pyq";
+            break;
+        case 3:
+            type = SSDKPlatformSubTypeQQFriend;
+            btnImgName = @"qq";
+            break;
+        case 4:
+            type = SSDKPlatformSubTypeQZone;
+            btnImgName = @"qzone";
+            break;
+        case 5:
+            type = SSDKPlatformTypeSinaWeibo;
+            btnImgName = @"weibo";
+            break;
+        case 6:
+            type = SSDKPlatformTypeFacebook;
+            btnImgName = @"facebook";
+            break;
+        case 7:
+            type = SSDKPlatformTypeTwitter;
+            btnImgName = @"twitter";
+            break;
+            
+        default:
+            break;
+    }
+    
+    return [UIImage imageNamed:btnImgName];
+}
+- (SSDKPlatformType )typeForIndex:(NSInteger)typeIndex{
+
+    SSDKPlatformType type;
+    switch (typeIndex) {
+        case 1:
+            type = SSDKPlatformSubTypeWechatSession;
+            break;
+        case 2:
+            type = SSDKPlatformSubTypeWechatTimeline;
+            break;
+        case 3:
+            type = SSDKPlatformSubTypeQQFriend;
+            break;
+        case 4:
+            type = SSDKPlatformSubTypeQZone;
+            break;
+        case 5:
+            type = SSDKPlatformTypeSinaWeibo;
+            break;
+        case 6:
+            type = SSDKPlatformTypeFacebook;
+            break;
+        case 7:
+            type = SSDKPlatformTypeTwitter;
+            break;
+            
+        default:
+            break;
+    }
+    return type;
+}
+
+- (void)ShareAction:(UIButton *)btn{
+    [ShareSDK share:[self typeForIndex:btn.tag] //传入分享的平台类型
+         parameters:self.shareParams
+     onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+         
+         switch (state) {
+             case SSDKResponseStateCancel:
+                 [TaoLuManager shareManager].taskState(taskCancle);
+                 break;
+             case SSDKResponseStateFail:
+                 [TaoLuManager shareManager].taskState(taskFaild);
+                 [self pushPasteView];
+                 break;
+             case SSDKResponseStateSuccess:
+                 [TaoLuManager shareManager].taskState(taskSuccees);
+                 [TaoLuManager shareManager].taskIndex++;
+                 break;
+             default:
+                 break;
+                 
+         }
+         
+     }];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
