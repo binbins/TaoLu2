@@ -7,6 +7,7 @@
 //
 
 #import "PasteViewController.h"
+#import "TaoLuManager.h"
 
 @interface PasteViewController () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *pasteTitleFirst;
@@ -28,6 +29,7 @@
 
 - (IBAction)closeAction:(UIButton *)sender {
     
+    [TaoLuManager shareManager].taskState(taskCancle);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

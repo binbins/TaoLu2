@@ -455,7 +455,7 @@
 				TargetAttributes = {
 					07554FD71DC0C6A400D7D8F2 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = RZA9S6KWC6;
+						DevelopmentTeam = GVDX22PB3P;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -644,7 +644,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -685,7 +685,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -697,7 +697,7 @@
 			baseConfigurationReference = 10473F986383FE2F6D801BEE /* Pods-TaoLu2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = RZA9S6KWC6;
+				DEVELOPMENT_TEAM = GVDX22PB3P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShareSDK",
@@ -724,7 +724,7 @@
 			baseConfigurationReference = B31A631D66BB509456133CAD /* Pods-TaoLu2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = RZA9S6KWC6;
+				DEVELOPMENT_TEAM = GVDX22PB3P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShareSDK",

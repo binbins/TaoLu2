@@ -86,7 +86,7 @@
                  break;
              case SSDKResponseStateSuccess:
                  YBLog(@"分享结果：--成功");
-                 [TaoLuManager shareManager].taskId++;  //
+                 [TaoLuManager shareManager].taskIndex++;  //
                  break;
              default:
                  break;
