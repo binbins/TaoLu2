@@ -51,18 +51,13 @@
 
 - (IBAction)getTask:(UIButton *)sender {
     [TaoLuManager startTaskInViewController:self onFinish:^(TaskState state) {
-        if (state == TaskNone)
+        if (state == taskNone)
             YBLog(@"没有获取到套路广告数据，交给mobi广告");
      }];
 
 }
 
-- (IBAction)changeLanguage:(UISwitch *)sender {
-    YBLog(@"%@",sender.on?@"英语":@"中文");
-    [TaoLuManager shareManager].isEnglish = sender.on;
-    
-    
-}
+
 
 
 - (IBAction)reset:(UIButton *)sender {
@@ -76,15 +71,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [TaoLuManager shareManager].taskState = ^(TaskState state){
+        
         switch (state) {
             case taskCancle:
-                NSLog(@"分享取消");
+                NSLog(@"任务取消");
                 break;
             case taskFaild:
-                NSLog(@"分享失败");
+                NSLog(@"任务失败");
                 break;
             case taskSuccees:
-                NSLog(@"分享成功");
+                NSLog(@"任务成功");
+                break;
+            case taskAllFinish:
+                NSLog(@"套路任务结束，交给mobi");
                 break;
                 
             default:

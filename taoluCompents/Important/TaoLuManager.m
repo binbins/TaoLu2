@@ -45,7 +45,7 @@ static TaoLuManager *manager = nil;
     dispatch_once(&predict, ^{
         manager = [[self alloc]init];
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        manager.isEnglish = NO;
+
         if (![userDefaults boolForKey:TAOLU_ORDER]) {   //首次下载
             [userDefaults setObject:@(0) forKey:TAOLU_ORDER];
         }
@@ -66,7 +66,7 @@ static TaoLuManager *manager = nil;
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     sessionManager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
     
-    [sessionManager GET:@"http://192.168.1.101:9001/" parameters:AppGeneralInfoDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [sessionManager GET:@"http://192.168.0.20:9001/" parameters:AppGeneralInfoDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [TaoLuManager shareManager].taoLuJson = responseObject;
         [[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:LOCAL_JSON_NAME];
         [self initShareSDK];
@@ -81,7 +81,7 @@ static TaoLuManager *manager = nil;
         }else {
             //都没有的话，[TaoLuManager shareManager].taoLuJson 的值是nil，根据这个控制弹出
             YBLog(@"当前是空");
-            [TaoLuManager shareManager].taskState(TaskNone);
+            [TaoLuManager shareManager].taskState(taskNone);
         }
     }];
 
@@ -97,11 +97,11 @@ static TaoLuManager *manager = nil;
 
 + (void)startTaskInViewController:(UIViewController *)viewController onFinish:(OnFinishTask)finishState{
     
+    NSInteger index = [[self shareManager] taskIndex];
     if ([[TaoLuManager shareManager] taoLuJson] == nil) {
-        finishState(TaskNone);
+        finishState(taskNone);
         return;
     }
-    NSInteger index = [[self shareManager] taskIndex];
     if (index < [self shareManager].classNames.count) {
         UIViewController *vc = [[NSClassFromString(manager.classNames[index]) alloc]init];
         [vc setDefinesPresentationContext:YES];
@@ -111,8 +111,7 @@ static TaoLuManager *manager = nil;
         [self shareManager].taskIndex++;   //回调结束之后再去增加任务数，防止奖励bug
         
     }else{
-        YBLog(@"交给unity执行");
-        
+        finishState(taskAllFinish);
     }
     
 }

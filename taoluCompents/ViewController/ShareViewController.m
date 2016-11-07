@@ -72,6 +72,7 @@
     PasteViewController *vc = [PasteViewController returnInstance];
     vc.pasteDic = [SHARETASK_DIC objectForKey:@"planB"];
     [self presentViewController:vc animated:YES completion:nil];
+    YBLog(@"分享失败，弹出粘贴弹框");
 }
 + (instancetype)returnInstance {
     ShareViewController *vc = [[ShareViewController alloc]init];
@@ -95,20 +96,29 @@
 }
 
 - (void)setPlatformsHidden{
-    NSArray *platformArr = [SHARETASK_DIC objectForKey:@"platforms"];
+    NSArray *platformArr = [SHARETASK_DIC objectForKey:@"platforms"];//优化，映射排序 偶数初始减一
+    
     NSInteger platNums = platformArr.count > 5?5:platformArr.count;
     _ouViewHidden = platNums % 2 == 1 ? YES : NO;
     self.ou_view.hidden = _ouViewHidden;
     self.ji_view.hidden = !_ouViewHidden;
     
-    for (UIButton *btn in self.platformBtns) {
+    for (UIButton *btn in self.platformBtns) {  //统一设为隐藏
         btn.hidden = YES;
     }
+    
+    NSInteger index = _ouViewHidden? (platformArr.count/2):(platformArr.count/2-1);   //初始取的下标
+
     for (int i = 0; i < platNums; i++) {
         UIButton *btn = self.platformBtns[i];
         btn.hidden = NO;
-        //设置logo和对应的事件
-        NSDictionary *platformDic = platformArr[i];
+        NSDictionary *platformDic = platformArr[index];
+        if (_ouViewHidden) {
+            index = i%2==1?(index+(i+1)) : (index-(i+1));   //偶数：先右后左
+        }else {
+            index = i%2==0?(index+(i+1)) : (index-(i+1));   //奇数：先左后右
+        }
+        
         NSInteger typeIndex = [platformDic[@"platformType"]integerValue];
         btn.tag = typeIndex;
         [btn setImage:[self btnImgforIndex:typeIndex] forState:UIControlStateNormal];

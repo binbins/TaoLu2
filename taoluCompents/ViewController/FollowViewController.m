@@ -78,11 +78,17 @@
     for (UIButton *btn in self.platformBtns) {
         btn.hidden = YES;
     }
+    NSInteger index = _ouViewHidden? (platformArr.count/2):(platformArr.count/2-1);   //初始取的下标
     for (int i = 0; i < platNums; i++) {
         UIButton *btn = self.platformBtns[i];
         btn.hidden = NO;
         //设置logo和对应的事件
-        NSDictionary *platformDic = platformArr[i];
+        NSDictionary *platformDic = platformArr[index];
+        if (_ouViewHidden) {
+            index = i%2==1?(index+(i+1)) : (index-(i+1));   //偶数：先右后左
+        }else {
+            index = i%2==0?(index+(i+1)) : (index-(i+1));   //奇数：先左后右
+        }
         NSInteger typeIndex = [platformDic[@"platformType"]integerValue];
         btn.tag = typeIndex;
         [btn setImage:[self btnImgforIndex:typeIndex] forState:UIControlStateNormal];

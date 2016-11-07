@@ -15,14 +15,15 @@ typedef enum {
     taskSuccees,
     taskCancle,
     taskFaild,
-    TaskNone
+    taskNone,
+    taskAllFinish
+    
 }TaskState;
 
 typedef void(^OnFinishTask) (TaskState state);
 @property (nonatomic, strong)OnFinishTask taskState;
 @property (nonatomic, assign)NSInteger taskIndex;
 @property (nonatomic, strong)NSArray *classNames;
-@property (nonatomic, assign)BOOL isEnglish;
 @property (nonatomic, strong)NSDictionary *taoLuJson;
 
 + (TaoLuManager *)shareManager;
