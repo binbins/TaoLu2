@@ -38,6 +38,8 @@
 
 @implementation ShareViewController {
     BOOL _ouViewHidden;
+    UIImage *_screenShot;
+    NSString *_snapShotPath;
 }
 
 - (NSArray *)platformBtns{
@@ -54,11 +56,13 @@
 - (NSMutableDictionary *)shareParams {
 
     if (_shareParams == nil) {
-        
+        if (_screenShot == nil) {
+            _screenShot = [[UIImage alloc]initWithContentsOfFile:_snapShotPath];    // 基本用不上
+        }
         _shareParams = [NSMutableDictionary dictionary];
         [_shareParams SSDKSetupShareParamsByText:@"分享内容"
-                                         images:@[[UIImage imageNamed:@"star.png"]] //传入要分享的图片
-                                            url:[NSURL URLWithString:@"http://mob.com"]
+                                         images:@[_screenShot, [UIImage imageNamed:@"star.png"] ] //传入要分享的图片
+                                            url:[NSURL URLWithString:@"http://www.adesk.com/"]
                                           title:@"分享标题"
                                            type:SSDKContentTypeAuto];
     }
@@ -71,7 +75,7 @@
 - (void)pushPasteView{
     PasteViewController *vc = [PasteViewController returnInstance];
     vc.pasteDic = [SHARETASK_DIC objectForKey:@"planB"];
-    [self presentViewController:vc animated:YES completion:nil];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:YES completion:nil];
     YBLog(@"分享失败，弹出粘贴弹框");
 }
 + (instancetype)returnInstance {
@@ -93,6 +97,7 @@
     // Do any additional setup after loading the view from its nib.
     self.shareTitle.text = [SHARETASK_DIC objectForKey:@"title"];
     [self setPlatformsHidden];
+    
 }
 
 - (void)setPlatformsHidden{
@@ -222,6 +227,7 @@
          }
          
      }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -229,7 +235,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    //开始截屏
+   _snapShotPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/shot.png"];
+    UIView *view = [UIApplication sharedApplication].keyWindow.rootViewController.view;
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size,YES,0);
+    
+    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
+    
+    _screenShot = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    if (_screenShot) {  //保存到本地，除非截屏失败，一般情况下是用不到的
+        [UIImagePNGRepresentation(_screenShot) writeToFile:_snapShotPath atomically:YES];
 
+    }
+}
 
 /*
 #pragma mark - Navigation

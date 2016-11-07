@@ -45,6 +45,8 @@
 #import "ShareViewController.h"
 #import "CommentViewController.h"
 #import "FollowViewController.h"
-#import "NewArrivalViewController.h"    //做好之后删掉
+#import "NewArrivalViewController.h"    //这几个vc做好之后可以删掉
+
+#import "UILabel+Extension.h"
 
 

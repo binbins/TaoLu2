@@ -33,7 +33,6 @@
 //新浪微博SDK需要在项目Build Settings中的Other Linker Flags添加"-ObjC"
 #import <AFNetworking.h>
 
-
 @implementation TaoLuManager
 
 
@@ -86,20 +85,28 @@ static TaoLuManager *manager = nil;
     }];
 
 }
-
 + (NSDictionary *)returnTaoLuJSON {
-    
 //      NSData *jsonData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"ADjson.json" ofType:nil]];
 //    [TaoLuManager shareManager].taoLuJson = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
-    
     return [TaoLuManager shareManager].taoLuJson;
 }
 
-+ (void)startTaskInViewController:(UIViewController *)viewController onFinish:(OnFinishTask)finishState{
+extern "C" {
     
+    void __startTask(){
+        NSLog(@"xcode 原生执行的方法");
+    }
+
+}
+
++ (void)startTaskInViewController:(UIViewController *)viewController {
+    
+    if (viewController == nil) {
+        viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    }
     NSInteger index = [[self shareManager] taskIndex];
     if ([[TaoLuManager shareManager] taoLuJson] == nil) {
-        finishState(taskNone);
+        [TaoLuManager shareManager].taskState(taskNone);
         return;
     }
     if (index < [self shareManager].classNames.count) {
@@ -111,7 +118,7 @@ static TaoLuManager *manager = nil;
         [self shareManager].taskIndex++;   //回调结束之后再去增加任务数，防止奖励bug
         
     }else{
-        finishState(taskAllFinish);
+        [TaoLuManager shareManager].taskState(taskAllFinish);
     }
     
 }
@@ -179,7 +186,7 @@ static TaoLuManager *manager = nil;
         }
     }];
 }
-- (void)setTaskIndeex:(NSInteger)taskIndex {   //重写set方法
+- (void)setTaskIndex:(NSInteger)taskIndex {   //重写set方法
     _taskIndex = taskIndex;
     [[NSUserDefaults standardUserDefaults]setObject:@(taskIndex) forKey:TAOLU_ORDER];
     YBLog(@"当前taskIndex %ld",(long)taskIndex);

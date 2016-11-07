@@ -27,7 +27,7 @@ typedef void(^OnFinishTask) (TaskState state);
 @property (nonatomic, strong)NSDictionary *taoLuJson;
 
 + (TaoLuManager *)shareManager;
-+ (void)startTaskInViewController:(UIViewController *)viewController onFinish:(OnFinishTask)finishState;
++ (void)startTaskInViewController:(UIViewController *)viewController;
 + (void)resetTaskIndex;
 + (void)initShareSDK;
 + (NSDictionary *)returnTaoLuJSON;

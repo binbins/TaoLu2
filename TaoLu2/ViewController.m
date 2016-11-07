@@ -50,10 +50,7 @@
 
 
 - (IBAction)getTask:(UIButton *)sender {
-    [TaoLuManager startTaskInViewController:self onFinish:^(TaskState state) {
-        if (state == taskNone)
-            YBLog(@"没有获取到套路广告数据，交给mobi广告");
-     }];
+    [TaoLuManager startTaskInViewController:nil];
 
 }
 
@@ -74,16 +71,18 @@
         
         switch (state) {
             case taskCancle:
-                NSLog(@"任务取消");
+                YBLog(@"任务取消");
+                [UILabel showStats:@"任务取消" atView:[UIApplication sharedApplication].keyWindow];
                 break;
             case taskFaild:
-                NSLog(@"任务失败");
+                YBLog(@"任务失败");
                 break;
             case taskSuccees:
-                NSLog(@"任务成功");
+                YBLog(@"任务成功");
+                [UILabel showStats:@"任务完成" atView:[UIApplication sharedApplication].keyWindow];
                 break;
             case taskAllFinish:
-                NSLog(@"套路任务结束，交给mobi");
+                YBLog(@"套路任务结束，交给mobi");
                 break;
                 
             default:

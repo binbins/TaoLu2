@@ -64,6 +64,14 @@
     self.comTitle.text = [GOODTASK_DIC objectForKey:@"title"];
     [self setCommentLabeText];
     [self.startBtn setTitle:[GOODTASK_DIC objectForKey:@"BtnTitle"] forState:UIControlStateNormal];
+    [self.startBtn addTarget:self action:@selector(gotoAppStore) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)gotoAppStore {
+    NSString *iTunesLink = [GOODTASK_DIC objectForKey:@"openUrl"];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
+    [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 - (void)setCommentLabeText{

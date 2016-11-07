@@ -107,6 +107,8 @@
         default:
             break;
     }
+    [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 - (SSDKPlatformType )typeForIndex:(NSInteger)typeIndex{
     

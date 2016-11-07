@@ -35,8 +35,11 @@
 
 - (IBAction)startAction:(UIButton *)sender {
     
+    //这里添加打开应用的类型
     [[UIPasteboard generalPasteboard]setString:self.pasteTextView.text];
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+
 }
 
 - (void)viewDidLoad {

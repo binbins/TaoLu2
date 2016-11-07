@@ -19,7 +19,7 @@
 		072A66E91DC310B300F1D447 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 072A66CA1DC310B300F1D447 /* twitter.png */; };
 		072A66EA1DC310B300F1D447 /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 072A66CB1DC310B300F1D447 /* weibo.png */; };
 		072A66EB1DC310B300F1D447 /* weixin.png in Resources */ = {isa = PBXBuildFile; fileRef = 072A66CC1DC310B300F1D447 /* weixin.png */; };
-		072A66EC1DC310B300F1D447 /* TaoLuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 072A66CF1DC310B300F1D447 /* TaoLuManager.m */; };
+		072A66EC1DC310B300F1D447 /* TaoLuManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 072A66CF1DC310B300F1D447 /* TaoLuManager.mm */; };
 		072A66ED1DC310B300F1D447 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072A66D31DC310B300F1D447 /* CommentViewController.m */; };
 		072A66EE1DC310B300F1D447 /* CommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 072A66D41DC310B300F1D447 /* CommentViewController.xib */; };
 		072A66EF1DC310B300F1D447 /* FollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072A66D61DC310B300F1D447 /* FollowViewController.m */; };
@@ -37,6 +37,7 @@
 		07554FE81DC0C6A400D7D8F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07554FE71DC0C6A400D7D8F2 /* Assets.xcassets */; };
 		07554FEB1DC0C6A400D7D8F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07554FE91DC0C6A400D7D8F2 /* LaunchScreen.storyboard */; };
 		077882871DCC3DE2005C2E02 /* logo_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 077882861DCC3DE2005C2E02 /* logo_placeholder.png */; };
+		07B46D2A1DD076B70036DC43 /* UILabel+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B46D291DD076B70036DC43 /* UILabel+Extension.m */; };
 		07C5EAD21DC6FC4E00B39E20 /* ADjson.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C5EAD11DC6FC4E00B39E20 /* ADjson.json */; };
 		07EF57211DCA1C330013CAB8 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 07EF57201DCA1C330013CAB8 /* icon.png */; };
 		90129F621DC8F1D7007E94C5 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90129F381DC8F1D6007E94C5 /* ShareSDK.framework */; };
@@ -80,7 +81,7 @@
 		072A66CB1DC310B300F1D447 /* weibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo.png; sourceTree = "<group>"; };
 		072A66CC1DC310B300F1D447 /* weixin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weixin.png; sourceTree = "<group>"; };
 		072A66CE1DC310B300F1D447 /* TaoLuManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoLuManager.h; sourceTree = "<group>"; };
-		072A66CF1DC310B300F1D447 /* TaoLuManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoLuManager.m; sourceTree = "<group>"; };
+		072A66CF1DC310B300F1D447 /* TaoLuManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TaoLuManager.mm; sourceTree = "<group>"; };
 		072A66D01DC310B300F1D447 /* VChead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VChead.h; sourceTree = "<group>"; };
 		072A66D21DC310B300F1D447 /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
 		072A66D31DC310B300F1D447 /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
@@ -108,6 +109,8 @@
 		07554FEA1DC0C6A400D7D8F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07554FEC1DC0C6A400D7D8F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		077882861DCC3DE2005C2E02 /* logo_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_placeholder.png; sourceTree = "<group>"; };
+		07B46D281DD076B70036DC43 /* UILabel+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Extension.h"; sourceTree = "<group>"; };
+		07B46D291DD076B70036DC43 /* UILabel+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Extension.m"; sourceTree = "<group>"; };
 		07C5EAD11DC6FC4E00B39E20 /* ADjson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ADjson.json; sourceTree = "<group>"; };
 		07EF57201DCA1C330013CAB8 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		10473F986383FE2F6D801BEE /* Pods-TaoLu2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaoLu2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaoLu2/Pods-TaoLu2.debug.xcconfig"; sourceTree = "<group>"; };
@@ -189,6 +192,7 @@
 		072A66C01DC310B300F1D447 /* taoluCompents */ = {
 			isa = PBXGroup;
 			children = (
+				07B46D271DD076B70036DC43 /* libs */,
 				072A66C11DC310B300F1D447 /* Images */,
 				072A66CD1DC310B300F1D447 /* Important */,
 				072A66D11DC310B300F1D447 /* ViewController */,
@@ -220,7 +224,7 @@
 			children = (
 				072A66D01DC310B300F1D447 /* VChead.h */,
 				072A66CE1DC310B300F1D447 /* TaoLuManager.h */,
-				072A66CF1DC310B300F1D447 /* TaoLuManager.m */,
+				072A66CF1DC310B300F1D447 /* TaoLuManager.mm */,
 			);
 			path = Important;
 			sourceTree = "<group>";
@@ -291,6 +295,15 @@
 				07554FDC1DC0C6A400D7D8F2 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		07B46D271DD076B70036DC43 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				07B46D281DD076B70036DC43 /* UILabel+Extension.h */,
+				07B46D291DD076B70036DC43 /* UILabel+Extension.m */,
+			);
+			path = libs;
 			sourceTree = "<group>";
 		};
 		5F83EAEC6799E05D4BB56264 /* Pods */ = {
@@ -572,12 +585,13 @@
 			files = (
 				07554FE31DC0C6A400D7D8F2 /* ViewController.m in Sources */,
 				072A66F11DC310B300F1D447 /* NewArrivalViewController.m in Sources */,
-				072A66EC1DC310B300F1D447 /* TaoLuManager.m in Sources */,
+				072A66EC1DC310B300F1D447 /* TaoLuManager.mm in Sources */,
 				07554FE01DC0C6A400D7D8F2 /* AppDelegate.m in Sources */,
 				072A66F31DC310B300F1D447 /* PasteViewController.m in Sources */,
 				07554FDD1DC0C6A400D7D8F2 /* main.m in Sources */,
 				072A66ED1DC310B300F1D447 /* CommentViewController.m in Sources */,
 				072A66F51DC310B300F1D447 /* ShareViewController.m in Sources */,
+				07B46D2A1DD076B70036DC43 /* UILabel+Extension.m in Sources */,
 				072A66EF1DC310B300F1D447 /* FollowViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -697,6 +711,7 @@
 			baseConfigurationReference = 10473F986383FE2F6D801BEE /* Pods-TaoLu2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = GVDX22PB3P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -714,7 +729,7 @@
 					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/WeChatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ybb.TaoLu2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ybb.game.taolu2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -724,6 +739,7 @@
 			baseConfigurationReference = B31A631D66BB509456133CAD /* Pods-TaoLu2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = GVDX22PB3P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -741,7 +757,7 @@
 					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/WeChatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ybb.TaoLu2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ybb.game.taolu2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
