@@ -57,11 +57,12 @@
         if (_screenShot == nil) {
             _screenShot = [[UIImage alloc]initWithContentsOfFile:_snapShotPath];    // 基本用不上
         }
+        NSDictionary *d = [SHARETASK_DIC objectForKey:@"shareContents"];
         _shareParams = [NSMutableDictionary dictionary];
-        [_shareParams SSDKSetupShareParamsByText:@"分享内容"
-                                         images:@[_screenShot, [UIImage imageNamed:@"star.png"] ] //传入要分享的图片
-                                            url:[NSURL URLWithString:@"http://www.adesk.com/"]
-                                          title:@"分享标题"
+        [_shareParams SSDKSetupShareParamsByText:[d objectForKey:@"shareText"]
+                                         images:@[[d objectForKey:@"shareImgUrl"], _screenShot ] //传入要分享的图片
+                                            url:[NSURL URLWithString:[d objectForKey:@"shareUrl"]]
+                                          title:[d objectForKey:@"shareTitle"]
                                            type:SSDKContentTypeAuto];
     }
     return _shareParams;

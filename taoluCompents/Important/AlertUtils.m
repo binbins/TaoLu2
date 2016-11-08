@@ -55,13 +55,24 @@
 
 }
 + (void)shareAlert{
+    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/shot.png"];
+    UIView *view = [UIApplication sharedApplication].keyWindow.rootViewController.view;
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size,YES,0);
+    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
+    UIImage *screenShot = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    if (screenShot) {  //保存到本地，除非截屏失败，一般情况下是用不到的
+        [UIImagePNGRepresentation(screenShot) writeToFile:path atomically:YES];
+        
+    }
     
     NSString *string = [SHARETASK_DIC objectForKey:@"title"];
-    NSURL *URL = [NSURL URLWithString:[SHARETASK_DIC objectForKey:@"shareUrl"]];
-    UIImage *image = [UIImage imageNamed:@"weibo.png"]; //上传本地截屏
+    NSString *stringUrl = [[SHARETASK_DIC objectForKey:@"shareContents"]objectForKey:@"shareUrl"];
+    NSURL *URL = [NSURL URLWithString:stringUrl];
     
     UIActivityViewController *activityViewController =
-    [[UIActivityViewController alloc] initWithActivityItems:@[string, URL, image]
+    [[UIActivityViewController alloc] initWithActivityItems:@[string, URL, screenShot]
                                       applicationActivities:nil];
     [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:activityViewController animated:YES completion:nil];
 
