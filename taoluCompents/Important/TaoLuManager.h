@@ -37,4 +37,5 @@ typedef void(^OnFinishTask) (TaskState state);
 + (void)initShareSDK;
 + (NSDictionary *)returnTaoLuJSON;
 + (void)updateConfig;
++ (void)sendMsgtoUnityWhenGetResult:(TaskState)state;
 @end
