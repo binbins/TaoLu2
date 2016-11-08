@@ -32,6 +32,8 @@
 
 //新浪微博SDK需要在项目Build Settings中的Other Linker Flags添加"-ObjC"
 #import <AFNetworking.h>
+#import "AlertUtils.h"
+
 
 @implementation TaoLuManager
 
@@ -39,6 +41,70 @@
 static dispatch_once_t predict;
 static TaoLuManager *manager = nil;
 
+#pragma mark - 内部方法
++ (void)initShareSDK {
+    
+    [ShareSDK registerApp:SHARESDK_ID
+     
+          activePlatforms:@[
+                            @(SSDKPlatformTypeSinaWeibo),
+                            @(SSDKPlatformTypeWechat),
+                            @(SSDKPlatformTypeQQ)]
+                 onImport:^(SSDKPlatformType platformType)
+     {
+         switch (platformType)
+         {
+             case SSDKPlatformTypeWechat:
+                 [ShareSDKConnector connectWeChat:[WXApi class]];
+                 break;
+             case SSDKPlatformTypeQQ:
+                 [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
+                 break;
+             case SSDKPlatformTypeSinaWeibo:
+                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+                 break;
+                 
+             default:
+                 break;
+         }
+     }
+          onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo)
+     {
+         
+         switch (platformType)
+         {
+             case SSDKPlatformTypeSinaWeibo:
+                 //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
+                 [appInfo SSDKSetupSinaWeiboByAppKey:SHARESDK_KEY_WEIBO
+                                           appSecret:SHARESDK_SECREAT_WEIBO
+                                         redirectUri:SHARESDK_REURL
+                                            authType:SSDKAuthTypeBoth];
+                 break;
+             case SSDKPlatformTypeWechat:
+                 [appInfo SSDKSetupWeChatByAppId:SHARESDK_KEY_WEIXIN
+                                       appSecret:SHARESDK_SECREAT_WEIXIN];
+                 break;
+             case SSDKPlatformTypeQQ:
+                 [appInfo SSDKSetupQQByAppId:SHARESDK_KEY_QQ
+                                      appKey:SHARESDK_SECREAT_QQ
+                                    authType:SSDKAuthTypeBoth];
+                 break;
+             case SSDKPlatformTypeTwitter:
+                 [appInfo        SSDKSetupTwitterByConsumerKey:SHARESDK_KEY_TWITTER
+                                                consumerSecret:SHARESDK_SECREAT_TWITTER
+                                                   redirectUri:SHARESDK_REURL];    //回调地址
+                 break;
+                 
+             default:
+                 break;
+         }
+     }];
+}
+- (void)setTaskIndex:(NSInteger)taskIndex {   //重写set方法
+    _taskIndex = taskIndex;
+    [[NSUserDefaults standardUserDefaults]setObject:@(taskIndex) forKey:TAOLU_ORDER];
+    YBLog(@"当前taskIndex %ld",(long)taskIndex);
+}
 + (TaoLuManager *)shareManager {
     
     dispatch_once(&predict, ^{
@@ -58,7 +124,7 @@ static TaoLuManager *manager = nil;
 + (void)updateConfig {
 
     for (NSString *language in [NSLocale preferredLanguages]) {
-        YBLog(@"语言列表-->%@<--",language);
+        YBLog(@"需要注意可能有问题，语言列表-->%@<--",language);
     }
     AFHTTPSessionManager *sessionManager;
     sessionManager = [AFHTTPSessionManager manager];
@@ -85,19 +151,73 @@ static TaoLuManager *manager = nil;
     }];
 
 }
+
 + (NSDictionary *)returnTaoLuJSON {
-//      NSData *jsonData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"ADjson.json" ofType:nil]];
-//    [TaoLuManager shareManager].taoLuJson = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
     return [TaoLuManager shareManager].taoLuJson;
 }
+#pragma mark - unity调用 等同
 
 extern "C" {
     
     void __startTask(){
-        NSLog(@"xcode 原生执行的方法");
+        
+       
+        UIViewController *viewController = [[[UIApplication sharedApplication] keyWindow ]rootViewController];
+       
+        NSInteger index = [[TaoLuManager shareManager] taskIndex];
+        NSArray * arr = [CONFIGJSON objectForKey:@"UITypeCoustom"];
+        if ([[TaoLuManager shareManager] taoLuJson] == nil) {
+            [TaoLuManager shareManager].taskState(taskNone);
+            return;
+        }
+        if (index < [TaoLuManager shareManager].classNames.count) {
+            
+            if ([[arr objectAtIndex:index] integerValue]==0) {  //使用原生
+                switch (index) {
+                    case 0:
+                        [AlertUtils shareAlert];
+                        break;
+                    case 1:
+                        [AlertUtils commentAlert];
+                        break;
+                    case 2:
+                        [AlertUtils sameToCoustom:index];
+                        break;
+                    case 3:
+                        [AlertUtils downloadAlert];
+                        break;
+                    default:
+                        break;
+                }
+                [TaoLuManager shareManager].taskIndex++;
+            }else { //其他都使用自定义
+                
+                UIViewController *vc = [[NSClassFromString(manager.classNames[index]) alloc]init];
+                [vc setDefinesPresentationContext:YES];
+                vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+                vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                [viewController presentViewController:vc animated:YES completion:nil];
+                [TaoLuManager shareManager].taskIndex++;   //回调结束之后再去增加任务数，防止奖励bug
+            }
+            
+        }else{
+            [TaoLuManager shareManager].taskState(taskAllFinish);
+        }
     }
 
 }
+
+extern "C" {
+    
+    void __resetTask(){
+        NSLog(@"xcode 原生执行事件 置为0");
+        
+        [TaoLuManager shareManager].taskIndex = 0;
+        
+    }
+    
+}
+
 
 + (void)startTaskInViewController:(UIViewController *)viewController {
     
@@ -105,17 +225,39 @@ extern "C" {
         viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
     }
     NSInteger index = [[self shareManager] taskIndex];
+    NSArray * arr = [CONFIGJSON objectForKey:@"UITypeCoustom"];
     if ([[TaoLuManager shareManager] taoLuJson] == nil) {
         [TaoLuManager shareManager].taskState(taskNone);
         return;
     }
     if (index < [self shareManager].classNames.count) {
-        UIViewController *vc = [[NSClassFromString(manager.classNames[index]) alloc]init];
-        [vc setDefinesPresentationContext:YES];
-        vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-        vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [viewController presentViewController:vc animated:YES completion:nil];
-        [self shareManager].taskIndex++;   //回调结束之后再去增加任务数，防止奖励bug
+        
+        if ([[arr objectAtIndex:index] integerValue]==0) {  //使用原生
+            switch (index) {
+                case 0:
+                    [AlertUtils shareAlert];
+                    break;
+                case 1:
+                    [AlertUtils commentAlert];
+                    break;
+                case 2:
+                    [AlertUtils sameToCoustom:index];
+                    break;
+                case 3:
+                    [AlertUtils downloadAlert];
+                    break;
+                default:
+                    break;
+            }
+            [self shareManager].taskIndex++;
+        }else { //其他都使用自定义
+            UIViewController *vc = [[NSClassFromString(manager.classNames[index]) alloc]init];
+            [vc setDefinesPresentationContext:YES];
+            vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+            vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            [viewController presentViewController:vc animated:YES completion:nil];
+            [self shareManager].taskIndex++;   //回调结束之后再去增加任务数，防止奖励bug
+        }
         
     }else{
         [TaoLuManager shareManager].taskState(taskAllFinish);
@@ -125,73 +267,39 @@ extern "C" {
 
 + (void)resetTaskIndex{
     [self shareManager].taskIndex = 0;
-    
 }
 
-+ (void)initShareSDK {
+
+#pragma mark - 导入unity后打开
+/*
++ (void)sendMsgtoUnityWhenGetResult:(TaskState)state{
     
-    [ShareSDK registerApp:SHARESDK_ID
-     
-          activePlatforms:@[
-                            @(SSDKPlatformTypeSinaWeibo),
-                            @(SSDKPlatformTypeWechat),
-                            @(SSDKPlatformTypeQQ)]
-                 onImport:^(SSDKPlatformType platformType)
-    {
-        switch (platformType)
-        {
-            case SSDKPlatformTypeWechat:
-                [ShareSDKConnector connectWeChat:[WXApi class]];
-                break;
-            case SSDKPlatformTypeQQ:
-                [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
-                break;
-            case SSDKPlatformTypeSinaWeibo:
-                [ShareSDKConnector connectWeibo:[WeiboSDK class]];
-                break;
-                
-            default:
-                break;
-        }
+    switch (state) {
+        case taskCancle:
+            YBLog(@"任务取消");
+            [UILabel showStats:@"任务取消" atView:[UIApplication sharedApplication].keyWindow];
+            UnitySendMessage("Main Camera", "GetIosResult", "取消");
+            break;
+        case taskFaild:
+            YBLog(@"任务失败");
+            UnitySendMessage("Main Camera", "GetIosResult", "失败");
+            break;
+        case taskSuccees:
+            YBLog(@"任务成功");
+            [UILabel showStats:@"任务完成" atView:[UIApplication sharedApplication].keyWindow];
+            UnitySendMessage("Main Camera", "GetIosResult", "成功");
+            break;
+        case taskAllFinish:
+            YBLog(@"mobi");
+            UnitySendMessage("Main Camera", "GetIosResult", "mobi");
+            break;
+        case taskNone:
+            YBLog(@"无数据");
+            UnitySendMessage("Main Camera", "GetIosResult", "无数据");
+        default:
+            break;
     }
-          onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo)
-    {
-        
-        switch (platformType)
-        {
-            case SSDKPlatformTypeSinaWeibo:
-                //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                [appInfo SSDKSetupSinaWeiboByAppKey:SHARESDK_KEY_WEIBO
-                                          appSecret:SHARESDK_SECREAT_WEIBO
-                                        redirectUri:SHARESDK_REURL
-                                           authType:SSDKAuthTypeBoth];
-                break;
-            case SSDKPlatformTypeWechat:
-                [appInfo SSDKSetupWeChatByAppId:SHARESDK_KEY_WEIXIN
-                                      appSecret:SHARESDK_SECREAT_WEIXIN];
-                break;
-            case SSDKPlatformTypeQQ:
-                [appInfo SSDKSetupQQByAppId:SHARESDK_KEY_QQ
-                                     appKey:SHARESDK_SECREAT_QQ
-                                   authType:SSDKAuthTypeBoth];
-                break;
-            case SSDKPlatformTypeTwitter:
-                [appInfo        SSDKSetupTwitterByConsumerKey:SHARESDK_KEY_TWITTER
-                                               consumerSecret:SHARESDK_SECREAT_TWITTER
-                                                  redirectUri:SHARESDK_REURL];    //回调地址
-                break;
-                
-            default:
-                break;
-        }
-    }];
+    
 }
-- (void)setTaskIndex:(NSInteger)taskIndex {   //重写set方法
-    _taskIndex = taskIndex;
-    [[NSUserDefaults standardUserDefaults]setObject:@(taskIndex) forKey:TAOLU_ORDER];
-    YBLog(@"当前taskIndex %ld",(long)taskIndex);
-}
-
-
-
+*/
 @end

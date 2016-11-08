@@ -5,7 +5,7 @@
 //  Created by 张帆 on 16/10/27.
 //  Copyright © 2016年 adesk. All rights reserved.
 //
-#define DOWNLOADTASK_DIC [CONFIGJSON objectForKey:@"downloadTask"]
+
 #import "TaoLuManager.h"
 #import "NewArrivalViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -36,6 +36,8 @@
 }
 - (IBAction)startAction:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+    NSString *iTunesLink = [DOWNLOADTASK_DIC objectForKey:@"downloadUrl"];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
 
 }
 

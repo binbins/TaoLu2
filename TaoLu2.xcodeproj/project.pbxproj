@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		021FC416F32AA842BA928852 /* libPods-TaoLu2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A54351BCDB025AE9BEB1E93E /* libPods-TaoLu2.a */; };
+		071C63511DD1AE2F00D718F5 /* AlertUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 071C63501DD1AE2F00D718F5 /* AlertUtils.m */; };
 		072A66E11DC310B300F1D447 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 072A66C21DC310B300F1D447 /* close.png */; };
 		072A66E21DC310B300F1D447 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 072A66C31DC310B300F1D447 /* facebook.png */; };
 		072A66E31DC310B300F1D447 /* gou1.png in Resources */ = {isa = PBXBuildFile; fileRef = 072A66C41DC310B300F1D447 /* gou1.png */; };
@@ -69,6 +70,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		071C634F1DD1AE2F00D718F5 /* AlertUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtils.h; sourceTree = "<group>"; };
+		071C63501DD1AE2F00D718F5 /* AlertUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertUtils.m; sourceTree = "<group>"; };
 		072A66C21DC310B300F1D447 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		072A66C31DC310B300F1D447 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
 		072A66C41DC310B300F1D447 /* gou1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gou1.png; sourceTree = "<group>"; };
@@ -225,6 +228,8 @@
 				072A66D01DC310B300F1D447 /* VChead.h */,
 				072A66CE1DC310B300F1D447 /* TaoLuManager.h */,
 				072A66CF1DC310B300F1D447 /* TaoLuManager.mm */,
+				071C634F1DD1AE2F00D718F5 /* AlertUtils.h */,
+				071C63501DD1AE2F00D718F5 /* AlertUtils.m */,
 			);
 			path = Important;
 			sourceTree = "<group>";
@@ -583,6 +588,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				071C63511DD1AE2F00D718F5 /* AlertUtils.m in Sources */,
 				07554FE31DC0C6A400D7D8F2 /* ViewController.m in Sources */,
 				072A66F11DC310B300F1D447 /* NewArrivalViewController.m in Sources */,
 				072A66EC1DC310B300F1D447 /* TaoLuManager.mm in Sources */,

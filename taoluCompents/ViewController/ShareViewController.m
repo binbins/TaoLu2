@@ -11,8 +11,6 @@
 #import "TaoLuManager.h"
 #import "PasteViewController.h"
 
-#define SHARETASK_DIC [CONFIGJSON objectForKey:@"shareTask"]
-
 
 @interface ShareViewController ()
 @property (nonatomic, strong)NSMutableDictionary *shareParams;

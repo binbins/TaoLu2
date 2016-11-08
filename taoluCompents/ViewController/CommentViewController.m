@@ -6,7 +6,6 @@
 //  Copyright © 2016年 adesk. All rights reserved.
 //
 #import "TaoLuManager.h"
-#define GOODTASK_DIC [CONFIGJSON objectForKey:@"goodTask"]
 
 #import "CommentViewController.h"
 

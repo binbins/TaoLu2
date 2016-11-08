@@ -6,6 +6,11 @@
 //  Copyright © 2016年 adesk. All rights reserved.
 //
 
+#define GOODTASK_DIC [CONFIGJSON objectForKey:@"goodTask"]
+#define FOLLOWTASK_DIC [CONFIGJSON objectForKey:@"followTask"]
+#define DOWNLOADTASK_DIC [CONFIGJSON objectForKey:@"downloadTask"]
+#define SHARETASK_DIC [CONFIGJSON objectForKey:@"shareTask"]
+
 #import <Foundation/Foundation.h>
 #import "VChead.h"
 
