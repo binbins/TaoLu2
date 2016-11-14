@@ -225,7 +225,7 @@ extern "C" {
         viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
     }
     NSInteger index = [[self shareManager] taskIndex];
-    NSArray * arr = [CONFIGJSON objectForKey:@"UITypeCoustom"];
+    NSArray * arr = [AlertUtils getUITypeArr];
     if ([[TaoLuManager shareManager] taoLuJson] == nil) {
         [TaoLuManager shareManager].taskState(taskNone);
         return;

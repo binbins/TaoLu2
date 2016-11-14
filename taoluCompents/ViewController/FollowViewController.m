@@ -15,6 +15,7 @@
 @interface FollowViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *followTitle;
+@property (weak, nonatomic) IBOutlet UIButton *closeBtn;
 
 //奇数
 @property (weak, nonatomic) IBOutlet UIView *ji_view;
@@ -30,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *ou_btn4;
 
 @property (nonatomic, strong)NSArray *platformBtns;
+
 @end
 
 @implementation FollowViewController {
@@ -66,6 +68,9 @@
     // Do any additional setup after loading the view from its nib.
     self.followTitle.text = [FOLLOWTASK_DIC objectForKey:@"title"];
     [self setPlatformsHidden];
+    if([[FOLLOWTASK_DIC objectForKey:@"showCloseBtn"]integerValue] == 0){
+        self.closeBtn.hidden = YES;
+    }
 }
 
 - (void)setPlatformsHidden{

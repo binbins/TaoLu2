@@ -12,6 +12,7 @@
                 <outlet property="appDes" destination="iGA-dn-Ptd" id="WY6-ol-6OV"/>
                 <outlet property="appLogo" destination="ytF-JV-77C" id="eV8-NA-AWP"/>
                 <outlet property="appName" destination="6hS-6N-by6" id="w1Y-le-YOj"/>
+                <outlet property="closeBtn" destination="z1E-it-Bpq" id="Abv-8i-wgx"/>
                 <outlet property="startBtn" destination="WMb-jX-rOP" id="Xca-n7-bAp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

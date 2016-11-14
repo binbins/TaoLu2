@@ -11,6 +11,7 @@
                 <outlet property="check1" destination="8dw-ec-t7i" id="KJp-FU-f6u"/>
                 <outlet property="check2" destination="qQ2-7F-KeU" id="feE-fG-hDw"/>
                 <outlet property="check3" destination="Lia-UT-au2" id="1LF-9l-7Rr"/>
+                <outlet property="closeBtn" destination="V21-Xb-VB1" id="Z04-Zx-0Go"/>
                 <outlet property="com1" destination="oLw-kP-gXS" id="Fdz-Nu-YTp"/>
                 <outlet property="com2" destination="zDQ-k5-fxb" id="yLE-Ef-cwH"/>
                 <outlet property="com3" destination="ZhE-sf-gbc" id="TBE-vF-Kd0"/>
@@ -225,7 +226,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="close.png" width="55" height="55"/>
+        <image name="close.png" width="24" height="24"/>
         <image name="gou1.png" width="36" height="36"/>
         <image name="star.png" width="70" height="70"/>
     </resources>

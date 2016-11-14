@@ -20,4 +20,6 @@
 
 + (void)downloadAlert;
 
+
++ (NSArray *)getUITypeArr;
 @end

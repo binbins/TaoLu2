@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *check2;
 @property (weak, nonatomic) IBOutlet UIImageView *check3;
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;
+@property (weak, nonatomic) IBOutlet UIButton *closeBtn;
 
 
 @end
@@ -64,6 +65,9 @@
     [self setCommentLabeText];
     [self.startBtn setTitle:[GOODTASK_DIC objectForKey:@"BtnTitle"] forState:UIControlStateNormal];
     [self.startBtn addTarget:self action:@selector(gotoAppStore) forControlEvents:UIControlEventTouchUpInside];
+    if([[GOODTASK_DIC objectForKey:@"showCloseBtn"]integerValue] == 0){
+        self.closeBtn.hidden = YES;
+    }
 }
 
 - (void)gotoAppStore {

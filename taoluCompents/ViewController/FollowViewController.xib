@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FollowViewController">
             <connections>
+                <outlet property="closeBtn" destination="CcI-8a-c5R" id="yco-9y-JIr"/>
                 <outlet property="followTitle" destination="ITD-GN-eFg" id="xsX-ja-X4v"/>
                 <outlet property="ji_btn1" destination="5vB-Hg-aTU" id="eRF-wU-NBs"/>
                 <outlet property="ji_btn2" destination="Gho-FR-uVS" id="XsR-Zh-ah0"/>
@@ -30,13 +28,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giE-7Z-fFV" userLabel="alert">
-                    <rect key="frame" x="40" y="253.5" width="295" height="160"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnD-xP-5Hg" userLabel="ou_view">
-                            <rect key="frame" x="0.0" y="80.5" width="295" height="60"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QMd-wU-tdZ" userLabel="2">
-                                    <rect key="frame" x="152.5" y="5" width="50" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="48M-Fx-xhR"/>
                                         <constraint firstAttribute="width" constant="50" id="skf-NO-ArM"/>
@@ -44,7 +39,6 @@
                                     <state key="normal" title="Button" image="twitter.png"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a3P-fY-pSi" userLabel="1">
-                                    <rect key="frame" x="92.5" y="5" width="50" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="dpT-ic-3yP"/>
                                         <constraint firstAttribute="height" constant="50" id="mtr-0n-Kcg"/>
@@ -52,7 +46,6 @@
                                     <state key="normal" title="Button" image="facebook.png"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YM8-1o-shB" userLabel="4">
-                                    <rect key="frame" x="212.5" y="5" width="50" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="TM9-Ox-s9m"/>
                                         <constraint firstAttribute="height" constant="50" id="Whh-kF-0OR"/>
@@ -60,7 +53,6 @@
                                     <state key="normal" title="Button" image="pyq.png"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2H-Hg-SPn" userLabel="3">
-                                    <rect key="frame" x="32.5" y="5" width="50" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="mTZ-3J-9aC"/>
                                         <constraint firstAttribute="height" constant="50" id="pwy-jp-gS9"/>
@@ -82,13 +74,11 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="关注我们，立即获得" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITD-GN-eFg">
-                            <rect key="frame" x="69.5" y="30" width="156" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CcI-8a-c5R" userLabel="close">
-                            <rect key="frame" x="261" y="-6" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="CZD-zd-hKY"/>
                                 <constraint firstAttribute="width" constant="40" id="za6-1p-G9u"/>
@@ -99,10 +89,8 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gfr-8J-Mgr" userLabel="ji_view">
-                            <rect key="frame" x="0.0" y="80.5" width="295" height="60"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vB-Hg-aTU" userLabel="plat1">
-                                    <rect key="frame" x="122.5" y="5" width="50" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="ULB-bo-9KN"/>
                                         <constraint firstAttribute="height" constant="50" id="vHz-fO-tOe"/>
@@ -110,7 +98,6 @@
                                     <state key="normal" title="Button" image="qq.png"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JC5-Cd-68P" userLabel="plat3">
-                                    <rect key="frame" x="182.5" y="5" width="50" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="bZd-Ur-cNb"/>
                                         <constraint firstAttribute="height" constant="50" id="f9N-Dc-Hns"/>
@@ -118,7 +105,6 @@
                                     <state key="normal" title="Button" image="pyq.png"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gho-FR-uVS" userLabel="plat2">
-                                    <rect key="frame" x="62.5" y="5" width="50" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="L0S-OJ-zYE"/>
                                         <constraint firstAttribute="width" constant="50" id="rfu-8C-NcH"/>

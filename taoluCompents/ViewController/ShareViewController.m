@@ -16,6 +16,9 @@
 @property (nonatomic, strong)NSMutableDictionary *shareParams;
 
 @property (weak, nonatomic) IBOutlet UILabel *shareTitle;
+@property (weak, nonatomic) IBOutlet UIButton *closeBtn;
+
+
 //奇数个
 @property (weak, nonatomic) IBOutlet UIView *ji_view;
 @property (weak, nonatomic) IBOutlet UIButton *ji_btn1;
@@ -96,6 +99,9 @@
     // Do any additional setup after loading the view from its nib.
     self.shareTitle.text = [SHARETASK_DIC objectForKey:@"title"];
     [self setPlatformsHidden];
+    if([[SHARETASK_DIC objectForKey:@"showCloseBtn"]integerValue] == 0){
+        self.closeBtn.hidden = YES;
+    }
     
 }
 

@@ -100,5 +100,13 @@
     
 }
 
-
++ (NSArray *)getUITypeArr{
+    NSArray *arr ;
+    NSNumber *shareType = [SHARETASK_DIC objectForKey:@"isCoustomUI"];
+    NSNumber *commentType = [GOODTASK_DIC objectForKey:@"isCoustomUI"];
+    NSNumber *followType = [FOLLOWTASK_DIC objectForKey:@"isCoustomUI"];
+    NSNumber *downloadType = [DOWNLOADTASK_DIC objectForKey:@"isCoustomUI"];
+    arr = @[shareType, commentType, followType, downloadType];
+    return  arr;
+}
 @end
