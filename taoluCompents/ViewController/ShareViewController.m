@@ -224,7 +224,6 @@
                  break;
              case SSDKResponseStateSuccess:
                  [TaoLuManager shareManager].taskState(taskSuccees);
-                 [TaoLuManager shareManager].taskIndex++;
                  break;
              default:
                  break;

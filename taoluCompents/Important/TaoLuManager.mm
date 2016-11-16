@@ -101,21 +101,13 @@ static TaoLuManager *manager = nil;
          }
      }];
 }
-- (void)setTaskIndex:(NSInteger)taskIndex {   //重写set方法
-    _taskIndex = taskIndex;
-    [[NSUserDefaults standardUserDefaults]setObject:@(taskIndex) forKey:TAOLU_ORDER];
-    YBLog(@"当前taskIndex %ld",(long)taskIndex);
-}
+
 + (TaoLuManager *)shareManager {
     
     dispatch_once(&predict, ^{
         manager = [[self alloc]init];
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
-        if (![userDefaults boolForKey:TAOLU_ORDER]) {   //首次下载
-            [userDefaults setObject:@(0) forKey:TAOLU_ORDER];
-        }
-        manager.taskIndex = [[userDefaults objectForKey:TAOLU_ORDER]integerValue];
         YBLog(@"查看路径 -->%@",NSHomeDirectory());
         manager.classNames = @[@"ShareViewController",@"CommentViewController",@"FollowViewController",@"NewArrivalViewController"];
         for (int i=0; i<manager.classNames.count; i++) {
@@ -198,58 +190,43 @@ extern "C" {
     
     void __startTask(){
         
-       
-        UIViewController *viewController = [[[UIApplication sharedApplication] keyWindow ]rootViewController];
-       
-        NSInteger index = [[TaoLuManager shareManager] taskIndex];
-        NSArray * arr = [CONFIGJSON objectForKey:@"UITypeCoustom"];
         if ([[TaoLuManager shareManager] taoLuJson] == nil) {
             [TaoLuManager shareManager].taskState(taskNone);
             return;
         }
-        if (index < [TaoLuManager shareManager].classNames.count) {
-            
-            if ([[arr objectAtIndex:index] integerValue]==0) {  //使用原生
-                switch (index) {
-                    case 0:
-                        [AlertUtils shareAlert];
-                        break;
-                    case 1:
-                        [AlertUtils commentAlert];
-                        break;
-                    case 2:
-                        [AlertUtils sameToCoustom:index];
-                        break;
-                    case 3:
-                        [AlertUtils downloadAlert];
-                        break;
-                    default:
-                        break;
-                }
-                [TaoLuManager shareManager].taskIndex++;
-            }else { //其他都使用自定义
-                
-                UIViewController *vc = [[NSClassFromString(manager.classNames[index]) alloc]init];
-                [vc setDefinesPresentationContext:YES];
-                vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-                vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                [viewController presentViewController:vc animated:YES completion:nil];
-                [TaoLuManager shareManager].taskIndex++;   //回调结束之后再去增加任务数，防止奖励bug
+        
+        //根据任务的有无，来判断是否执行完毕
+        NSString *currentClassName;
+        NSArray *newClassNames = [TaoLuManager shareManager].classNames;
+        for (int i=0; i<newClassNames.count; i++) {
+            NSLog(@"%@",newClassNames[i]);
+            if (![[[NSUserDefaults standardUserDefaults]objectForKey:newClassNames[i]]boolValue]) {
+                currentClassName = newClassNames[i];
+                //让utils执行
+                [AlertUtils StartTaskWithClassName:currentClassName];
+                break;
             }
-            
-        }else{
-            [TaoLuManager shareManager].taskState(taskAllFinish);
         }
-    }
+        
+        if(currentClassName == nil){
+            [TaoLuManager shareManager].taskState(taskAllFinish); //空就是没有了
+        }else{
+            [AlertUtils StartTaskWithClassName:currentClassName];
+            currentClassName = nil;
+        }
+            }
 
 }
 
 extern "C" {
     
     void __resetTask(){
-        NSLog(@"xcode 原生执行事件 置为0");
-        
-        [TaoLuManager shareManager].taskIndex = 0;
+        NSLog(@"xcode 原生执行事件 置为NO");
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSArray *names = @[@"ShareViewController",@"CommentViewController",@"FollowViewController",@"NewArrivalViewController"];
+        for (int i =0; i<names.count; i++) {
+            [userDefaults setObject:@NO forKey:names[i]];
+        }
         
     }
     
@@ -258,7 +235,6 @@ extern "C" {
 
 + (void)startTaskInViewController:(UIViewController *)viewController {
     
- 
     if ([[TaoLuManager shareManager] taoLuJson] == nil) {
         [TaoLuManager shareManager].taskState(taskNone);
         return;
@@ -268,7 +244,7 @@ extern "C" {
     NSString *currentClassName;
     NSArray *newClassNames = [TaoLuManager shareManager].classNames;
     for (int i=0; i<newClassNames.count; i++) {
-        NSLog(@"%@",newClassNames[i]);
+//        NSLog(@"%@",newClassNames[i]);
         if (![[[NSUserDefaults standardUserDefaults]objectForKey:newClassNames[i]]boolValue]) {
             currentClassName = newClassNames[i];
             //让utils执行
@@ -287,8 +263,7 @@ extern "C" {
     
 }
 
-+ (void)resetTaskIndex{
-//    [self shareManager].taskIndex = 0;
++ (void)resetTask{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSArray *names = @[@"ShareViewController",@"CommentViewController",@"FollowViewController",@"NewArrivalViewController"];
     for (int i =0; i<names.count; i++) {

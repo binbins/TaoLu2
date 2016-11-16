@@ -31,13 +31,12 @@ typedef enum {
 
 typedef void(^OnFinishTask) (TaskState state);
 @property (nonatomic, strong)OnFinishTask taskState;
-@property (nonatomic, assign)NSInteger taskIndex;
 @property (nonatomic, strong)NSArray *classNames;
 @property (nonatomic, strong)NSDictionary *taoLuJson;
 
 + (TaoLuManager *)shareManager;
 + (void)startTaskInViewController:(UIViewController *)viewController;
-+ (void)resetTaskIndex;
++ (void)resetTask;
 + (void)initShareSDK;
 + (NSDictionary *)returnTaoLuJSON;
 + (void)updateConfig;

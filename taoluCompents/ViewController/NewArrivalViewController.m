@@ -51,7 +51,7 @@
     [self.appLogo sd_setImageWithURL:[NSURL URLWithString:[DOWNLOADTASK_DIC objectForKey:@"appLogo"]] placeholderImage:[UIImage imageNamed:@"logo_placeholder"]];
     [self.startBtn setTitle:[DOWNLOADTASK_DIC objectForKey:@"btnTitle"] forState:UIControlStateNormal];
     YBLog(@"logo地址：%@",[DOWNLOADTASK_DIC objectForKey:@"appLogo"]);
-    if([[DOWNLOADTASK_DIC objectForKey:@"showCloseBtn"]integerValue] == 0){
+    if(![[DOWNLOADTASK_DIC objectForKey:@"showCloseBtn"]boolValue]){
         self.closeBtn.hidden = YES;
     }
 }

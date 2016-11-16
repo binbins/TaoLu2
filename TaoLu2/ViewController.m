@@ -58,7 +58,7 @@
 
 
 - (IBAction)reset:(UIButton *)sender {
-    [TaoLuManager resetTaskIndex];
+    [TaoLuManager resetTask];
 }
 
 

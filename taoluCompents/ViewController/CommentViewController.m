@@ -65,7 +65,7 @@
     [self setCommentLabeText];
     [self.startBtn setTitle:[GOODTASK_DIC objectForKey:@"BtnTitle"] forState:UIControlStateNormal];
     [self.startBtn addTarget:self action:@selector(gotoAppStore) forControlEvents:UIControlEventTouchUpInside];
-    if([[GOODTASK_DIC objectForKey:@"showCloseBtn"]integerValue] == 0){
+    if(![[GOODTASK_DIC objectForKey:@"showCloseBtn"]boolValue]){
         self.closeBtn.hidden = YES;
     }
 }

@@ -100,18 +100,8 @@
     
 }
 
-+ (NSArray *)getUITypeArr{
-    NSArray *arr ;
-    NSNumber *shareType = [SHARETASK_DIC objectForKey:@"isCoustomUI"];
-    NSNumber *commentType = [GOODTASK_DIC objectForKey:@"isCoustomUI"];
-    NSNumber *followType = [FOLLOWTASK_DIC objectForKey:@"isCoustomUI"];
-    NSNumber *downloadType = [DOWNLOADTASK_DIC objectForKey:@"isCoustomUI"];
-    arr = @[shareType, commentType, followType, downloadType];
-    return  arr;
-}
-
 + (void)StartTaskWithClassName:(NSString *)classname{
-    //先判断是否原生
+
     if([self isCustom:classname]){  //自定义
         UIViewController *rootvc = [UIApplication sharedApplication].keyWindow.rootViewController;
         UIViewController *vc = [[NSClassFromString(classname) alloc]init];
@@ -125,6 +115,8 @@
         [self useNativeUI:classname];
     }
 }
+#pragma mark - 私有方法
+
 + (void)useNativeUI:(NSString *)classname{
     if([classname isEqualToString:CLASSNAME_SHARE]){
         [self shareAlert];
@@ -139,27 +131,21 @@
 }
 
 + (BOOL)isCustom:(NSString *)classname{
-    BOOL isCustom = YES;    //默认自定义
-    NSNumber *num = @1;
+    
     if([classname isEqualToString:CLASSNAME_SHARE]){
-        num = [SHARETASK_DIC objectForKey:@"isCoustomUI"];
+        return [[SHARETASK_DIC objectForKey:@"isCoustomUI"]boolValue];
     }
     if([classname isEqualToString:CLASSNAME_GOOD]){
-        num = [GOODTASK_DIC objectForKey:@"isCoustomUI"];
+        return [[GOODTASK_DIC objectForKey:@"isCoustomUI"]boolValue];
     }
-    if([classname isEqualToString:CLASSNAME_FOLLOW]){
-        return YES;
-    }
+//    if([classname isEqualToString:CLASSNAME_FOLLOW]){
+//        return YES;
+//    }
     if([classname isEqualToString:CLASSNAME_DOWNLOAD]){
-        num = [DOWNLOADTASK_DIC objectForKey:@"isCoustomUI"];
+        return [[DOWNLOADTASK_DIC objectForKey:@"isCoustomUI"]boolValue];
     }
     
-    if([num integerValue] == 1){
-        return YES;
-    }else{
-        return NO;
-    }
-    return isCustom;
+    return YES; //默认自定义
 }
 
 
