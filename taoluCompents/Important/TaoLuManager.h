@@ -11,6 +11,10 @@
 #define DOWNLOADTASK_DIC [CONFIGJSON objectForKey:@"downloadTask"]
 #define SHARETASK_DIC [CONFIGJSON objectForKey:@"shareTask"]
 
+#define CLASSNAME_SHARE @"ShareViewController"
+#define CLASSNAME_GOOD @"CommentViewController"
+#define CLASSNAME_FOLLOW @"FollowViewController"
+#define CLASSNAME_DOWNLOAD @"NewArrivalViewController"
 #import <Foundation/Foundation.h>
 #import "VChead.h"
 

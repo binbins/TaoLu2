@@ -99,7 +99,7 @@
     // Do any additional setup after loading the view from its nib.
     self.shareTitle.text = [SHARETASK_DIC objectForKey:@"title"];
     [self setPlatformsHidden];
-    if([[SHARETASK_DIC objectForKey:@"showCloseBtn"]integerValue] == 0){
+    if([[SHARETASK_DIC objectForKey:@"showCloseBtn"]boolValue] == NO){
         self.closeBtn.hidden = YES;
     }
     

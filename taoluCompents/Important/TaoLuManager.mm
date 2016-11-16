@@ -18,6 +18,7 @@
 
 #define AppGeneralInfoDict @{@"platform": @"ios", @"package" : AppBundleID, @"appvername":AppVerName, @"appvercode":AppVerCode, @"sys_name":SysName, @"sys_ver":SysVersion, @"sys_model":SysModel, @"sys_language":CurrentLanguageAd, @"taolu_version":@"1.0"}
 
+
 #import <UIKit/UIKit.h>
 #import "TaoLuManager.h"
 
@@ -117,6 +118,11 @@ static TaoLuManager *manager = nil;
         manager.taskIndex = [[userDefaults objectForKey:TAOLU_ORDER]integerValue];
         YBLog(@"查看路径 -->%@",NSHomeDirectory());
         manager.classNames = @[@"ShareViewController",@"CommentViewController",@"FollowViewController",@"NewArrivalViewController"];
+        for (int i=0; i<manager.classNames.count; i++) {
+            if (![userDefaults boolForKey:manager.classNames[i]]) {
+                [userDefaults setObject:@NO forKey:manager.classNames[i]];
+            }
+        }
     });
     
     return manager;
@@ -131,10 +137,11 @@ static TaoLuManager *manager = nil;
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     sessionManager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
     
-    [sessionManager GET:@"http://192.168.0.20:9001/" parameters:AppGeneralInfoDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [sessionManager GET:@"http://192.168.1.118:9001/" parameters:AppGeneralInfoDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [TaoLuManager shareManager].taoLuJson = responseObject;
         [[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:LOCAL_JSON_NAME];
         [self initShareSDK];
+        [self setNewOrderClassNames];
         YBLog(@"网络获取成功");
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if([TaoLuManager shareManager].taoLuJson) return ;
@@ -143,6 +150,7 @@ static TaoLuManager *manager = nil;
         if(localJson){
             [self shareManager].taoLuJson = localJson;
             [self initShareSDK];
+            [self setNewOrderClassNames];
         }else {
             //都没有的话，[TaoLuManager shareManager].taoLuJson 的值是nil，根据这个控制弹出
             YBLog(@"当前是空");
@@ -150,6 +158,35 @@ static TaoLuManager *manager = nil;
         }
     }];
 
+}
+
+
++ (void)setNewOrderClassNames{
+    NSMutableArray *newClassNames = [NSMutableArray array];
+    NSArray *arr = [CONFIGJSON objectForKey:@"tasknames"];
+    for (int i =0; i < arr.count; i++) {
+        [newClassNames addObject:[self changeName:arr[i]]];
+    }
+    if(arr.count == newClassNames.count){
+        [TaoLuManager shareManager].classNames = newClassNames; //也加了容错处理
+    }
+}
+
++ (NSString *)changeName:(NSString *)name{
+    if([name isEqualToString:@"sharetask"]){
+        return CLASSNAME_SHARE;
+    }
+    if([name isEqualToString:@"goodtask"]){
+        return CLASSNAME_GOOD;
+    }
+    if([name isEqualToString:@"followtask"]){
+        return CLASSNAME_FOLLOW;
+    }
+    if([name isEqualToString:@"downloadtask"]){
+        return CLASSNAME_DOWNLOAD;
+    }
+    YBLog(@"字符串不符合------");
+    return nil;
 }
 
 + (NSDictionary *)returnTaoLuJSON {
@@ -221,52 +258,42 @@ extern "C" {
 
 + (void)startTaskInViewController:(UIViewController *)viewController {
     
-    if (viewController == nil) {
-        viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    }
-    NSInteger index = [[self shareManager] taskIndex];
-    NSArray * arr = [AlertUtils getUITypeArr];
+ 
     if ([[TaoLuManager shareManager] taoLuJson] == nil) {
         [TaoLuManager shareManager].taskState(taskNone);
         return;
     }
-    if (index < [self shareManager].classNames.count) {
-        
-        if ([[arr objectAtIndex:index] integerValue]==0) {  //使用原生
-            switch (index) {
-                case 0:
-                    [AlertUtils shareAlert];
-                    break;
-                case 1:
-                    [AlertUtils commentAlert];
-                    break;
-                case 2:
-                    [AlertUtils sameToCoustom:index];
-                    break;
-                case 3:
-                    [AlertUtils downloadAlert];
-                    break;
-                default:
-                    break;
-            }
-            [self shareManager].taskIndex++;
-        }else { //其他都使用自定义
-            UIViewController *vc = [[NSClassFromString(manager.classNames[index]) alloc]init];
-            [vc setDefinesPresentationContext:YES];
-            vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-            vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-            [viewController presentViewController:vc animated:YES completion:nil];
-            [self shareManager].taskIndex++;   //回调结束之后再去增加任务数，防止奖励bug
+    
+    //根据任务的有无，来判断是否执行完毕
+    NSString *currentClassName;
+    NSArray *newClassNames = [TaoLuManager shareManager].classNames;
+    for (int i=0; i<newClassNames.count; i++) {
+        NSLog(@"%@",newClassNames[i]);
+        if (![[[NSUserDefaults standardUserDefaults]objectForKey:newClassNames[i]]boolValue]) {
+            currentClassName = newClassNames[i];
+            //让utils执行
+            [AlertUtils StartTaskWithClassName:currentClassName];
+            break;
         }
-        
-    }else{
-        [TaoLuManager shareManager].taskState(taskAllFinish);
     }
+    
+    if(currentClassName == nil){
+          [TaoLuManager shareManager].taskState(taskAllFinish); //空就是没有了
+    }else{
+        [AlertUtils StartTaskWithClassName:currentClassName];
+        currentClassName = nil;
+    }
+    
     
 }
 
 + (void)resetTaskIndex{
-    [self shareManager].taskIndex = 0;
+//    [self shareManager].taskIndex = 0;
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSArray *names = @[@"ShareViewController",@"CommentViewController",@"FollowViewController",@"NewArrivalViewController"];
+    for (int i =0; i<names.count; i++) {
+        [userDefaults setObject:@NO forKey:names[i]];
+    }
 }
 
 

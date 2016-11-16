@@ -20,6 +20,6 @@
 
 + (void)downloadAlert;
 
-
++ (void)StartTaskWithClassName:(NSString *)classname;
 + (NSArray *)getUITypeArr;
 @end

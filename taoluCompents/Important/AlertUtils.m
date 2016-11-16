@@ -109,4 +109,60 @@
     arr = @[shareType, commentType, followType, downloadType];
     return  arr;
 }
+
++ (void)StartTaskWithClassName:(NSString *)classname{
+    //先判断是否原生
+    if([self isCustom:classname]){  //自定义
+        UIViewController *rootvc = [UIApplication sharedApplication].keyWindow.rootViewController;
+        UIViewController *vc = [[NSClassFromString(classname) alloc]init];
+        [vc setDefinesPresentationContext:YES];
+        vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [rootvc presentViewController:vc animated:YES completion:nil];
+        
+        [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:classname];//任务++
+    }else{  //原生
+        [self useNativeUI:classname];
+    }
+}
++ (void)useNativeUI:(NSString *)classname{
+    if([classname isEqualToString:CLASSNAME_SHARE]){
+        [self shareAlert];
+    }
+    if([classname isEqualToString:CLASSNAME_GOOD]){
+        [self commentAlert];
+    }
+    if([classname isEqualToString:CLASSNAME_DOWNLOAD]){
+        [self downloadAlert];
+    }
+    [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:classname];
+}
+
++ (BOOL)isCustom:(NSString *)classname{
+    BOOL isCustom = YES;    //默认自定义
+    NSNumber *num = @1;
+    if([classname isEqualToString:CLASSNAME_SHARE]){
+        num = [SHARETASK_DIC objectForKey:@"isCoustomUI"];
+    }
+    if([classname isEqualToString:CLASSNAME_GOOD]){
+        num = [GOODTASK_DIC objectForKey:@"isCoustomUI"];
+    }
+    if([classname isEqualToString:CLASSNAME_FOLLOW]){
+        return YES;
+    }
+    if([classname isEqualToString:CLASSNAME_DOWNLOAD]){
+        num = [DOWNLOADTASK_DIC objectForKey:@"isCoustomUI"];
+    }
+    
+    if([num integerValue] == 1){
+        return YES;
+    }else{
+        return NO;
+    }
+    return isCustom;
+}
+
+
+
+
 @end
