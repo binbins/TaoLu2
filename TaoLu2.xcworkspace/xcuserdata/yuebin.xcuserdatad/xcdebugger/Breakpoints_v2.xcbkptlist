@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "taoluCompents/Important/TaoLuManager.mm"
-            timestampString = "501013645.348557"
+            timestampString = "501095758.822982"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
             landmarkName = "+setNewOrderClassNames"
             landmarkType = "7">
          </BreakpointContent>
@@ -49,6 +49,16 @@
             endingLineNumber = "121"
             landmarkName = "+useNativeUI:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

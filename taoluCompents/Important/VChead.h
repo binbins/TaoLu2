@@ -16,26 +16,11 @@
 #define YBLog(format, ...)
 #endif
 
-#define TAOLU_ORDER @"taoluTaskOrder"
 #define CONFIGJSON [[TaoLuManager returnTaoLuJSON]objectForKey:@"res"]
-#define SHARESDK_ID [[CONFIGJSON objectForKey:@"configInfo"]objectForKey:@"mobKey"]
-#define SHARESDK_REURL [[CONFIGJSON objectForKey:@"configInfo"]objectForKey:@"redirectUri"]
-#define SHARESDK_PLATFORMS [[CONFIGJSON objectForKey:@"configInfo"]objectForKey:@"platformKey"]
+#define SHARESDK_ID [[CONFIGJSON objectForKey:@"configinfo"]objectForKey:@"mobkey"]
+#define SHARESDK_REURL [[CONFIGJSON objectForKey:@"configinfo"]objectForKey:@"redirecturi"]
+#define SHARESDK_PLATFORMS [[CONFIGJSON objectForKey:@"configinfo"]objectForKey:@"platformkey"]
 
-#define SHARESDK_KEY_WEIBO [[SHARESDK_PLATFORMS objectForKey:@"weiBo"]objectForKey:@"key"]
-#define SHARESDK_SECREAT_WEIBO [[SHARESDK_PLATFORMS objectForKey:@"weiBo"]objectForKey:@"secreat"]
-
-#define SHARESDK_KEY_WEIXIN [[SHARESDK_PLATFORMS objectForKey:@"weiXin"]objectForKey:@"key"]
-#define SHARESDK_SECREAT_WEIXIN [[SHARESDK_PLATFORMS objectForKey:@"weiXin"]objectForKey:@"secreat"]
-
-#define SHARESDK_KEY_QQ [[SHARESDK_PLATFORMS objectForKey:@"QQ"]objectForKey:@"key"]
-#define SHARESDK_SECREAT_QQ [[SHARESDK_PLATFORMS objectForKey:@"QQ"]objectForKey:@"secreat"]
-
-#define SHARESDK_KEY_FACEBOOK [[SHARESDK_PLATFORMS objectForKey:@"faceBook"]objectForKey:@"key"]
-#define SHARESDK_SECREAT_FACEBOOK [[SHARESDK_PLATFORMS objectForKey:@"faceBook"]objectForKey:@"secreat"]
-
-#define SHARESDK_KEY_TWITTER [[SHARESDK_PLATFORMS objectForKey:@"twitter"]objectForKey:@"key"]
-#define SHARESDK_SECREAT_TWITTER [[SHARESDK_PLATFORMS objectForKey:@"twitter"]objectForKey:@"secreat"]
 
 #define ISCHINESE [[[NSLocale preferredLanguages] firstObject] isEqualToString:@"zh-Hans-CN"]
 #define LOCAL_JSON_NAME ISCHINESE?@"localJson_CN":@"localJson_EN"

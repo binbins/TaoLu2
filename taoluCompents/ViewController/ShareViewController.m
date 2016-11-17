@@ -118,23 +118,48 @@
     }
     
     NSInteger index = _ouViewHidden? (platformArr.count/2):(platformArr.count/2-1);   //初始取的下标
-
+    
     for (int i = 0; i < platNums; i++) {
         UIButton *btn = self.platformBtns[i];
         btn.hidden = NO;
-        NSDictionary *platformDic = platformArr[index];
+        NSString *platName = [platformArr objectAtIndex:index];
         if (_ouViewHidden) {
             index = i%2==1?(index+(i+1)) : (index-(i+1));   //偶数：先右后左
         }else {
             index = i%2==0?(index+(i+1)) : (index-(i+1));   //奇数：先左后右
         }
-        
-        NSInteger typeIndex = [platformDic[@"platformType"]integerValue];
+                
+        NSInteger typeIndex = [self returnTypeIndexWithName:platName];
         btn.tag = typeIndex;
         [btn setImage:[self btnImgforIndex:typeIndex] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(ShareAction:) forControlEvents:UIControlEventTouchUpInside];
     }
 
+}
+
+- (NSInteger)returnTypeIndexWithName:(NSString *)name{  //考虑健壮性
+    if([name isEqualToString:@"weixinfriends"]){
+        return 1;
+    }
+    if([name isEqualToString:@"weixintimeline"]){
+        return 2;
+    }
+    if([name isEqualToString:@"qqfriends"]){
+        return 3;
+    }
+    if([name isEqualToString:@"qqzone"]){
+        return 4;
+    }
+    if([name isEqualToString:@"weibo"]){
+        return 5;
+    }
+    if([name isEqualToString:@"facebook"]){
+        return 6;
+    }
+    if([name isEqualToString:@"twitter"]){
+        return 7;
+    }
+    return 1;
 }
 
 -(UIImage *)btnImgforIndex:(NSInteger)typeIndex {

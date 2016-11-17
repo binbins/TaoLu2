@@ -17,6 +17,7 @@
 #define CLASSNAME_DOWNLOAD @"NewArrivalViewController"
 #import <Foundation/Foundation.h>
 #import "VChead.h"
+#import "PlatformModel.h"
 
 @interface TaoLuManager : NSObject
 
@@ -33,6 +34,7 @@ typedef void(^OnFinishTask) (TaskState state);
 @property (nonatomic, strong)OnFinishTask taskState;
 @property (nonatomic, strong)NSArray *classNames;
 @property (nonatomic, strong)NSDictionary *taoLuJson;
+@property (nonatomic, strong)PlatformModel *QQModel, *weixinModel, *weiboModel, *facebookModel, *twitterModel;
 
 + (TaoLuManager *)shareManager;
 + (void)startTaskInViewController:(UIViewController *)viewController;

@@ -35,7 +35,6 @@
 #import <AFNetworking.h>
 #import "AlertUtils.h"
 
-
 @implementation TaoLuManager
 
 
@@ -45,6 +44,7 @@ static TaoLuManager *manager = nil;
 #pragma mark - 内部方法
 + (void)initShareSDK {
     
+    [manager setPlatformModel];
     [ShareSDK registerApp:SHARESDK_ID
      
           activePlatforms:@[
@@ -76,23 +76,23 @@ static TaoLuManager *manager = nil;
          {
              case SSDKPlatformTypeSinaWeibo:
                  //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                 [appInfo SSDKSetupSinaWeiboByAppKey:SHARESDK_KEY_WEIBO
-                                           appSecret:SHARESDK_SECREAT_WEIBO
+                 [appInfo SSDKSetupSinaWeiboByAppKey:manager.weiboModel.key
+                                           appSecret:manager.weiboModel.Secreat
                                          redirectUri:SHARESDK_REURL
                                             authType:SSDKAuthTypeBoth];
                  break;
              case SSDKPlatformTypeWechat:
-                 [appInfo SSDKSetupWeChatByAppId:SHARESDK_KEY_WEIXIN
-                                       appSecret:SHARESDK_SECREAT_WEIXIN];
+                 [appInfo SSDKSetupWeChatByAppId:manager.weixinModel.key
+                                       appSecret:manager.weixinModel.key];
                  break;
              case SSDKPlatformTypeQQ:
-                 [appInfo SSDKSetupQQByAppId:SHARESDK_KEY_QQ
-                                      appKey:SHARESDK_SECREAT_QQ
+                 [appInfo SSDKSetupQQByAppId:manager.QQModel.key
+                                      appKey:manager.QQModel.Secreat
                                     authType:SSDKAuthTypeBoth];
                  break;
              case SSDKPlatformTypeTwitter:
-                 [appInfo        SSDKSetupTwitterByConsumerKey:SHARESDK_KEY_TWITTER
-                                                consumerSecret:SHARESDK_SECREAT_TWITTER
+                 [appInfo        SSDKSetupTwitterByConsumerKey:manager.twitterModel.key
+                                                consumerSecret:manager.twitterModel.Secreat
                                                    redirectUri:SHARESDK_REURL];    //回调地址
                  break;
                  
@@ -102,12 +102,54 @@ static TaoLuManager *manager = nil;
      }];
 }
 
+- (void)setPlatformModel{
+    NSArray *platforms = SHARESDK_PLATFORMS;
+    if(platforms != nil){
+        for (NSDictionary *d in platforms) {
+            NSString *name = [d objectForKey:@"platform"];
+            [manager setModel:name WithDic:d];
+        }
+    }
+}
+
+- (void)setModel:(NSString *)name WithDic:(NSDictionary *)dic{
+    if([name isEqualToString:@"qq"]){
+        manager.QQModel = [[PlatformModel alloc]init];
+        manager.QQModel.key = [dic objectForKey:@"key"];
+        manager.QQModel.Secreat = [dic objectForKey:@"secreat"];
+        return;
+    }
+    if([name isEqualToString:@"weixin"]){
+        manager.weixinModel = [[PlatformModel alloc]init];
+        manager.weixinModel.key = [dic objectForKey:@"key"];
+        manager.weixinModel.Secreat = [dic objectForKey:@"secreat"];
+        return;
+    }
+    if([name isEqualToString:@"weibo"]){
+        manager.weiboModel = [[PlatformModel alloc]init];
+        manager.weiboModel.key = [dic objectForKey:@"key"];
+        manager.weiboModel.Secreat = [dic objectForKey:@"secreat"];
+        return;
+    }
+    if([name isEqualToString:@"twitter"]){
+        manager.twitterModel = [[PlatformModel alloc]init];
+        manager.twitterModel.key = [dic objectForKey:@"key"];
+        manager.twitterModel.Secreat = [dic objectForKey:@"secreat"];
+        return;
+    }
+    if([name isEqualToString:@"facebook"]){
+        manager.facebookModel = [[PlatformModel alloc]init];
+        manager.facebookModel.key = [dic objectForKey:@"key"];
+        manager.facebookModel.Secreat = [dic objectForKey:@"secreat"];
+        return;
+    }
+}
+
 + (TaoLuManager *)shareManager {
     
     dispatch_once(&predict, ^{
         manager = [[self alloc]init];
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-
         YBLog(@"查看路径 -->%@",NSHomeDirectory());
         manager.classNames = @[@"ShareViewController",@"CommentViewController",@"FollowViewController",@"NewArrivalViewController"];
         for (int i=0; i<manager.classNames.count; i++) {
@@ -152,10 +194,9 @@ static TaoLuManager *manager = nil;
 
 }
 
-
 + (void)setNewOrderClassNames{
     NSMutableArray *newClassNames = [NSMutableArray array];
-    NSArray *arr = [CONFIGJSON objectForKey:@"tasknames"];
+    NSArray *arr = [CONFIGJSON objectForKey:@"taskpriority"];
     for (int i =0; i < arr.count; i++) {
         [newClassNames addObject:[self changeName:arr[i]]];
     }
@@ -247,7 +288,6 @@ extern "C" {
 //        NSLog(@"%@",newClassNames[i]);
         if (![[[NSUserDefaults standardUserDefaults]objectForKey:newClassNames[i]]boolValue]) {
             currentClassName = newClassNames[i];
-            //让utils执行
             [AlertUtils StartTaskWithClassName:currentClassName];
             break;
         }
