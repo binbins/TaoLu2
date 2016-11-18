@@ -68,7 +68,7 @@
     // Do any additional setup after loading the view from its nib.
     self.followTitle.text = [FOLLOWTASK_DIC objectForKey:@"title"];
     [self setPlatformsHidden];
-    if(![[FOLLOWTASK_DIC objectForKey:@"showCloseBtn"]boolValue]){
+    if(![[FOLLOWTASK_DIC objectForKey:@"showclosebtn"]boolValue]){
         self.closeBtn.hidden = YES;
     }
 }

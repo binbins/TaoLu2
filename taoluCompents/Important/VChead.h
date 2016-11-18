@@ -17,6 +17,7 @@
 #endif
 
 #define CONFIGJSON [[TaoLuManager returnTaoLuJSON]objectForKey:@"res"]
+#define TASKLIST [CONFIGJSON objectForKey:@"tasklist"]
 #define SHARESDK_ID [[CONFIGJSON objectForKey:@"configinfo"]objectForKey:@"mobkey"]
 #define SHARESDK_REURL [[CONFIGJSON objectForKey:@"configinfo"]objectForKey:@"redirecturi"]
 #define SHARESDK_PLATFORMS [[CONFIGJSON objectForKey:@"configinfo"]objectForKey:@"platformkey"]

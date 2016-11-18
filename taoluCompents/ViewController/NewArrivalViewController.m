@@ -37,7 +37,7 @@
 }
 - (IBAction)startAction:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
-    NSString *iTunesLink = [DOWNLOADTASK_DIC objectForKey:@"downloadUrl"];
+    NSString *iTunesLink = [DOWNLOADTASK_DIC objectForKey:@"downloadurl"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
 
 }
@@ -46,12 +46,12 @@
     [super viewDidLoad];
     
     self.RecomAppTitle.text = [DOWNLOADTASK_DIC objectForKey:@"title"];
-    self.appName.text = [DOWNLOADTASK_DIC objectForKey:@"appName"];
-    self.appDes.text = [DOWNLOADTASK_DIC objectForKey:@"appIntro"];
-    [self.appLogo sd_setImageWithURL:[NSURL URLWithString:[DOWNLOADTASK_DIC objectForKey:@"appLogo"]] placeholderImage:[UIImage imageNamed:@"logo_placeholder"]];
-    [self.startBtn setTitle:[DOWNLOADTASK_DIC objectForKey:@"btnTitle"] forState:UIControlStateNormal];
-    YBLog(@"logo地址：%@",[DOWNLOADTASK_DIC objectForKey:@"appLogo"]);
-    if(![[DOWNLOADTASK_DIC objectForKey:@"showCloseBtn"]boolValue]){
+    self.appName.text = [DOWNLOADTASK_DIC objectForKey:@"appname"];
+    self.appDes.text = [DOWNLOADTASK_DIC objectForKey:@"appintro"];
+    [self.appLogo sd_setImageWithURL:[NSURL URLWithString:[DOWNLOADTASK_DIC objectForKey:@"applogo"]] placeholderImage:[UIImage imageNamed:@"logo_placeholder"]];
+    [self.startBtn setTitle:[DOWNLOADTASK_DIC objectForKey:@"btntitle"] forState:UIControlStateNormal];
+    YBLog(@"logo地址：%@",[DOWNLOADTASK_DIC objectForKey:@"applogo"]);
+    if(![[DOWNLOADTASK_DIC objectForKey:@"showclosebtn"]boolValue]){
         self.closeBtn.hidden = YES;
     }
 }

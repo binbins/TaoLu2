@@ -63,15 +63,15 @@
     // Do any additional setup after loading the view from its nib.
     self.comTitle.text = [GOODTASK_DIC objectForKey:@"title"];
     [self setCommentLabeText];
-    [self.startBtn setTitle:[GOODTASK_DIC objectForKey:@"BtnTitle"] forState:UIControlStateNormal];
+    [self.startBtn setTitle:[GOODTASK_DIC objectForKey:@"btntitle"] forState:UIControlStateNormal];
     [self.startBtn addTarget:self action:@selector(gotoAppStore) forControlEvents:UIControlEventTouchUpInside];
-    if(![[GOODTASK_DIC objectForKey:@"showCloseBtn"]boolValue]){
+    if(![[GOODTASK_DIC objectForKey:@"showclosebtn"]boolValue]){
         self.closeBtn.hidden = YES;
     }
 }
 
 - (void)gotoAppStore {
-    NSString *iTunesLink = [GOODTASK_DIC objectForKey:@"openUrl"];
+    NSString *iTunesLink = [GOODTASK_DIC objectForKey:@"openurl"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
     [self dismissViewControllerAnimated:YES completion:nil];
 

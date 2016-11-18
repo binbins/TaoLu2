@@ -60,12 +60,12 @@
         if (_screenShot == nil) {
             _screenShot = [[UIImage alloc]initWithContentsOfFile:_snapShotPath];    // 基本用不上
         }
-        NSDictionary *d = [SHARETASK_DIC objectForKey:@"shareContents"];
+        NSDictionary *d = [SHARETASK_DIC objectForKey:@"sharecontents"];
         _shareParams = [NSMutableDictionary dictionary];
-        [_shareParams SSDKSetupShareParamsByText:[d objectForKey:@"shareText"]
-                                         images:@[[d objectForKey:@"shareImgUrl"], _screenShot ] //传入要分享的图片
-                                            url:[NSURL URLWithString:[d objectForKey:@"shareUrl"]]
-                                          title:[d objectForKey:@"shareTitle"]
+        [_shareParams SSDKSetupShareParamsByText:[d objectForKey:@"sharetext"]
+                                         images:@[[d objectForKey:@"shareimgurl"], _screenShot ] //传入要分享的图片
+                                            url:[NSURL URLWithString:[d objectForKey:@"shareurl"]]
+                                          title:[d objectForKey:@"sharetitle"]
                                            type:SSDKContentTypeAuto];
     }
     return _shareParams;
@@ -76,7 +76,7 @@
 
 - (void)pushPasteView{
     PasteViewController *vc = [PasteViewController returnInstance];
-    vc.pasteDic = [SHARETASK_DIC objectForKey:@"planB"];
+    vc.pasteDic = [SHARETASK_DIC objectForKey:@"planb"];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:YES completion:nil];
     YBLog(@"分享失败，弹出粘贴弹框");
 }
@@ -99,7 +99,7 @@
     // Do any additional setup after loading the view from its nib.
     self.shareTitle.text = [SHARETASK_DIC objectForKey:@"title"];
     [self setPlatformsHidden];
-    if([[SHARETASK_DIC objectForKey:@"showCloseBtn"]boolValue] == NO){
+    if([[SHARETASK_DIC objectForKey:@"showclosebtn"]boolValue] == NO){
         self.closeBtn.hidden = YES;
     }
     

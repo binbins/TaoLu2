@@ -84,6 +84,9 @@
             case taskAllFinish:
                 YBLog(@"套路任务结束，交给mobi");
                 break;
+            case taskNone:
+                YBLog(@"没有获取到任务，交给mobi");
+                break;
                 
             default:
                 break;

@@ -49,7 +49,7 @@
         self.pasteTitleFirst.text = [self.pasteDic objectForKey:@"title1"];
         self.pasteTitleSecond.text = [self.pasteDic objectForKey:@"title2"];
         self.pasteTextView.text = [self.pasteDic objectForKey:@"textViewText"];
-        [self.startBtn setTitle:[self.pasteDic objectForKey:@"startBtnTitle"] forState:UIControlStateNormal];
+        [self.startBtn setTitle:[self.pasteDic objectForKey:@"startbtntitle"] forState:UIControlStateNormal];
     }
     
     [[UIPasteboard generalPasteboard]setString:self.pasteTextView.text];
