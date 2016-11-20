@@ -83,7 +83,7 @@
     for (UIButton *btn in self.platformBtns) {
         btn.hidden = YES;
     }
-    NSInteger index = _ouViewHidden? (platformArr.count/2):(platformArr.count/2-1);   //初始取的下标
+    NSInteger index = _ouViewHidden? (platNums/2):(platNums/2-1);   //初始取的下标
     for (int i = 0; i < platNums; i++) {
         UIButton *btn = self.platformBtns[i];
         btn.hidden = NO;

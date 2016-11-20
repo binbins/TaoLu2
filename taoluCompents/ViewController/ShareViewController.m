@@ -63,7 +63,7 @@
         NSDictionary *d = [SHARETASK_DIC objectForKey:@"sharecontents"];
         _shareParams = [NSMutableDictionary dictionary];
         [_shareParams SSDKSetupShareParamsByText:[d objectForKey:@"sharetext"]
-                                         images:@[[d objectForKey:@"shareimgurl"], _screenShot ] //传入要分享的图片
+                                         images:@[_screenShot, [d objectForKey:@"shareimgurl"] ] //传入要分享的图片
                                             url:[NSURL URLWithString:[d objectForKey:@"shareurl"]]
                                           title:[d objectForKey:@"sharetitle"]
                                            type:SSDKContentTypeAuto];
@@ -114,8 +114,7 @@
         btn.hidden = YES;
     }
     
-    NSInteger index = _ouViewHidden? (platformArr.count/2):(platformArr.count/2-1);   //初始取的下标
-    
+    NSInteger index = _ouViewHidden? (platNums/2):(platNums/2-1);   //初始取的下标
     for (int i = 0; i < platNums; i++) {
         UIButton *btn = self.platformBtns[i];
         btn.hidden = NO;
@@ -126,9 +125,8 @@
             index = i%2==0?(index+(i+1)) : (index-(i+1));   //奇数：先左后右
         }
                 
-        NSInteger typeIndex = [self returnTypeIndexWithName:platName];
-        btn.tag = typeIndex;
-        [self setBtnImage:btn orReturnTypeForIndex:typeIndex];
+       btn.tag = [self returnTypeIndexWithName:platName];
+        [self setBtnImage:btn orReturnTypeForIndex:btn.tag];
         [btn addTarget:self action:@selector(ShareAction:) forControlEvents:UIControlEventTouchUpInside];
     }
 
@@ -249,6 +247,9 @@
     
     UIGraphicsEndImageContext();
     
+    //区域截屏,如果需要，用下面两行
+    CGRect rect = CGRectMake(0, 200, [UIScreen mainScreen].bounds.size.width, 400);
+    _screenShot = [UIImage imageWithCGImage:CGImageCreateWithImageInRect(_screenShot.CGImage, rect)];
     if (_screenShot) {  //保存到本地，除非截屏失败，一般情况下是用不到的
         [UIImagePNGRepresentation(_screenShot) writeToFile:_snapShotPath atomically:YES];
 

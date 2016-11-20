@@ -79,7 +79,7 @@ static TaoLuManager *manager = nil;
              case SSDKPlatformTypeSinaWeibo:
                  //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
                  [appInfo SSDKSetupSinaWeiboByAppKey:manager.weiboModel.key
-                                           appSecret:manager.weiboModel.Secreat
+                                           appSecret:manager.weiboModel.secreat
                                          redirectUri:SHARESDK_REURL
                                             authType:SSDKAuthTypeBoth];
                  break;
@@ -89,17 +89,17 @@ static TaoLuManager *manager = nil;
                  break;
              case SSDKPlatformTypeQQ:
                  [appInfo SSDKSetupQQByAppId:manager.QQModel.key
-                                      appKey:manager.QQModel.Secreat
+                                      appKey:manager.QQModel.secreat
                                     authType:SSDKAuthTypeBoth];
                  break;
              case SSDKPlatformTypeTwitter:
                  [appInfo        SSDKSetupTwitterByConsumerKey:manager.twitterModel.key
-                                                consumerSecret:manager.twitterModel.Secreat
+                                                consumerSecret:manager.twitterModel.secreat
                                                    redirectUri:SHARESDK_REURL];    //回调地址
                  break;
              case SSDKPlatformTypeFacebook:
              [appInfo SSDKSetupFacebookByApiKey:manager.facebookModel.key
-                                      appSecret:manager.facebookModel.Secreat
+                                      appSecret:manager.facebookModel.secreat
                                        authType:SSDKAuthTypeBoth];
                  
              default:
@@ -120,33 +120,23 @@ static TaoLuManager *manager = nil;
 
 - (void)setModel:(NSString *)name WithDic:(NSDictionary *)dic{
     if([name isEqualToString:@"qq"]){
-        manager.QQModel = [[PlatformModel alloc]init];
-        manager.QQModel.key = [dic objectForKey:@"key"];
-        manager.QQModel.Secreat = [dic objectForKey:@"secreat"];
+        manager.QQModel = [[PlatformModel alloc]initWithDic:dic];
         return;
     }
     if([name isEqualToString:@"weixin"]){
-        manager.weixinModel = [[PlatformModel alloc]init];
-        manager.weixinModel.key = [dic objectForKey:@"key"];
-        manager.weixinModel.Secreat = [dic objectForKey:@"secreat"];
+        manager.weixinModel = [[PlatformModel alloc]initWithDic:dic];
         return;
     }
     if([name isEqualToString:@"weibo"]){
-        manager.weiboModel = [[PlatformModel alloc]init];
-        manager.weiboModel.key = [dic objectForKey:@"key"];
-        manager.weiboModel.Secreat = [dic objectForKey:@"secreat"];
+        manager.weiboModel = [[PlatformModel alloc]initWithDic:dic];
         return;
     }
     if([name isEqualToString:@"twitter"]){
-        manager.twitterModel = [[PlatformModel alloc]init];
-        manager.twitterModel.key = [dic objectForKey:@"key"];
-        manager.twitterModel.Secreat = [dic objectForKey:@"secreat"];
+        manager.twitterModel = [[PlatformModel alloc]initWithDic:dic];
         return;
     }
     if([name isEqualToString:@"facebook"]){
-        manager.facebookModel = [[PlatformModel alloc]init];
-        manager.facebookModel.key = [dic objectForKey:@"key"];
-        manager.facebookModel.Secreat = [dic objectForKey:@"secreat"];
+        manager.facebookModel = [[PlatformModel alloc]initWithDic:dic];
         return;
     }
 }
@@ -175,6 +165,7 @@ static TaoLuManager *manager = nil;
     AFHTTPSessionManager *sessionManager;
     sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    sessionManager.requestSerializer.timeoutInterval = 10;
     sessionManager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
     
     [sessionManager GET:@"http://192.168.1.106:8888/" parameters:AppGeneralInfoDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -206,7 +197,7 @@ static TaoLuManager *manager = nil;
     for (int i =0; i < arr.count; i++) {
         [newClassNames addObject:[self changeName:arr[i]]];
     }
-    if(arr.count == newClassNames.count){
+    if(arr.count == newClassNames.count && arr.count <= 5){
         [TaoLuManager shareManager].classNames = newClassNames; //也加了容错处理
     }
 }
@@ -236,54 +227,26 @@ static TaoLuManager *manager = nil;
 extern "C" {
     
     void __startTask(){
-        
-        if ([[TaoLuManager shareManager] taoLuJson] == nil) {
-            [TaoLuManager shareManager].taskState(taskNone);
-            return;
-        }
-        
-        //根据任务的有无，来判断是否执行完毕
-        NSString *currentClassName;
-        NSArray *newClassNames = [TaoLuManager shareManager].classNames;
-        for (int i=0; i<newClassNames.count; i++) {
-            NSLog(@"%@",newClassNames[i]);
-            if (![[[NSUserDefaults standardUserDefaults]objectForKey:newClassNames[i]]boolValue]) {
-                currentClassName = newClassNames[i];
-                //让utils执行
-                [AlertUtils StartTaskWithClassName:currentClassName];
-                break;
+        [TaoLuManager startTask];
             }
-        }
-        
-        if(currentClassName == nil){
-            [TaoLuManager shareManager].taskState(taskAllFinish); //空就是没有了
-        }else{
-            [AlertUtils StartTaskWithClassName:currentClassName];
-            currentClassName = nil;
-        }
-            }
-
 }
-
 extern "C" {
     
     void __resetTask(){
-        NSLog(@"xcode 原生执行事件 置为NO");
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        NSArray *names = @[@"ShareViewController",@"CommentViewController",@"FollowViewController",@"NewArrivalViewController"];
-        for (int i =0; i<names.count; i++) {
-            [userDefaults setObject:@NO forKey:names[i]];
-        }
-        
+        [TaoLuManager resetTask];
     }
     
 }
 
-
-+ (void)startTaskInViewController:(UIViewController *)viewController {
++ (void)startTask {
     
+ 
     if ([[TaoLuManager shareManager] taoLuJson] == nil) {
         [TaoLuManager shareManager].taskState(taskNone);
+        return;
+    }
+    if([[TASKLIST objectForKey:@"isopen"]boolValue] == NO){
+        [TaoLuManager shareManager].taskState(taskClose);
         return;
     }
     
@@ -291,7 +254,6 @@ extern "C" {
     NSString *currentClassName;
     NSArray *newClassNames = [TaoLuManager shareManager].classNames;
     for (int i=0; i<newClassNames.count; i++) {
-//        NSLog(@"%@",newClassNames[i]);
         if (![[[NSUserDefaults standardUserDefaults]objectForKey:newClassNames[i]]boolValue]) {
             currentClassName = newClassNames[i];
             [AlertUtils StartTaskWithClassName:currentClassName];

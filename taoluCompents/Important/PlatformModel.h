@@ -10,6 +10,8 @@
 
 @interface PlatformModel : NSObject
 
-@property(nonatomic, copy)NSString *key, *Secreat;
+@property(nonatomic, copy)NSString *key, *secreat;
+
+- (instancetype)initWithDic:(NSDictionary *)dic;
 
 @end

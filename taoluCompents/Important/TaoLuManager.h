@@ -26,6 +26,7 @@ typedef enum {
     taskCancle,
     taskFaild,
     taskNone,
+    taskClose,
     taskAllFinish
     
 }TaskState;
@@ -37,7 +38,7 @@ typedef void(^OnFinishTask) (TaskState state);
 @property (nonatomic, strong)PlatformModel *QQModel, *weixinModel, *weiboModel, *facebookModel, *twitterModel;
 
 + (TaoLuManager *)shareManager;
-+ (void)startTaskInViewController:(UIViewController *)viewController;
++ (void)startTask;
 + (void)resetTask;
 + (void)initShareSDK;
 + (NSDictionary *)returnTaoLuJSON;

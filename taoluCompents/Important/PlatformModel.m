@@ -10,4 +10,18 @@
 
 @implementation PlatformModel
 
+- (instancetype)initWithDic:(NSDictionary *)dic {
+    self = [super init];
+    if (self) {
+        NSArray *allKeys = [dic allKeys];
+        if ([allKeys containsObject:@"key"]) {
+            self.key = dic[@"key"];
+        }
+        if ([allKeys containsObject:@"secreat"]) {
+            self.secreat = dic[@"secreat"];
+        }
+    }
+    return self;
+}
+
 @end

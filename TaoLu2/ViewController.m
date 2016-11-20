@@ -50,7 +50,7 @@
 
 
 - (IBAction)getTask:(UIButton *)sender {
-    [TaoLuManager startTaskInViewController:nil];
+    [TaoLuManager startTask];
 
 }
 
@@ -76,6 +76,9 @@
             case taskFaild:
                 YBLog(@"任务失败");
                 break;
+            case taskClose:
+            YBLog(@"后台关闭套路任务");
+            break;
             case taskSuccees:
                 YBLog(@"任务成功");
             dispatch_async(dispatch_get_main_queue(), ^{
