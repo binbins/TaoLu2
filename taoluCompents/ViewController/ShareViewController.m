@@ -70,9 +70,6 @@
     }
     return _shareParams;
 }
-#pragma mark- shareAction
-
-
 
 - (void)pushPasteView{
     PasteViewController *vc = [PasteViewController returnInstance];
@@ -131,7 +128,7 @@
                 
         NSInteger typeIndex = [self returnTypeIndexWithName:platName];
         btn.tag = typeIndex;
-        [btn setImage:[self btnImgforIndex:typeIndex] forState:UIControlStateNormal];
+        [self setBtnImage:btn orReturnTypeForIndex:typeIndex];
         [btn addTarget:self action:@selector(ShareAction:) forControlEvents:UIControlEventTouchUpInside];
     }
 
@@ -162,7 +159,7 @@
     return 1;
 }
 
--(UIImage *)btnImgforIndex:(NSInteger)typeIndex {
+-(SSDKPlatformType)setBtnImage:(UIButton *)btn orReturnTypeForIndex:(NSInteger)typeIndex {
     
     NSString *btnImgName;
     SSDKPlatformType type;
@@ -199,43 +196,19 @@
         default:
             break;
     }
-    
-    return [UIImage imageNamed:btnImgName];
-}
-- (SSDKPlatformType )typeForIndex:(NSInteger)typeIndex{
-
-    SSDKPlatformType type;
-    switch (typeIndex) {
-        case 1:
-            type = SSDKPlatformSubTypeWechatSession;
-            break;
-        case 2:
-            type = SSDKPlatformSubTypeWechatTimeline;
-            break;
-        case 3:
-            type = SSDKPlatformSubTypeQQFriend;
-            break;
-        case 4:
-            type = SSDKPlatformSubTypeQZone;
-            break;
-        case 5:
-            type = SSDKPlatformTypeSinaWeibo;
-            break;
-        case 6:
-            type = SSDKPlatformTypeFacebook;
-            break;
-        case 7:
-            type = SSDKPlatformTypeTwitter;
-            break;
-            
-        default:
-            break;
+    //有按钮参数的话设置上图片，没有只返回 平台枚举类型
+    if (btn != nil) {
+            [btn setImage:[UIImage imageNamed:btnImgName] forState:UIControlStateNormal];
     }
+    
     return type;
 }
 
+#pragma mark- shareAction
 - (void)ShareAction:(UIButton *)btn{
-    [ShareSDK share:[self typeForIndex:btn.tag] //传入分享的平台类型
+    
+    SSDKPlatformType type = [self setBtnImage:nil orReturnTypeForIndex:btn.tag];
+    [ShareSDK share:type //传入分享的平台类型
          parameters:self.shareParams
      onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
          
@@ -282,14 +255,6 @@
     }
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

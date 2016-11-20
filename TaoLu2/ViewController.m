@@ -72,14 +72,15 @@
         switch (state) {
             case taskCancle:
                 YBLog(@"任务取消");
-                [UILabel showStats:@"任务取消" atView:[UIApplication sharedApplication].keyWindow];
                 break;
             case taskFaild:
                 YBLog(@"任务失败");
                 break;
             case taskSuccees:
                 YBLog(@"任务成功");
-                [UILabel showStats:@"任务完成" atView:[UIApplication sharedApplication].keyWindow];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UILabel showStats:@"task succeed" atView:[UIApplication sharedApplication].keyWindow];
+            });
                 break;
             case taskAllFinish:
                 YBLog(@"套路任务结束，交给mobi");

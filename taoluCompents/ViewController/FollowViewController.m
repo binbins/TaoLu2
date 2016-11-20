@@ -96,7 +96,7 @@
         }
         NSInteger typeIndex = [self returnTypeIndexWithName:platName];
         btn.tag = typeIndex;
-        [btn setImage:[self btnImgforIndex:typeIndex] forState:UIControlStateNormal];
+        [self setBtnImage:btn orReturnTypeForIndex:btn.tag];
         [btn addTarget:self action:@selector(followAction:) forControlEvents:UIControlEventTouchUpInside];
     }
  
@@ -141,76 +141,52 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }
-- (SSDKPlatformType )typeForIndex:(NSInteger)typeIndex{
-    
-    SSDKPlatformType type;
-    switch (typeIndex) {
-        case 1:
-            type = SSDKPlatformSubTypeWechatSession;
-            break;
-        case 2:
-            type = SSDKPlatformSubTypeWechatTimeline;
-            break;
-        case 3:
-            type = SSDKPlatformSubTypeQQFriend;
-            break;
-        case 4:
-            type = SSDKPlatformSubTypeQZone;
-            break;
-        case 5:
-            type = SSDKPlatformTypeSinaWeibo;
-            break;
-        case 6:
-            type = SSDKPlatformTypeFacebook;
-            break;
-        case 7:
-            type = SSDKPlatformTypeTwitter;
-            break;
-            
-        default:
-            break;
-    }
-    return type;
-}
--(UIImage *)btnImgforIndex:(NSInteger)typeIndex {
+
+-(SSDKPlatformType)setBtnImage:(UIButton *)btn orReturnTypeForIndex:(NSInteger)typeIndex {
     
     NSString *btnImgName;
     SSDKPlatformType type;
     switch (typeIndex) {
         case 1:
-            type = SSDKPlatformSubTypeWechatSession;
-            btnImgName = @"weixin";
-            break;
+        type = SSDKPlatformSubTypeWechatSession;
+        btnImgName = @"weixin";
+        break;
         case 2:
-            type = SSDKPlatformSubTypeWechatTimeline;
-            btnImgName = @"pyq";
-            break;
+        type = SSDKPlatformSubTypeWechatTimeline;
+        btnImgName = @"pyq";
+        break;
         case 3:
-            type = SSDKPlatformSubTypeQQFriend;
-            btnImgName = @"qq";
-            break;
+        type = SSDKPlatformSubTypeQQFriend;
+        btnImgName = @"qq";
+        break;
         case 4:
-            type = SSDKPlatformSubTypeQZone;
-            btnImgName = @"qzone";
-            break;
+        type = SSDKPlatformSubTypeQZone;
+        btnImgName = @"qzone";
+        break;
         case 5:
-            type = SSDKPlatformTypeSinaWeibo;
-            btnImgName = @"weibo";
-            break;
+        type = SSDKPlatformTypeSinaWeibo;
+        btnImgName = @"weibo";
+        break;
         case 6:
-            type = SSDKPlatformTypeFacebook;
-            btnImgName = @"facebook";
-            break;
+        type = SSDKPlatformTypeFacebook;
+        btnImgName = @"facebook";
+        break;
         case 7:
-            type = SSDKPlatformTypeTwitter;
-            btnImgName = @"twitter";
-            break;
-            
+        type = SSDKPlatformTypeTwitter;
+        btnImgName = @"twitter";
+        break;
+        
         default:
-            break;
+        break;
     }
-    return [UIImage imageNamed:btnImgName];
+    //有按钮参数的话设置上图片，没有只返回 平台枚举类型
+    if (btn != nil) {
+        [btn setImage:[UIImage imageNamed:btnImgName] forState:UIControlStateNormal];
+    }
+    
+    return type;
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -48,7 +48,7 @@
     if (self.pasteDic) {
         self.pasteTitleFirst.text = [self.pasteDic objectForKey:@"title1"];
         self.pasteTitleSecond.text = [self.pasteDic objectForKey:@"title2"];
-        self.pasteTextView.text = [self.pasteDic objectForKey:@"textViewText"];
+        self.pasteTextView.text = [self.pasteDic objectForKey:@"textviewtext"];
         [self.startBtn setTitle:[self.pasteDic objectForKey:@"startbtntitle"] forState:UIControlStateNormal];
     }
     
