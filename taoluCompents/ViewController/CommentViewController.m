@@ -73,6 +73,7 @@
 - (void)gotoAppStore {
     NSString *iTunesLink = [GOODTASK_DIC objectForKey:@"openurl"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
+    [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_GOOD];
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }

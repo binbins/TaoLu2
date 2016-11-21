@@ -30,6 +30,7 @@
     }]; //取消
     UIAlertAction *confirm = [UIAlertAction actionWithTitle:[GOODTASK_DIC objectForKey:@"btntitle"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
+        [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_GOOD];
         NSString *iTunesLink = [GOODTASK_DIC objectForKey:@"openurl"];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
         [commentAlert dismissViewControllerAnimated:YES completion:nil];
@@ -44,16 +45,6 @@
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:commentAlert animated:YES completion:nil];
 }
 
-+ (void)sameToCoustom:(NSInteger)index {
-    
-    UIViewController *viewController = [[[UIApplication sharedApplication] keyWindow ]rootViewController];
-    UIViewController *vc = [[NSClassFromString([TaoLuManager shareManager].classNames[index]) alloc]init];
-    [vc setDefinesPresentationContext:YES];
-    vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [viewController presentViewController:vc animated:YES completion:nil];
-
-}
 + (void)shareAlert{
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/shot.png"];
     UIView *view = [UIApplication sharedApplication].keyWindow.rootViewController.view;
@@ -64,7 +55,6 @@
     
     if (screenShot) {  //保存到本地，除非截屏失败，一般情况下是用不到的
         [UIImagePNGRepresentation(screenShot) writeToFile:path atomically:YES];
-        
     }
     
     NSString *string = [SHARETASK_DIC objectForKey:@"title"];
@@ -75,7 +65,7 @@
     [[UIActivityViewController alloc] initWithActivityItems:@[string, URL, screenShot]
                                       applicationActivities:nil];
     [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:activityViewController animated:YES completion:nil];
-
+    [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_SHARE];
 }
 + (void)downloadAlert {
 
@@ -89,6 +79,7 @@
         
         NSString *iTunesLink = [DOWNLOADTASK_DIC objectForKey:@"downloadurl"];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
+        [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_DOWNLOAD];
         [commentAlert dismissViewControllerAnimated:YES completion:nil];
     }];
     
@@ -110,7 +101,7 @@
         vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [rootvc presentViewController:vc animated:YES completion:nil];
         
-        [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:classname];//任务++
+//        [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:classname];//任务++
     }else{  //原生
         [self useNativeUI:classname];
     }
@@ -127,7 +118,7 @@
     if([classname isEqualToString:CLASSNAME_DOWNLOAD]){
         [self downloadAlert];
     }
-    [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:classname];
+//    [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:classname];
 }
 
 + (BOOL)isCustom:(NSString *)classname{

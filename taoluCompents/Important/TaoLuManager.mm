@@ -123,11 +123,11 @@ static TaoLuManager *manager = nil;
         manager.QQModel = [[PlatformModel alloc]initWithDic:dic];
         return;
     }
-    if([name isEqualToString:@"weixin"]){
+    if([name isEqualToString:@"wechat"]){
         manager.weixinModel = [[PlatformModel alloc]initWithDic:dic];
         return;
     }
-    if([name isEqualToString:@"weibo"]){
+    if([name isEqualToString:@"sinaweibo"]){
         manager.weiboModel = [[PlatformModel alloc]initWithDic:dic];
         return;
     }
@@ -168,7 +168,11 @@ static TaoLuManager *manager = nil;
     sessionManager.requestSerializer.timeoutInterval = 10;
     sessionManager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
     
-    [sessionManager GET:@"http://192.168.1.106:8888/" parameters:AppGeneralInfoDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [sessionManager GET:@"http://192.168.0.20:8888/" parameters:AppGeneralInfoDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([[responseObject allKeys]containsObject:@"res"] == NO) {
+            [TaoLuManager shareManager].taskState(taskNone);
+            return ;    //更健壮
+        }
         [TaoLuManager shareManager].taoLuJson = responseObject;
         [[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:LOCAL_JSON_NAME];
         [self initShareSDK];
@@ -254,7 +258,7 @@ extern "C" {
     NSString *currentClassName;
     NSArray *newClassNames = [TaoLuManager shareManager].classNames;
     for (int i=0; i<newClassNames.count; i++) {
-        if (![[[NSUserDefaults standardUserDefaults]objectForKey:newClassNames[i]]boolValue]) {
+        if ([[[NSUserDefaults standardUserDefaults]objectForKey:newClassNames[i]]boolValue] == NO) {
             currentClassName = newClassNames[i];
             [AlertUtils StartTaskWithClassName:currentClassName];
             break;

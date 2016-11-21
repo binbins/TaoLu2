@@ -38,7 +38,8 @@
     //这里添加打开应用的类型
     [[UIPasteboard generalPasteboard]setString:self.pasteTextView.text];
     [self dismissViewControllerAnimated:YES completion:nil];
-    
+    //加一个打开动作
+    [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_SHARE];
 
 }
 

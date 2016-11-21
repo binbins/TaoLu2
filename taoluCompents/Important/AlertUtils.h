@@ -14,8 +14,6 @@
 
 + (void)commentAlert;
 
-+ (void)sameToCoustom:(NSInteger)index;
-
 + (void)shareAlert;
 
 + (void)downloadAlert;

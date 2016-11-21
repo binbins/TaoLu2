@@ -103,19 +103,19 @@
 }
 
 - (NSInteger)returnTypeIndexWithName:(NSString *)name{  //考虑健壮性
-    if([name isEqualToString:@"weixinfriends"]){
+    if([name isEqualToString:@"wechat"]){
         return 1;
     }
-    if([name isEqualToString:@"weixintimeline"]){
+    if([name isEqualToString:@"wechattimeline"]){
         return 2;
     }
-    if([name isEqualToString:@"qqfriends"]){
+    if([name isEqualToString:@"qq"]){
         return 3;
     }
-    if([name isEqualToString:@"qqzone"]){
+    if([name isEqualToString:@"qzone"]){
         return 4;
     }
-    if([name isEqualToString:@"weibo"]){
+    if([name isEqualToString:@"sinaweibo"]){
         return 5;
     }
     if([name isEqualToString:@"facebook"]){
@@ -133,6 +133,7 @@
             [ShareSDK authorize:SSDKPlatformTypeSinaWeibo settings:@{SSDKAuthSettingKeyScopes : @[@"follow_app_official_microblog"]} onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
                 //授权并关注指定微博
             }];
+            [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_FOLLOW];
             break;
             
         default:

@@ -17,8 +17,8 @@
         if ([allKeys containsObject:@"key"]) {
             self.key = dic[@"key"];
         }
-        if ([allKeys containsObject:@"secreat"]) {
-            self.secreat = dic[@"secreat"];
+        if ([allKeys containsObject:@"secret"]) {
+            self.secreat = dic[@"secret"];
         }
     }
     return self;
