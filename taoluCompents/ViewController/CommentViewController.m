@@ -75,6 +75,7 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
     [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_GOOD];
     [self dismissViewControllerAnimated:YES completion:nil];
+    [TaoLuManager shareManager].taskState(taskSuccees);
 
 }
 

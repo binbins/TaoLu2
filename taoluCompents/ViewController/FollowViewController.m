@@ -132,10 +132,21 @@
         case 5:
             [ShareSDK authorize:SSDKPlatformTypeSinaWeibo settings:@{SSDKAuthSettingKeyScopes : @[@"follow_app_official_microblog"]} onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
                 //授权并关注指定微博
+                if (state == SSDKResponseStateSuccess)
+                {
+                    NSLog(@"关注成功");
+                    [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_FOLLOW];
+                }
+                else if (state == SSDKResponseStateFail)
+                {
+                    NSLog(@"%@", [NSString stringWithFormat:@"关注失败:%@", error.debugDescription]);
+                }
             }];
+            break;
+        case 6:
+//            [ShareSDK ];
             [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_FOLLOW];
             break;
-            
         default:
             break;
     }

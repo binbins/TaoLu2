@@ -25,14 +25,13 @@
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 
-
 #import <TencentOpenAPI/TencentOAuth.h>     //腾讯开放平台（对应QQ和QQ空间）SDK头文件
 #import <TencentOpenAPI/QQApiInterface.h>
 #import "WXApi.h"   //微信SDK头文件
 #import "WeiboSDK.h"    //新浪微博SDK头文件
 
 //新浪微博SDK需要在项目Build Settings中的Other Linker Flags添加"-ObjC"
-#import <AFNetworking.h>
+#import <AFNetworking/AFNetworking.h>
 #import "AlertUtils.h"
 
 @implementation TaoLuManager
@@ -168,7 +167,7 @@ static TaoLuManager *manager = nil;
     sessionManager.requestSerializer.timeoutInterval = 10;
     sessionManager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
     
-    [sessionManager GET:@"http://192.168.0.20:8888/" parameters:AppGeneralInfoDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [sessionManager GET:@"http://192.168.0.20:8888/" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([[responseObject allKeys]containsObject:@"res"] == NO) {
             [TaoLuManager shareManager].taskState(taskNone);
             return ;    //更健壮
@@ -284,14 +283,17 @@ extern "C" {
 }
 
 
-#pragma mark - 导入unity后打开
+#pragma mark - 拖进unity导出的工程后打开注释
 /*
 + (void)sendMsgtoUnityWhenGetResult:(TaskState)state{
     
     switch (state) {
+        case taskClose:
+        YBLog(@"任务关闭");
+        UnitySendMessage("Main Camera", "GetIosResult", "关闭");
+        break;
         case taskCancle:
             YBLog(@"任务取消");
-            [UILabel showStats:@"任务取消" atView:[UIApplication sharedApplication].keyWindow];
             UnitySendMessage("Main Camera", "GetIosResult", "取消");
             break;
         case taskFaild:
@@ -300,7 +302,9 @@ extern "C" {
             break;
         case taskSuccees:
             YBLog(@"任务成功");
-            [UILabel showStats:@"任务完成" atView:[UIApplication sharedApplication].keyWindow];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UILabel showStats:@"task succeed" atView:[UIApplication sharedApplication].keyWindow];
+        });
             UnitySendMessage("Main Camera", "GetIosResult", "成功");
             break;
         case taskAllFinish:
@@ -310,6 +314,8 @@ extern "C" {
         case taskNone:
             YBLog(@"无数据");
             UnitySendMessage("Main Camera", "GetIosResult", "无数据");
+            break;
+        
         default:
             break;
     }

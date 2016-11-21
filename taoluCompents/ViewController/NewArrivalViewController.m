@@ -40,6 +40,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     NSString *iTunesLink = [DOWNLOADTASK_DIC objectForKey:@"downloadurl"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
+    [TaoLuManager shareManager].taskState(taskSuccees);
 
 }
 
