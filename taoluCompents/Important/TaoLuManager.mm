@@ -65,6 +65,9 @@ static TaoLuManager *manager = nil;
              case SSDKPlatformTypeSinaWeibo:
                  [ShareSDKConnector connectWeibo:[WeiboSDK class]];
                  break;
+             case SSDKPlatformTypeFacebook  :
+             [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
+             break;
              
              default:
                  break;
@@ -314,7 +317,11 @@ extern "C" {
         case taskNone:
             YBLog(@"无数据");
             UnitySendMessage("Main Camera", "GetIosResult", "无数据");
+<<<<<<< HEAD
             break;
+=======
+        break;
+>>>>>>> 9a762c4de81ff1b8f681eb7db1187c951d0ef7d0
         
         default:
             break;

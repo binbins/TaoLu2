@@ -136,16 +136,33 @@
                 {
                     NSLog(@"关注成功");
                     [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_FOLLOW];
+                    [TaoLuManager shareManager].taskState(taskSuccees);
                 }
                 else if (state == SSDKResponseStateFail)
                 {
                     NSLog(@"%@", [NSString stringWithFormat:@"关注失败:%@", error.debugDescription]);
+                }else if (state == SSDKResponseStateCancel){
+                    [TaoLuManager shareManager].taskState(taskCancle);
                 }
             }];
             break;
-        case 6:
-//            [ShareSDK ];
-            [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_FOLLOW];
+        case 7:
+            [ShareSDK authorize:SSDKPlatformTypeTwitter settings:@{SSDKAuthSettingKeyScopes : @[@"all",@"SmartGames@wangqianqian100"]} onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
+                //授权并关注指定微博
+                if (state == SSDKResponseStateSuccess)
+                {
+                    NSLog(@"关注成功");
+                    [TaoLuManager shareManager].taskState(taskSuccees);
+                    [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_FOLLOW];
+                }
+                else if (state == SSDKResponseStateFail)
+                {
+                    NSLog(@"%@", [NSString stringWithFormat:@"关注失败:%@", error.debugDescription]);
+                    [TaoLuManager shareManager].taskState(taskFaild);
+                }else if (state == SSDKResponseStateCancel){
+                    [TaoLuManager shareManager].taskState(taskCancle);
+                }
+            }];
             break;
         default:
             break;
