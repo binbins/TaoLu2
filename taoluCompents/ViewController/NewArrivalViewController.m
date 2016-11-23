@@ -36,7 +36,9 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)startAction:(UIButton *)sender {
-    [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_DOWNLOAD];
+    NSString *adid = [DOWNLOADTASK_DIC objectForKey:@"adid"];
+    NSString *newName = [NSString stringWithFormat:@"NewArrivalViewController%@",adid];
+    [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:newName];
     [self dismissViewControllerAnimated:YES completion:nil];
     NSString *iTunesLink = [DOWNLOADTASK_DIC objectForKey:@"downloadurl"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];

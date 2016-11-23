@@ -79,7 +79,10 @@
         
         NSString *iTunesLink = [DOWNLOADTASK_DIC objectForKey:@"downloadurl"];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
-        [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_DOWNLOAD];
+        NSString *adid = [DOWNLOADTASK_DIC objectForKey:@"adid"];
+        NSString *newName = [NSString stringWithFormat:@"NewArrivalViewController%@",adid];
+        [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:newName];
+        [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:newName];
         [commentAlert dismissViewControllerAnimated:YES completion:nil];
     }];
     
@@ -93,6 +96,11 @@
 
 + (void)StartTaskWithClassName:(NSString *)classname{
 
+    //如果是下载任务，将名字还原
+    if ([classname hasPrefix:CLASSNAME_DOWNLOAD]) {
+        classname = CLASSNAME_DOWNLOAD;
+    }
+    
     if([self isCustom:classname]){  //自定义
         UIViewController *rootvc = [UIApplication sharedApplication].keyWindow.rootViewController;
         UIViewController *vc = [[NSClassFromString(classname) alloc]init];

@@ -186,7 +186,7 @@ static TaoLuManager *manager = nil;
     sessionManager.requestSerializer.timeoutInterval = 10;
     sessionManager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
     
-    [sessionManager GET:@"http://192.168.0.33:8888/" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [sessionManager GET:@"http://192.168.1.103:8888/" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([[responseObject allKeys]containsObject:@"res"] == NO) {
             [TaoLuManager shareManager].taskState(taskNone);
             return ;    //更健壮
@@ -239,8 +239,16 @@ static TaoLuManager *manager = nil;
     if([name isEqualToString:@"followtask"]){
         return CLASSNAME_FOLLOW;
     }
-    if([name isEqualToString:@"downloadtask"]){
-        return CLASSNAME_DOWNLOAD;
+    if([name isEqualToString:@"downloadtask"]){ //新品推荐任务不是一次性的，区别对待
+        NSString *adid = [DOWNLOADTASK_DIC objectForKey:@"adid"];
+        NSString *newName = [NSString stringWithFormat:@"NewArrivalViewController%@",adid];
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        if ([userDefaults boolForKey:newName] == NO) {
+            [userDefaults setObject:@NO forKey:newName];
+        }
+        YBLog(@"%@",newName);
+        return newName;
     }
     YBLog(@"字符串不符合------");
     return nil;
@@ -277,15 +285,13 @@ extern "C" {
         return;
     }
     
-    //根据任务的有无，来判断是否执行完毕
+//    //根据任务的有无，来判断是否执行完毕
     NSString *currentClassName;
     NSArray *newClassNames = [TaoLuManager shareManager].classNames;
     for (int i=0; i<newClassNames.count; i++) {
-        //下载任务的特殊性在这里对key值进行变化
         
         if ([[[NSUserDefaults standardUserDefaults]objectForKey:newClassNames[i]]boolValue] == NO) {
             currentClassName = newClassNames[i];
-            [AlertUtils StartTaskWithClassName:currentClassName];
             break;
         }
     }
@@ -302,7 +308,14 @@ extern "C" {
 
 + (void)resetTask{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSArray *names = @[@"ShareViewController",@"CommentViewController",@"FollowViewController",@"NewArrivalViewController"];
+    
+    NSString *adid = @"";
+    if ([[DOWNLOADTASK_DIC allKeys]containsObject:@"adid"]) {
+        adid = [DOWNLOADTASK_DIC objectForKey:@"adid"];
+    }
+    NSString *newName = [NSString stringWithFormat:@"NewArrivalViewController%@",adid];
+    NSArray *names = @[@"ShareViewController",@"CommentViewController",@"FollowViewController",newName];
+    
     for (int i =0; i<names.count; i++) {
         [userDefaults setObject:@NO forKey:names[i]];
     }
