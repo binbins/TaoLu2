@@ -10,7 +10,7 @@
 #define FOLLOWTASK_DIC [TASKLIST objectForKey:@"followtask"]
 #define DOWNLOADTASK_DIC [TASKLIST objectForKey:@"downloadtask"]
 #define SHARETASK_DIC [TASKLIST objectForKey:@"sharetask"]
-
+#define FOLLOW_PLATFORMS [FOLLOWTASK_DIC objectForKey:@"sharetask"] //关注平台的数组
 #define CLASSNAME_SHARE @"ShareViewController"
 #define CLASSNAME_GOOD @"CommentViewController"
 #define CLASSNAME_FOLLOW @"FollowViewController"

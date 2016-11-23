@@ -65,9 +65,6 @@ static TaoLuManager *manager = nil;
              case SSDKPlatformTypeSinaWeibo:
                  [ShareSDKConnector connectWeibo:[WeiboSDK class]];
                  break;
-             case SSDKPlatformTypeFacebook  :
-             [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
-             break;
              
              default:
                  break;
@@ -114,8 +111,10 @@ static TaoLuManager *manager = nil;
     NSArray *platforms = SHARESDK_PLATFORMS;
     if(platforms != nil){
         for (NSDictionary *d in platforms) {
-            NSString *name = [d objectForKey:@"platform"];
-            [manager setModel:name WithDic:d];
+            if ([[d allKeys]containsObject:@"platform"]) {  //安全判断
+                NSString *name = [d objectForKey:@"platform"];
+                [manager setModel:name WithDic:d];
+            }
         }
     }
 }
@@ -170,7 +169,7 @@ static TaoLuManager *manager = nil;
     sessionManager.requestSerializer.timeoutInterval = 10;
     sessionManager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
     
-    [sessionManager GET:@"http://192.168.0.20:8888/" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [sessionManager GET:@"http://192.168.0.33:8888/" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([[responseObject allKeys]containsObject:@"res"] == NO) {
             [TaoLuManager shareManager].taskState(taskNone);
             return ;    //更健壮
@@ -317,11 +316,7 @@ extern "C" {
         case taskNone:
             YBLog(@"无数据");
             UnitySendMessage("Main Camera", "GetIosResult", "无数据");
-<<<<<<< HEAD
             break;
-=======
-        break;
->>>>>>> 9a762c4de81ff1b8f681eb7db1187c951d0ef7d0
         
         default:
             break;

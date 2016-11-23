@@ -31,7 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *ou_btn4;
 
 @property (nonatomic, strong)NSArray *platformBtns;
-
+@property (nonatomic, copy)NSString *facebookAccount, *sinaweiboAccount, *twitterAccount;
 @end
 
 @implementation FollowViewController {
@@ -88,7 +88,8 @@
         UIButton *btn = self.platformBtns[i];
         btn.hidden = NO;
         //设置logo和对应的事件
-        NSString *platName = [platformArr objectAtIndex:index];
+        NSDictionary *nameAndKey = [platformArr objectAtIndex:index];
+        NSString *platName = [nameAndKey objectForKey:@"platform"];
         if (_ouViewHidden) {
             index = i%2==1?(index+(i+1)) : (index-(i+1));   //偶数：先右后左
         }else {
@@ -102,6 +103,27 @@
  
 }
 
+- (void)setFollowAccount:(NSString *)account withPlatform:(NSString *)name{
+    
+    if([name isEqualToString:@"qq"]){
+        return;
+    }
+    if([name isEqualToString:@"wechat"]){
+        return;
+    }
+    if([name isEqualToString:@"sinaweibo"]){
+        self.sinaweiboAccount = account;
+        return;
+    }
+    if([name isEqualToString:@"twitter"]){
+        self.twitterAccount = account;
+        return;
+    }
+    if([name isEqualToString:@"facebook"]){
+        self.facebookAccount = account;
+        return;
+    }
+}
 - (NSInteger)returnTypeIndexWithName:(NSString *)name{  //考虑健壮性
     if([name isEqualToString:@"wechat"]){
         return 1;
