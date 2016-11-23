@@ -41,8 +41,25 @@ static dispatch_once_t predict;
 static TaoLuManager *manager = nil;
 
 #pragma mark - 内部方法
++ (void)printPara{
+        NSLog(@"sys_name:%@",[[UIDevice currentDevice] systemName] );
+        NSLog(@"sys_ver:%@",[[UIDevice currentDevice] systemVersion] );
+        NSLog(@"sys_model:%@",[[UIDevice currentDevice] model] );
+    for (NSString *lan in [NSLocale preferredLanguages]) {
+        NSLog(@"%@",lan);
+    }
+}
 + (void)initShareSDK {
-    
+//    [self printPara];
+    if ([TaoLuManager shareManager].taoLuJson == nil) {
+        NSDictionary *jsonDic = [[NSUserDefaults standardUserDefaults]objectForKey:LOCAL_JSON_NAME];
+        if (jsonDic != nil) {
+            [TaoLuManager shareManager].taoLuJson = jsonDic;
+        }else {
+            YBLog(@"没有套路数据");
+            return;
+        }
+    }
     [manager setPlatformModel];
     [ShareSDK registerApp:SHARESDK_ID
      
@@ -161,7 +178,7 @@ static TaoLuManager *manager = nil;
 + (void)updateConfig {
 
     for (NSString *language in [NSLocale preferredLanguages]) {
-        YBLog(@"需要注意可能有问题，语言列表-->%@<--",language);
+        YBLog(@"------语言列表-->%@<--",language);
     }
     AFHTTPSessionManager *sessionManager;
     sessionManager = [AFHTTPSessionManager manager];
@@ -176,17 +193,15 @@ static TaoLuManager *manager = nil;
         }
         [TaoLuManager shareManager].taoLuJson = responseObject;
         [[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:LOCAL_JSON_NAME];
-        [self initShareSDK];
-        [self setNewOrderClassNames];
+        [self afterConfig];
         YBLog(@"网络获取成功");
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if([TaoLuManager shareManager].taoLuJson) return ;
+        if([TaoLuManager shareManager].taoLuJson) return ;  //判断条件包含指定的key会更安全
         
         NSDictionary *localJson = [[NSUserDefaults standardUserDefaults]objectForKey:LOCAL_JSON_NAME];
         if(localJson){
             [self shareManager].taoLuJson = localJson;
-            [self initShareSDK];
-            [self setNewOrderClassNames];
+            [self afterConfig];
         }else {
             //都没有的话，[TaoLuManager shareManager].taoLuJson 的值是nil，根据这个控制弹出
             YBLog(@"当前是空");
@@ -194,6 +209,13 @@ static TaoLuManager *manager = nil;
         }
     }];
 
+}
+
++ (void)afterConfig{
+    [self setNewOrderClassNames];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [self initShareSDK];
+    });
 }
 
 + (void)setNewOrderClassNames{
@@ -259,6 +281,8 @@ extern "C" {
     NSString *currentClassName;
     NSArray *newClassNames = [TaoLuManager shareManager].classNames;
     for (int i=0; i<newClassNames.count; i++) {
+        //下载任务的特殊性在这里对key值进行变化
+        
         if ([[[NSUserDefaults standardUserDefaults]objectForKey:newClassNames[i]]boolValue] == NO) {
             currentClassName = newClassNames[i];
             [AlertUtils StartTaskWithClassName:currentClassName];
@@ -284,6 +308,13 @@ extern "C" {
     }
 }
 
+#warning 
++ (void)doShareTask {
+    if(SHARETASK_DIC) {
+        
+    }
+}
+
 
 #pragma mark - 拖进unity导出的工程后打开注释
 /*
@@ -292,30 +323,30 @@ extern "C" {
     switch (state) {
         case taskClose:
         YBLog(@"任务关闭");
-        UnitySendMessage("Main Camera", "GetIosResult", "关闭");
+        UnitySendMessage("Canvas", "GetIosResult", "关闭");
         break;
         case taskCancle:
             YBLog(@"任务取消");
-            UnitySendMessage("Main Camera", "GetIosResult", "取消");
+            UnitySendMessage("Canvas", "GetIosResult", "取消");
             break;
         case taskFaild:
             YBLog(@"任务失败");
-            UnitySendMessage("Main Camera", "GetIosResult", "失败");
+            UnitySendMessage("Canvas", "GetIosResult", "失败");
             break;
         case taskSuccees:
             YBLog(@"任务成功");
         dispatch_async(dispatch_get_main_queue(), ^{
             [UILabel showStats:@"task succeed" atView:[UIApplication sharedApplication].keyWindow];
         });
-            UnitySendMessage("Main Camera", "GetIosResult", "成功");
+            UnitySendMessage("Canvas", "GetIosResult", "成功");
             break;
         case taskAllFinish:
             YBLog(@"mobi");
-            UnitySendMessage("Main Camera", "GetIosResult", "mobi");
+            UnitySendMessage("Canvas", "GetIosResult", "mobi");
             break;
         case taskNone:
             YBLog(@"无数据");
-            UnitySendMessage("Main Camera", "GetIosResult", "无数据");
+            UnitySendMessage("Canvas", "GetIosResult", "无数据");
             break;
         
         default:

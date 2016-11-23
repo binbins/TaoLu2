@@ -12,6 +12,7 @@
 #import "PasteViewController.h"
 
 
+
 @interface ShareViewController ()
 @property (nonatomic, strong)NSMutableDictionary *shareParams;
 
@@ -71,12 +72,6 @@
     return _shareParams;
 }
 
-- (void)pushPasteView{
-    PasteViewController *vc = [PasteViewController returnInstance];
-    vc.pasteDic = [SHARETASK_DIC objectForKey:@"planb"];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:YES completion:nil];
-    YBLog(@"分享失败，弹出粘贴弹框");
-}
 + (instancetype)returnInstance {
     ShareViewController *vc = [[ShareViewController alloc]init];
     [vc setDefinesPresentationContext:YES];
@@ -205,6 +200,7 @@
 #pragma mark- shareAction
 - (void)ShareAction:(UIButton *)btn{
     
+    NSDate *deadTime = [NSDate dateWithTimeIntervalSinceNow:4];
     SSDKPlatformType type = [self setBtnImage:nil orReturnTypeForIndex:btn.tag];
     [ShareSDK share:type //传入分享的平台类型
          parameters:self.shareParams
@@ -216,7 +212,7 @@
                  break;
              case SSDKResponseStateFail:
                  [TaoLuManager shareManager].taskState(taskFaild);
-                 [self pushPasteView];
+                 [self pushPasteView:deadTime];
                  break;
              case SSDKResponseStateSuccess:
                 [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_SHARE];//任务++
@@ -231,26 +227,37 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)pushPasteView:(NSDate *)deadTime{
+
+    if ([[NSDate date] laterDate:deadTime] == deadTime) {  //在约定时间内
+        PasteViewController *vc = [PasteViewController returnInstance];
+        vc.pasteDic = [SHARETASK_DIC objectForKey:@"planb"];
+        //响应时间太久，若在切出程序的时候弹出粘贴框，程序会崩溃  最好的方法就是设定flag
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:YES completion:nil];
+        YBLog(@"分享失败，启动B计划");
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    //开始截屏
+    
    _snapShotPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/shot.png"];
     UIView *view = [UIApplication sharedApplication].keyWindow.rootViewController.view;
     UIGraphicsBeginImageContextWithOptions(view.bounds.size,YES,0);
     
-    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
-    
+//    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
     _screenShot = UIGraphicsGetImageFromCurrentImageContext();
     
     UIGraphicsEndImageContext();
     
     //区域截屏,如果需要，用下面两行
-    CGRect rect = CGRectMake(0, 200, [UIScreen mainScreen].bounds.size.width, 400);
-    _screenShot = [UIImage imageWithCGImage:CGImageCreateWithImageInRect(_screenShot.CGImage, rect)];
+//    CGRect rect = CGRectMake(0, 200, [UIScreen mainScreen].bounds.size.width, 400);
+//    _screenShot = [UIImage imageWithCGImage:CGImageCreateWithImageInRect(_screenShot.CGImage, rect)];
     if (_screenShot) {  //保存到本地，除非截屏失败，一般情况下是用不到的
         [UIImagePNGRepresentation(_screenShot) writeToFile:_snapShotPath atomically:YES];
 

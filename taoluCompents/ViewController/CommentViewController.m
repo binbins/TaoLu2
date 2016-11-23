@@ -52,6 +52,7 @@
         }
         if ([member isKindOfClass:[UILabel class]]) {
             UILabel *label = (UILabel *)member;
+            [[UIPasteboard generalPasteboard]setString:label.text];
             YBLog(@"%@",label.text);
         }
     }

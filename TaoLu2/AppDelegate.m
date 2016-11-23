@@ -19,7 +19,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [TaoLuManager updateConfig];
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 8*NSEC_PER_SEC);
+    dispatch_after(time, dispatch_get_global_queue(0, 0), ^{
+        [TaoLuManager updateConfig];
+    });
     return YES;
 }
 
