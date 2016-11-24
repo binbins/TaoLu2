@@ -39,9 +39,11 @@ typedef void(^OnFinishTask) (TaskState state);
 
 + (TaoLuManager *)shareManager;
 + (void)startTask;
++ (void)doShareTask;
 + (void)resetTask;
 + (void)initShareSDK;
 + (NSDictionary *)returnTaoLuJSON;
++ (UIImage *)getSnapShot;
 + (void)updateConfig;
 + (void)sendMsgtoUnityWhenGetResult:(TaskState)state;   //内有调用unity的方法
 @end

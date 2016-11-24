@@ -46,17 +46,8 @@
 }
 
 + (void)shareAlert{
-    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/shot.png"];
-    UIView *view = [UIApplication sharedApplication].keyWindow.rootViewController.view;
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size,YES,0);
-    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
-    UIImage *screenShot = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
     
-    if (screenShot) {  //保存到本地，除非截屏失败，一般情况下是用不到的
-        [UIImagePNGRepresentation(screenShot) writeToFile:path atomically:YES];
-    }
-    
+    UIImage *screenShot = [TaoLuManager getSnapShot];
     NSString *string = [SHARETASK_DIC objectForKey:@"title"];
     NSString *stringUrl = [[SHARETASK_DIC objectForKey:@"sharecontents"]objectForKey:@"shareurl"];
     NSURL *URL = [NSURL URLWithString:stringUrl];

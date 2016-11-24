@@ -41,7 +41,6 @@
 @implementation ShareViewController {
     BOOL _ouViewHidden;
     UIImage *_screenShot;
-    NSString *_snapShotPath;
 }
 
 - (NSArray *)platformBtns{
@@ -59,7 +58,7 @@
 
     if (_shareParams == nil) {
         if (_screenShot == nil) {
-            _screenShot = [[UIImage alloc]initWithContentsOfFile:_snapShotPath];    // 基本用不上
+            _screenShot = [[UIImage alloc]initWithContentsOfFile:SNAPSHOTPATH];    // 基本用不上
         }
         NSDictionary *d = [SHARETASK_DIC objectForKey:@"sharecontents"];
         _shareParams = [NSMutableDictionary dictionary];
@@ -244,26 +243,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
-   _snapShotPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/shot.png"];
-    UIView *view = [UIApplication sharedApplication].keyWindow.rootViewController.view;
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size,YES,0);
-    
-//    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    _screenShot = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    //区域截屏,如果需要，用下面两行
-//    CGRect rect = CGRectMake(0, 200, [UIScreen mainScreen].bounds.size.width, 400);
-//    _screenShot = [UIImage imageWithCGImage:CGImageCreateWithImageInRect(_screenShot.CGImage, rect)];
-    if (_screenShot) {  //保存到本地，除非截屏失败，一般情况下是用不到的
-        [UIImagePNGRepresentation(_screenShot) writeToFile:_snapShotPath atomically:YES];
-
-    }
+    _screenShot = [TaoLuManager getSnapShot];
 }
-
 
 
 @end

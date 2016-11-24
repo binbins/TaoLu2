@@ -16,6 +16,10 @@
 #define YBLog(format, ...)
 #endif
 
+#define K_WIDTH [UIScreen mainScreen].bounds.size.width
+#define K_HEIGHT [UIScreen mainScreen].bounds.size.height
+#define SNAPSHOTPATH [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/shot.png"]
+
 #define CONFIGJSON [[TaoLuManager returnTaoLuJSON]objectForKey:@"res"]
 #define TASKLIST [CONFIGJSON objectForKey:@"tasklist"]
 #define SHARESDK_ID [[CONFIGJSON objectForKey:@"configinfo"]objectForKey:@"mobkey"]

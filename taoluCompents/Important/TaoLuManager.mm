@@ -49,17 +49,25 @@ static TaoLuManager *manager = nil;
         NSLog(@"%@",lan);
     }
 }
++(UIImage *)getSnapShot{
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    UIGraphicsBeginImageContext(window.frame.size);
+    [window drawViewHierarchyInRect:CGRectMake(0, 0, K_WIDTH, K_HEIGHT) afterScreenUpdates:NO];
+    UIImage *screenShot = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    //区域截屏,如果需要，用下面两行
+    CGRect rect = CGRectMake(0, 0, K_WIDTH, 300);
+    screenShot = [UIImage imageWithCGImage:CGImageCreateWithImageInRect(screenShot.CGImage, rect)];
+    [UIImagePNGRepresentation(screenShot) writeToFile:SNAPSHOTPATH atomically:YES];
+#ifdef YBTEST
+    UIImageWriteToSavedPhotosAlbum(screenShot, nil, nil, nil); //调试
+#endif
+    return screenShot;
+}
+
 + (void)initShareSDK {
 //    [self printPara];
-    if ([TaoLuManager shareManager].taoLuJson == nil) {
-        NSDictionary *jsonDic = [[NSUserDefaults standardUserDefaults]objectForKey:LOCAL_JSON_NAME];
-        if (jsonDic != nil) {
-            [TaoLuManager shareManager].taoLuJson = jsonDic;
-        }else {
-            YBLog(@"没有套路数据");
-            return;
-        }
-    }
     [manager setPlatformModel];
     [ShareSDK registerApp:SHARESDK_ID
      
@@ -164,7 +172,6 @@ static TaoLuManager *manager = nil;
     dispatch_once(&predict, ^{
         manager = [[self alloc]init];
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        YBLog(@"查看路径 -->%@",NSHomeDirectory());
         manager.classNames = @[@"ShareViewController",@"CommentViewController",@"FollowViewController",@"NewArrivalViewController"];
         for (int i=0; i<manager.classNames.count; i++) {
             if (![userDefaults boolForKey:manager.classNames[i]]) {
@@ -186,7 +193,7 @@ static TaoLuManager *manager = nil;
     sessionManager.requestSerializer.timeoutInterval = 10;
     sessionManager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
     
-    [sessionManager GET:@"http://192.168.1.103:8888/" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [sessionManager GET:@"http://192.168.0.33:8888/" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([[responseObject allKeys]containsObject:@"res"] == NO) {
             [TaoLuManager shareManager].taskState(taskNone);
             return ;    //更健壮
@@ -204,7 +211,7 @@ static TaoLuManager *manager = nil;
             [self afterConfig];
         }else {
             //都没有的话，[TaoLuManager shareManager].taoLuJson 的值是nil，根据这个控制弹出
-            YBLog(@"当前是空");
+            YBLog(@"没有套路数据");
             [TaoLuManager shareManager].taskState(taskNone);
         }
     }];
@@ -247,7 +254,6 @@ static TaoLuManager *manager = nil;
         if ([userDefaults boolForKey:newName] == NO) {
             [userDefaults setObject:@NO forKey:newName];
         }
-        YBLog(@"%@",newName);
         return newName;
     }
     YBLog(@"字符串不符合------");
@@ -257,20 +263,21 @@ static TaoLuManager *manager = nil;
 + (NSDictionary *)returnTaoLuJSON {
     return [TaoLuManager shareManager].taoLuJson;
 }
-#pragma mark - unity调用 等同
+#pragma mark - 封装unity调用方法
 
 extern "C" {
     
     void __startTask(){
         [TaoLuManager startTask];
             }
-}
-extern "C" {
     
     void __resetTask(){
         [TaoLuManager resetTask];
     }
     
+    void __doShareTask(){
+        [TaoLuManager doShareTask];
+    }
 }
 
 + (void)startTask {
@@ -284,7 +291,6 @@ extern "C" {
         [TaoLuManager shareManager].taskState(taskClose);
         return;
     }
-    
 //    //根据任务的有无，来判断是否执行完毕
     NSString *currentClassName;
     NSArray *newClassNames = [TaoLuManager shareManager].classNames;
@@ -300,7 +306,7 @@ extern "C" {
           [TaoLuManager shareManager].taskState(taskAllFinish); //空就是没有了
     }else{
         [AlertUtils StartTaskWithClassName:currentClassName];
-        currentClassName = nil;
+//        currentClassName = nil;
     }
     
     
@@ -321,13 +327,11 @@ extern "C" {
     }
 }
 
-#warning 
 + (void)doShareTask {
     if(SHARETASK_DIC) {
-        
+        [AlertUtils StartTaskWithClassName:CLASSNAME_SHARE];
     }
 }
-
 
 #pragma mark - 拖进unity导出的工程后打开注释
 /*
@@ -349,7 +353,7 @@ extern "C" {
         case taskSuccees:
             YBLog(@"任务成功");
         dispatch_async(dispatch_get_main_queue(), ^{
-            [UILabel showStats:@"task succeed" atView:[UIApplication sharedApplication].keyWindow];
+            [UILabel showStats:@"task succeed" atView:[[UIApplication sharedApplication] keyWindow]];
         });
             UnitySendMessage("Canvas", "GetIosResult", "成功");
             break;
