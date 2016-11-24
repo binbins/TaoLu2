@@ -278,6 +278,10 @@ extern "C" {
     void __doShareTask(){
         [TaoLuManager doShareTask];
     }
+    
+    void __gotoAppstore(){
+        [TaoLuManager doCommentTask];
+    }
 }
 
 + (void)startTask {
@@ -333,10 +337,17 @@ extern "C" {
     }
 }
 
++ (void)doCommentTask {
+    if(GOODTASK_DIC) {
+        NSString *iTunesLink = [GOODTASK_DIC objectForKey:@"openurl"];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
+    }
+}
+
 #pragma mark - 拖进unity导出的工程后打开注释
-/*
+
 + (void)sendMsgtoUnityWhenGetResult:(TaskState)state{
-    
+    /*
     switch (state) {
         case TaskClose:
         YBLog(@"任务关闭");
@@ -369,7 +380,7 @@ extern "C" {
         default:
             break;
     }
-    
+    */
 }
-*/
+
 @end

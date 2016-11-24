@@ -40,6 +40,7 @@ typedef void(^OnFinishTask) (TaskState state);
 + (TaoLuManager *)shareManager;
 + (void)startTask;
 + (void)doShareTask;
++ (void)doCommentTask;
 + (void)resetTask;
 + (void)initShareSDK;
 + (NSDictionary *)returnTaoLuJSON;
