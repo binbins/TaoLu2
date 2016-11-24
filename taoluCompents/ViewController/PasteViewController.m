@@ -29,7 +29,7 @@
 
 - (IBAction)closeAction:(UIButton *)sender {
     
-    [TaoLuManager shareManager].taskState(taskCancle);
+    [TaoLuManager shareManager].taskState(TaskCancle);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

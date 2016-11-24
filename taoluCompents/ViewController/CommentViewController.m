@@ -37,7 +37,7 @@
 
 - (IBAction)closeAction:(UIButton *)sender {
     
-    [TaoLuManager shareManager].taskState(taskCancle);
+    [TaoLuManager shareManager].taskState(TaskCancle);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -76,7 +76,7 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
     [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_GOOD];
     [self dismissViewControllerAnimated:YES completion:nil];
-    [TaoLuManager shareManager].taskState(taskSuccees);
+    [TaoLuManager shareManager].taskState(TaskSuccees);
 
 }
 

@@ -22,12 +22,12 @@
 @interface TaoLuManager : NSObject
 
 typedef enum {
-    taskSuccees,
-    taskCancle,
-    taskFaild,
-    taskNone,
-    taskClose,
-    taskAllFinish
+    TaskSuccees,
+    TaskCancle,
+    TaskFaild,
+    TaskNone,
+    TaskClose,
+    TaskAllFinish
     
 }TaskState;
 

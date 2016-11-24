@@ -81,7 +81,7 @@
 
 - (IBAction)closeAction:(UIButton *)sender {
     
-    [TaoLuManager shareManager].taskState(taskCancle);
+    [TaoLuManager shareManager].taskState(TaskCancle);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -207,15 +207,15 @@
          
          switch (state) {
              case SSDKResponseStateCancel:
-                 [TaoLuManager shareManager].taskState(taskCancle);
+                 [TaoLuManager shareManager].taskState(TaskCancle);
                  break;
              case SSDKResponseStateFail:
-                 [TaoLuManager shareManager].taskState(taskFaild);
+                 [TaoLuManager shareManager].taskState(TaskFaild);
                  [self pushPasteView:deadTime];
                  break;
              case SSDKResponseStateSuccess:
                 [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_SHARE];//任务++
-                 [TaoLuManager shareManager].taskState(taskSuccees);
+                 [TaoLuManager shareManager].taskState(TaskSuccees);
                  break;
              default:
                  break;

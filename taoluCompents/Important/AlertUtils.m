@@ -26,7 +26,7 @@
     
     //创建动作
     UIAlertAction *cancle = [UIAlertAction actionWithTitle:[GOODTASK_DIC objectForKey:@"nativecanclebtntext"] style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        [TaoLuManager shareManager].taskState(taskCancle);
+        [TaoLuManager shareManager].taskState(TaskCancle);
     }]; //取消
     UIAlertAction *confirm = [UIAlertAction actionWithTitle:[GOODTASK_DIC objectForKey:@"btntitle"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
@@ -34,7 +34,7 @@
         NSString *iTunesLink = [GOODTASK_DIC objectForKey:@"openurl"];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
         [commentAlert dismissViewControllerAnimated:YES completion:nil];
-        [TaoLuManager shareManager].taskState(taskSuccees);
+        [TaoLuManager shareManager].taskState(TaskSuccees);
     }];
     
     //添加动作
@@ -64,7 +64,7 @@
     
     //创建动作
     UIAlertAction *cancle = [UIAlertAction actionWithTitle:[DOWNLOADTASK_DIC objectForKey:@"nativecanclebtntext"] style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        [TaoLuManager shareManager].taskState(taskCancle);
+        [TaoLuManager shareManager].taskState(TaskCancle);
     }]; //取消
     UIAlertAction *confirm = [UIAlertAction actionWithTitle:[DOWNLOADTASK_DIC objectForKey:@"btntitle"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         

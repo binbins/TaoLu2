@@ -70,25 +70,25 @@
     [TaoLuManager shareManager].taskState = ^(TaskState state){
         
         switch (state) {
-            case taskCancle:
+            case TaskCancle:
                 YBLog(@"任务取消");
                 break;
-            case taskFaild:
+            case TaskFaild:
                 YBLog(@"任务失败");
                 break;
-            case taskClose:
+            case TaskClose:
             YBLog(@"后台关闭套路任务");
             break;
-            case taskSuccees:
+            case TaskSuccees:
                 YBLog(@"任务成功");
             dispatch_async(dispatch_get_main_queue(), ^{
                 [UILabel showStats:@"task succeed" atView:[UIApplication sharedApplication].keyWindow];
             });
                 break;
-            case taskAllFinish:
+            case TaskAllFinish:
                 YBLog(@"套路任务结束，交给mobi");
                 break;
-            case taskNone:
+            case TaskNone:
                 YBLog(@"没有获取到任务，交给mobi");
                 break;
                 

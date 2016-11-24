@@ -32,7 +32,7 @@
 
 - (IBAction)closeAction:(UIButton *)sender {
     
-    [TaoLuManager shareManager].taskState(taskCancle);
+    [TaoLuManager shareManager].taskState(TaskCancle);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)startAction:(UIButton *)sender {
@@ -42,7 +42,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     NSString *iTunesLink = [DOWNLOADTASK_DIC objectForKey:@"downloadurl"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
-    [TaoLuManager shareManager].taskState(taskSuccees);
+    [TaoLuManager shareManager].taskState(TaskSuccees);
 
 }
 

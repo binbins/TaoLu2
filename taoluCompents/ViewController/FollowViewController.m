@@ -59,7 +59,7 @@
 
 - (IBAction)closeAction:(UIButton *)sender {
     
-    [TaoLuManager shareManager].taskState(taskCancle);
+    [TaoLuManager shareManager].taskState(TaskCancle);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -158,13 +158,13 @@
                 {
                     NSLog(@"关注成功");
                     [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_FOLLOW];
-                    [TaoLuManager shareManager].taskState(taskSuccees);
+                    [TaoLuManager shareManager].taskState(TaskSuccees);
                 }
                 else if (state == SSDKResponseStateFail)
                 {
                     NSLog(@"%@", [NSString stringWithFormat:@"关注失败:%@", error.debugDescription]);
                 }else if (state == SSDKResponseStateCancel){
-                    [TaoLuManager shareManager].taskState(taskCancle);
+                    [TaoLuManager shareManager].taskState(TaskCancle);
                 }
             }];
             break;
@@ -174,15 +174,15 @@
                 if (state == SSDKResponseStateSuccess)
                 {
                     NSLog(@"关注成功");
-                    [TaoLuManager shareManager].taskState(taskSuccees);
+                    [TaoLuManager shareManager].taskState(TaskSuccees);
                     [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_FOLLOW];
                 }
                 else if (state == SSDKResponseStateFail)
                 {
                     NSLog(@"%@", [NSString stringWithFormat:@"关注失败:%@", error.debugDescription]);
-                    [TaoLuManager shareManager].taskState(taskFaild);
+                    [TaoLuManager shareManager].taskState(TaskFaild);
                 }else if (state == SSDKResponseStateCancel){
-                    [TaoLuManager shareManager].taskState(taskCancle);
+                    [TaoLuManager shareManager].taskState(TaskCancle);
                 }
             }];
             break;

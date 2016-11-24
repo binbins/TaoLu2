@@ -195,7 +195,7 @@ static TaoLuManager *manager = nil;
     
     [sessionManager GET:@"http://192.168.0.33:8888/" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([[responseObject allKeys]containsObject:@"res"] == NO) {
-            [TaoLuManager shareManager].taskState(taskNone);
+            [TaoLuManager shareManager].taskState(TaskNone);
             return ;    //更健壮
         }
         [TaoLuManager shareManager].taoLuJson = responseObject;
@@ -212,7 +212,7 @@ static TaoLuManager *manager = nil;
         }else {
             //都没有的话，[TaoLuManager shareManager].taoLuJson 的值是nil，根据这个控制弹出
             YBLog(@"没有套路数据");
-            [TaoLuManager shareManager].taskState(taskNone);
+            [TaoLuManager shareManager].taskState(TaskNone);
         }
     }];
 
@@ -284,11 +284,11 @@ extern "C" {
     
  
     if ([[TaoLuManager shareManager] taoLuJson] == nil) {
-        [TaoLuManager shareManager].taskState(taskNone);
+        [TaoLuManager shareManager].taskState(TaskNone);
         return;
     }
     if([[TASKLIST objectForKey:@"isopen"]boolValue] == NO){
-        [TaoLuManager shareManager].taskState(taskClose);
+        [TaoLuManager shareManager].taskState(TaskClose);
         return;
     }
 //    //根据任务的有无，来判断是否执行完毕
@@ -303,7 +303,7 @@ extern "C" {
     }
     
     if(currentClassName == nil){
-          [TaoLuManager shareManager].taskState(taskAllFinish); //空就是没有了
+          [TaoLuManager shareManager].taskState(TaskAllFinish); //空就是没有了
     }else{
         [AlertUtils StartTaskWithClassName:currentClassName];
 //        currentClassName = nil;
@@ -338,30 +338,30 @@ extern "C" {
 + (void)sendMsgtoUnityWhenGetResult:(TaskState)state{
     
     switch (state) {
-        case taskClose:
+        case TaskClose:
         YBLog(@"任务关闭");
         UnitySendMessage("Canvas", "GetIosResult", "关闭");
         break;
-        case taskCancle:
+        case TaskCancle:
             YBLog(@"任务取消");
             UnitySendMessage("Canvas", "GetIosResult", "取消");
             break;
-        case taskFaild:
+        case TaskFaild:
             YBLog(@"任务失败");
             UnitySendMessage("Canvas", "GetIosResult", "失败");
             break;
-        case taskSuccees:
+        case TaskSuccees:
             YBLog(@"任务成功");
         dispatch_async(dispatch_get_main_queue(), ^{
             [UILabel showStats:@"task succeed" atView:[[UIApplication sharedApplication] keyWindow]];
         });
             UnitySendMessage("Canvas", "GetIosResult", "成功");
             break;
-        case taskAllFinish:
+        case TaskAllFinish:
             YBLog(@"mobi");
             UnitySendMessage("Canvas", "GetIosResult", "mobi");
             break;
-        case taskNone:
+        case TaskNone:
             YBLog(@"无数据");
             UnitySendMessage("Canvas", "GetIosResult", "无数据");
             break;
