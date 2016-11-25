@@ -207,15 +207,21 @@
          
          switch (state) {
              case SSDKResponseStateCancel:
-                 [TaoLuManager shareManager].taskState(TaskCancle);
+                 if ([[[NSUserDefaults standardUserDefaults]objectForKey:CLASSNAME_SHARE]boolValue] == NO) {
+                     [TaoLuManager shareManager].taskState(TaskCancle);
+                 }
                  break;
              case SSDKResponseStateFail:
-                 [TaoLuManager shareManager].taskState(TaskFaild);
+                 if ([[[NSUserDefaults standardUserDefaults]objectForKey:CLASSNAME_SHARE]boolValue] == NO) {
+                     [TaoLuManager shareManager].taskState(TaskFaild);
+                 }
                  [self pushPasteView:deadTime];
                  break;
              case SSDKResponseStateSuccess:
-                [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_SHARE];//任务++
-                 [TaoLuManager shareManager].taskState(TaskSuccees);
+                 if ([[[NSUserDefaults standardUserDefaults]objectForKey:CLASSNAME_SHARE]boolValue] == NO) {
+                     [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_SHARE];//任务++
+                     [TaoLuManager shareManager].taskState(TaskSuccees);
+                 }
                  break;
              default:
                  break;

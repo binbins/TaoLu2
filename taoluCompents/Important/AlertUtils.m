@@ -56,13 +56,15 @@
     [[UIActivityViewController alloc] initWithActivityItems:@[string, URL, screenShot]
                                       applicationActivities:nil];
     [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:activityViewController animated:YES completion:nil];
-    [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_SHARE];
+    if ([[[NSUserDefaults standardUserDefaults]objectForKey:CLASSNAME_SHARE]boolValue] == NO) {
+        [TaoLuManager shareManager].taskState(TaskSuccees);
+        [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_SHARE];
+    }
 }
 + (void)downloadAlert {
 
     UIAlertController *commentAlert = [UIAlertController alertControllerWithTitle:[DOWNLOADTASK_DIC objectForKey:@"title"] message:[DOWNLOADTASK_DIC objectForKey:@"appname"] preferredStyle:UIAlertControllerStyleAlert];
     
-    //创建动作
     UIAlertAction *cancle = [UIAlertAction actionWithTitle:[DOWNLOADTASK_DIC objectForKey:@"nativecanclebtntext"] style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         [TaoLuManager shareManager].taskState(TaskCancle);
     }]; //取消
@@ -72,7 +74,10 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
         NSString *adid = [DOWNLOADTASK_DIC objectForKey:@"adid"];
         NSString *newName = [NSString stringWithFormat:@"NewArrivalViewController%@",adid];
-        [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:newName];
+        if ([[[NSUserDefaults standardUserDefaults]objectForKey:CLASSNAME_DOWNLOAD]boolValue] == NO) {
+            [TaoLuManager shareManager].taskState(TaskSuccees);
+            [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:CLASSNAME_DOWNLOAD];
+        }
         [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:newName];
         [commentAlert dismissViewControllerAnimated:YES completion:nil];
     }];
@@ -100,12 +105,11 @@
         vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [rootvc presentViewController:vc animated:YES completion:nil];
         
-//        [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:classname];//任务++
     }else{  //原生
         [self useNativeUI:classname];
     }
 }
-#pragma mark - 私有方法
+#pragma mark - 非公开方法
 
 + (void)useNativeUI:(NSString *)classname{
     if([classname isEqualToString:CLASSNAME_SHARE]){
@@ -117,7 +121,6 @@
     if([classname isEqualToString:CLASSNAME_DOWNLOAD]){
         [self downloadAlert];
     }
-//    [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:classname];
 }
 
 + (BOOL)isCustom:(NSString *)classname{
@@ -135,7 +138,7 @@
         return [[DOWNLOADTASK_DIC objectForKey:@"iscoustomui"]boolValue];
     }
     
-    return YES; //默认自定义
+    return YES; //没有该字段，默认使用自定义UI
 }
 
 

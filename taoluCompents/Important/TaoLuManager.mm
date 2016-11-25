@@ -347,7 +347,7 @@ extern "C" {
 #pragma mark - 拖进unity导出的工程后打开注释
 
 + (void)sendMsgtoUnityWhenGetResult:(TaskState)state{
-    /*
+/*
     switch (state) {
         case TaskClose:
         YBLog(@"任务关闭");
@@ -380,7 +380,7 @@ extern "C" {
         default:
             break;
     }
-    */
+*/
 }
 
 @end
