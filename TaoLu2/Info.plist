@@ -137,5 +137,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>FacebookAppID</key>
+    <string>1807222879515173</string>
+    <key>FacebookDisplayName</key>
+    <string>six! - keep balance 2016</string>
 </dict>
 </plist>

@@ -42,6 +42,10 @@
 		078146EC1DE3310100F1DA58 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 078146D21DE3310100F1DA58 /* ShareViewController.m */; };
 		078146ED1DE3310100F1DA58 /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 078146D31DE3310100F1DA58 /* ShareViewController.xib */; };
 		07CA71AA1DE546A000F55077 /* ADjson.json in Resources */ = {isa = PBXBuildFile; fileRef = 07CA71A91DE546A000F55077 /* ADjson.json */; };
+		07CA87B31DE821C200F55077 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07CA87AF1DE821C200F55077 /* Bolts.framework */; };
+		07CA87B41DE821C200F55077 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07CA87B01DE821C200F55077 /* FBSDKCoreKit.framework */; };
+		07CA87B51DE821C200F55077 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07CA87B11DE821C200F55077 /* FBSDKLoginKit.framework */; };
+		07CA87B61DE821C200F55077 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07CA87B21DE821C200F55077 /* FBSDKShareKit.framework */; };
 		07EF57211DCA1C330013CAB8 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 07EF57201DCA1C330013CAB8 /* icon.png */; };
 		90129F621DC8F1D7007E94C5 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90129F381DC8F1D6007E94C5 /* ShareSDK.framework */; };
 		90129F631DC8F1D7007E94C5 /* ShareSDKConfigFile.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90129F3B1DC8F1D6007E94C5 /* ShareSDKConfigFile.bundle */; };
@@ -120,6 +124,10 @@
 		078146D21DE3310100F1DA58 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		078146D31DE3310100F1DA58 /* ShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareViewController.xib; sourceTree = "<group>"; };
 		07CA71A91DE546A000F55077 /* ADjson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ADjson.json; sourceTree = "<group>"; };
+		07CA87AF1DE821C200F55077 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Documents/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
+		07CA87B01DE821C200F55077 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		07CA87B11DE821C200F55077 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		07CA87B21DE821C200F55077 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		07EF57201DCA1C330013CAB8 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		10473F986383FE2F6D801BEE /* Pods-TaoLu2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaoLu2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaoLu2/Pods-TaoLu2.debug.xcconfig"; sourceTree = "<group>"; };
 		90129F381DC8F1D6007E94C5 /* ShareSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDK.framework; sourceTree = "<group>"; };
@@ -183,13 +191,17 @@
 				90129F751DC8F1D7007E94C5 /* ShareSDKConnector.framework in Frameworks */,
 				90129F701DC8F1D7007E94C5 /* libWeChatSDK.a in Frameworks */,
 				021FC416F32AA842BA928852 /* libPods-TaoLu2.a in Frameworks */,
+				07CA87B61DE821C200F55077 /* FBSDKShareKit.framework in Frameworks */,
 				90129F681DC8F1D7007E94C5 /* FacebookConnector.framework in Frameworks */,
 				078146AA1DE3282A00F1DA58 /* FBSDKMessengerShareKit.framework in Frameworks */,
+				07CA87B51DE821C200F55077 /* FBSDKLoginKit.framework in Frameworks */,
 				90129F651DC8F1D7007E94C5 /* ShareSDKExtension.framework in Frameworks */,
 				90129F6B1DC8F1D7007E94C5 /* WechatConnector.framework in Frameworks */,
 				90129F6C1DC8F1D7007E94C5 /* TencentOpenAPI.framework in Frameworks */,
 				90129F6A1DC8F1D7007E94C5 /* SinaWeiboConnector.framework in Frameworks */,
 				90129F691DC8F1D7007E94C5 /* QQConnector.framework in Frameworks */,
+				07CA87B31DE821C200F55077 /* Bolts.framework in Frameworks */,
+				07CA87B41DE821C200F55077 /* FBSDKCoreKit.framework in Frameworks */,
 				90129F641DC8F1D7007E94C5 /* ShareSDKConfigFile.framework in Frameworks */,
 				90129F621DC8F1D7007E94C5 /* ShareSDK.framework in Frameworks */,
 			);
@@ -339,6 +351,10 @@
 		8E2EFD9112789BE9DC763283 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07CA87AF1DE821C200F55077 /* Bolts.framework */,
+				07CA87B01DE821C200F55077 /* FBSDKCoreKit.framework */,
+				07CA87B11DE821C200F55077 /* FBSDKLoginKit.framework */,
+				07CA87B21DE821C200F55077 /* FBSDKShareKit.framework */,
 				90129F801DC8F2EF007E94C5 /* libsqlite3.tbd */,
 				90129F7E1DC8F2E0007E94C5 /* ImageIO.framework */,
 				90129F7C1DC8F2CD007E94C5 /* JavaScriptCore.framework */,
@@ -745,6 +761,7 @@
 					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/ShareSDK/Support/Required",
 					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/FacebookMessengerSDK",
+					"$(PROJECT_DIR)/Documents/FacebookSDK",
 				);
 				INFOPLIST_FILE = TaoLu2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -774,6 +791,7 @@
 					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/ShareSDK/Support/Required",
 					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/FacebookMessengerSDK",
+					"$(PROJECT_DIR)/Documents/FacebookSDK",
 				);
 				INFOPLIST_FILE = TaoLu2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
